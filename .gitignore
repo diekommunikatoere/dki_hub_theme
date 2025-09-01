@@ -33,3 +33,7 @@ node_modules/
 .env
 .env.*
 !.env.example
+
+# package-lock
+package-lock.json
+/blocks/*/package-lock.json
