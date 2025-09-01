@@ -1,0 +1,612 @@
+@charset "UTF-8";
+/***/
+/*** ----- VARIABLES ----- ***/
+/***/
+/*** ----- Colors Default ----- ***/
+/***/
+/*** ----- Space ----- ***/
+/*** ----- Font Family ----- ***/
+/***/
+/*** ----- z-index ----- ***/
+/***/
+/*** ----- Breakpoints ----- ***/
+/***/
+/*** ----- Font Sizes ----- ***/
+/***/
+/*** ----- Line Heights ----- ***/
+/***/
+/*** ----- Border Radius ----- ***/
+/***/
+/*** ----- Box Shadows ----- ***/
+/***/
+/*** ----- Transitions ----- ***/
+/***/
+/*** ----- Easings ----- ***/
+/***/
+/*** ----- Animations ----- ***/
+/***/
+#wiki,
+#editor {
+  /* General Styles and Overrides */
+  /* Item Count */
+  /* Article List */
+}
+#wiki .betterdocs-category-title,
+#editor .betterdocs-category-title {
+  color: var(--wp--preset--color--primary);
+  font-family: var(--wp--preset--font-family--heading);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+#wiki .betterdocs-category-items-counts,
+#editor .betterdocs-category-items-counts {
+  background-color: var(--wp--preset--color--background);
+  padding: 0;
+  /* Item Count Number */
+}
+#wiki .betterdocs-category-items-counts span,
+#editor .betterdocs-category-items-counts span {
+  min-height: 1em;
+  min-width: 1em;
+  height: 1em;
+  width: 1em;
+  padding: 0.5rem;
+  color: var(--wp--preset--color--background);
+  font-size: 14px;
+  text-align: center;
+  background-color: var(--wp--preset--color--tertiary);
+}
+#wiki .betterdocs-articles-list li,
+#editor .betterdocs-articles-list li {
+  /* Article List Item – Icon */
+  /* Article List Item – Link */
+}
+#wiki .betterdocs-articles-list li a,
+#editor .betterdocs-articles-list li a {
+  font-size: 1rem;
+  color: var(--wp--preset--color--primary);
+}
+#wiki .betterdocs-articles-list li a:hover,
+#editor .betterdocs-articles-list li a:hover {
+  color: var(--wp--preset--color--primary-hover);
+}
+i + #wiki .betterdocs-articles-list li a:hover,
+i + #editor .betterdocs-articles-list li a:hover {
+  color: var(--wp--preset--color--primary-hover);
+}
+li #wiki .betterdocs-articles-list li a:hover,
+li #editor .betterdocs-articles-list li a:hover {
+  background-color: var(--wp--preset--color--primary-hover);
+}
+#wiki .betterdocs-articles-list li a + i,
+#editor .betterdocs-articles-list li a + i {
+  color: var(--wp--preset--color--primary);
+}
+#wiki .betterdocs--comment-section,
+#editor .betterdocs--comment-section {
+  /* Kommentar Sektion Headline */
+  /* Kommentare */
+}
+#wiki .betterdocs--comment-section ol.betterdocs--comment-section--comments,
+#editor .betterdocs--comment-section ol.betterdocs--comment-section--comments {
+  /* Einzelner Kommentar */
+}
+#wiki .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment,
+#editor .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment {
+  /* Kommentar Container */
+}
+#wiki .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns,
+#editor .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns {
+  padding: 1rem 1rem 1.5rem;
+  border: 2px solid var(--wp--preset--color--tertiary-light);
+  border-radius: 12px;
+  /* Avatar */
+  /* Kommentar Inhalt */
+}
+#wiki .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column,
+#editor .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column {
+  /* Avatar Image */
+}
+#wiki .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column,
+#editor .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column {
+  /* Kommentar Autor */
+  /* Kommentar Datum & Bearbeiten Link */
+  /* Kommentar Inhalt */
+  /* Antworten Link */
+}
+#wiki .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-comment-author-name,
+#editor .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-comment-author-name {
+  font-family: var(--wp--preset--font-family--heading);
+  font-weight: 600;
+  color: var(--wp--preset--color--primary);
+}
+#wiki .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-group,
+#editor .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-group {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--wp--preset--color--tertiary-light);
+}
+#wiki .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-group .wp-block-comment-date,
+#editor .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-group .wp-block-comment-date {
+  color: var(--wp--preset--color--tertiary);
+  transition: 0.1s color;
+}
+#wiki .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-group .wp-block-comment-date:hover,
+#editor .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-group .wp-block-comment-date:hover {
+  color: var(--wp--preset--color--primary-hover);
+}
+#wiki .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-group .wp-block-comment-edit-link,
+#editor .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-group .wp-block-comment-edit-link {
+  color: var(--wp--preset--color--contrast);
+  transition: 0.1s color;
+}
+#wiki .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-group .wp-block-comment-edit-link:hover,
+#editor .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-group .wp-block-comment-edit-link:hover {
+  color: var(--wp--preset--color--primary-hover);
+}
+#wiki .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-comment-content,
+#editor .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-comment-content {
+  color: var(--wp--preset--color--contrast);
+  font-size: 1rem;
+}
+#wiki .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-comment-reply-link a.comment-reply-link,
+#editor .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-comment-reply-link a.comment-reply-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: var(--wp--preset--color--tertiary);
+  color: var(--wp--preset--color--background);
+  border-radius: 3px;
+  box-shadow: var(--wp--preset--shadow--extra-small);
+  transition: 0.2s all;
+}
+#wiki .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-comment-reply-link a.comment-reply-link:hover,
+#editor .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-comment-reply-link a.comment-reply-link:hover {
+  background-color: var(--wp--preset--color--secondary);
+  color: var(--wp--preset--color--contrast);
+  box-shadow: var(--wp--preset--shadow--small);
+  text-decoration: none;
+}
+#wiki .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-comment-reply-link a.comment-reply-link:active,
+#editor .betterdocs--comment-section ol.betterdocs--comment-section--comments li.comment .wp-block-columns .wp-block-column .wp-block-comment-reply-link a.comment-reply-link:active {
+  background-color: var(--wp--preset--color--secondary);
+  color: var(--wp--preset--color--contrast);
+  box-shadow: var(--wp--preset--shadow--tiny);
+}
+
+#wiki .betterdocs-blocks,
+#editor .betterdocs-blocks {
+  /* Category Overview Block */
+  /* Table of Contents */
+  /* Search Form Wrapper */
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  /* Single Category Item */
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper {
+  /* Single Category Item Inner Wrapper */
+  background-color: var(--wp--preset--color--background-alt);
+  border: 1px solid var(--wp--preset--color--tertiary-light);
+  border-radius: 12px;
+  box-shadow: rgba(50, 50, 93, 0.16) 0px 13px 27px -5px, rgba(0, 0, 0, 0.23) 0px 8px 16px -8px;
+  overflow: hidden;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner {
+  /* Single Category Header Section */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  /* Single Category Body Section */
+  /* Single Category Footer Section */
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-category-header,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-category-header {
+  /* Single Category Header Section – Inner */
+  flex-grow: unset;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-category-header .betterdocs-category-header-inner,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-category-header .betterdocs-category-header-inner {
+  border-bottom: 1px solid var(--wp--preset--color--tertiary-light);
+  /* Icon */
+  /* Title */
+  /* Item Count */
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-category-header .betterdocs-category-header-inner .betterdocs-category-icon,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-category-header .betterdocs-category-header-inner .betterdocs-category-icon {
+  /* Icon Image */
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-category-header .betterdocs-category-header-inner .betterdocs-category-items-counts,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-category-header .betterdocs-category-header-inner .betterdocs-category-items-counts {
+  /* Item Count Number */
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body {
+  flex-grow: 1;
+  padding: 6px 4px 4px;
+  /* Article List */
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list {
+  width: 100%;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list > li:not(.betterdocs-nested-category-wrapper),
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list > li:not(.betterdocs-nested-category-wrapper) {
+  transition: color 0.1s, background-color 0.1s;
+  padding: 4px;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list > li:not(.betterdocs-nested-category-wrapper) a,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list > li:not(.betterdocs-nested-category-wrapper) a {
+  width: 100%;
+  transition: color 0.1s;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list > li:not(.betterdocs-nested-category-wrapper):hover,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list > li:not(.betterdocs-nested-category-wrapper):hover {
+  color: var(--wp--preset--color--primary-hover);
+  background-color: var(--wp--preset--color--background-alt);
+  border-radius: 6px;
+  overflow: hidden;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper {
+  margin: 0;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title {
+  transition: color 0.1s, background-color 0.1s;
+  padding: 4px;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title a,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title a {
+  width: 100%;
+  transition: color 0.1s;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title:hover,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title:hover {
+  color: var(--wp--preset--color--primary-hover);
+  background-color: var(--wp--preset--color--background-alt);
+  border-radius: 6px;
+  overflow: hidden;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-list li,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-list li {
+  transition: color 0.1s, background-color 0.1s;
+  padding: 4px;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-list li a,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-list li a {
+  width: 100%;
+  transition: color 0.1s;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-list li:hover,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-list li:hover {
+  color: var(--wp--preset--color--primary-hover);
+  background-color: var(--wp--preset--color--background-alt);
+  border-radius: 6px;
+  overflow: hidden;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer {
+  flex-grow: unset;
+  /* Category Link */
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn {
+  font-family: var(--wp--preset--font-family--heading);
+  font-weight: 500;
+  font-size: 1rem;
+  background-color: var(--wp--preset--color--secondary);
+  color: var(--wp--preset--color--contrast);
+  border: none;
+  border-radius: 3px;
+  padding: 0.5rem 2rem;
+  box-shadow: rgba(255, 214, 64, 0.4) 0px 2px 6px, rgba(118, 95, 10, 0.1) 0px 1px 2px;
+  transition: all 0.2s;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn:hover,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn:hover {
+  background-color: var(--wp--preset--color--secondary-hover);
+  box-shadow: rgba(255, 214, 64, 0.4) 0px 4px 12px, rgba(118, 95, 10, 0.1) 0px 2px 6px;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn:active,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn:active {
+  background-color: var(--wp--preset--color--secondary-hover);
+  box-shadow: rgba(118, 95, 10, 0.25) 0px 1px 3px;
+}
+#wiki .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc,
+#editor .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc {
+  padding: 1.5rem 2rem;
+}
+#wiki .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc span.toc-title,
+#editor .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc span.toc-title {
+  font-family: "Gibson", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+#wiki .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li.betterdocs-toc-heading-level-2 > a,
+#editor .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li.betterdocs-toc-heading-level-2 > a {
+  font-family: "Gibson", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+}
+#wiki .betterdocs-blocks.betterdocs-search-form-wrapper,
+#editor .betterdocs-blocks.betterdocs-search-form-wrapper {
+  padding: 2rem 0;
+  background-color: unset;
+  /* Search Form Wrapper - Inner */
+}
+#wiki .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search,
+#editor .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search {
+  /* Search Form – Form Wrapper */
+}
+#wiki .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform,
+#editor .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform {
+  /* Search Form – Search Field Wrapper */
+  border-color: var(--wp--preset--color--tertiary-light);
+  /* Search Form – Results Wrapper */
+}
+#wiki .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap,
+#editor .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap {
+  width: 100%;
+  /* Search Form – Results List */
+}
+#wiki .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result,
+#editor .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result {
+  width: 100%;
+  overflow-x: hidden;
+  /* Search Form – Results List Item */
+}
+#wiki .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result li,
+#editor .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result li {
+  width: 100%;
+  /* Search Form – Results List Item – Link */
+}
+#wiki .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result li a,
+#editor .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result li a {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+  width: 100%;
+  /* Search Form – Results List Item – Title */
+  /* Search Form – Results List Item – Category */
+}
+#wiki .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result li a .betterdocs-search-title,
+#editor .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result li a .betterdocs-search-title {
+  display: block;
+  order: 2;
+  font-family: var(--wp--preset--font-family--heading);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--wp--preset--color--contrast);
+  transition: color 0.2s;
+}
+#wiki .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result li a br,
+#editor .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result li a br {
+  display: none;
+}
+#wiki .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result li a .betterdocs-search-category,
+#editor .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result li a .betterdocs-search-category {
+  display: block;
+  order: 1;
+  font-size: 0.75rem;
+  color: var(--wp--preset--color--primary-dark);
+  padding: 0 0.5rem;
+  border-radius: 3px;
+  background-color: var(--wp--preset--color--primary-extra-light);
+}
+#wiki .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result li a:hover .betterdocs-search-title,
+#editor .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result li a:hover .betterdocs-search-title {
+  color: var(--wp--preset--color--primary);
+}
+#wiki .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result li:hover,
+#editor .betterdocs-blocks.betterdocs-search-form-wrapper .betterdocs-live-search .betterdocs-searchform .betterdocs-search-result-wrap .docs-search-result li:hover {
+  background-color: var(--wp--preset--color--background-alt);
+}
+#wiki .docs-navigation,
+#editor .docs-navigation {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--wp--preset--color--tertiary-light);
+}
+#wiki .docs-navigation a,
+#editor .docs-navigation a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  color: var(--wp--preset--color--primary);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+#wiki .docs-navigation a svg,
+#editor .docs-navigation a svg {
+  fill: var(--wp--preset--color--primary);
+  transition: transform 0.2s, fill 0.2s;
+  min-width: 1rem;
+  width: 1rem;
+  margin: 0;
+}
+#wiki .docs-navigation a:hover,
+#editor .docs-navigation a:hover {
+  color: var(--wp--preset--color--primary-hover);
+  text-decoration: underline;
+  text-decoration-color: var(--wp--preset--color--primary-hover);
+}
+#wiki .docs-navigation a:hover svg,
+#editor .docs-navigation a:hover svg {
+  transform: translateX(5px);
+  fill: var(--wp--preset--color--primary-hover);
+}
+#wiki .docs-navigation a[rel=prev]:hover svg,
+#editor .docs-navigation a[rel=prev]:hover svg {
+  transform: translateX(-5px);
+}
+#wiki .docs-navigation a[rel=next],
+#editor .docs-navigation a[rel=next] {
+  align-self: flex-end;
+}
+#wiki .docs-navigation a[rel=next]:hover svg,
+#editor .docs-navigation a[rel=next]:hover svg {
+  transform: translateX(5px);
+}
+#wiki .sticky-toc-block-wrapper .sticky-toc-container .betterdocs-toc span.toc-title,
+#editor .sticky-toc-block-wrapper .sticky-toc-container .betterdocs-toc span.toc-title {
+  font-family: "Gibson", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+#wiki .sticky-toc-block-wrapper .sticky-toc-container .betterdocs-toc ul.toc-list li.betterdocs-toc-heading-level-2 > a,
+#editor .sticky-toc-block-wrapper .sticky-toc-container .betterdocs-toc ul.toc-list li.betterdocs-toc-heading-level-2 > a {
+  font-family: "Gibson", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--wp--preset--color--tertiary-light);
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-category-header {
+  transition: background-color 0.1s;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-category-header .betterdocs-category-header-inner h2.betterdocs-category-title {
+  color: var(--wp--preset--color--contrast);
+  transition: color 0.1s;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-category-header:hover {
+  background-color: var(--wp--preset--color--background-alt);
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-category-header:hover .betterdocs-category-header-inner h2.betterdocs-category-title {
+  color: var(--wp--preset--color--primary-hover);
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body {
+  border-bottom: 1px solid var(--wp--preset--color--tertiary-light);
+  padding: 6px 4px 4px;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list {
+  width: 100%;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list li svg {
+  fill: var(--wp--preset--color--contrast);
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list li a {
+  color: var(--wp--preset--color--contrast);
+  width: 100%;
+  transition: color 0.1s;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list li:hover {
+  background-color: var(--wp--preset--color--background-alt);
+  border-radius: 6px;
+  overflow: hidden;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list li:hover a {
+  color: var(--wp--preset--color--primary-hover);
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list > li:not(.betterdocs-nested-category-wrapper) {
+  transition: color 0.1s, background-color 0.1s;
+  padding: 4px;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list > li:not(.betterdocs-nested-category-wrapper) a {
+  color: var(--wp--preset--color--contrast);
+  width: 100%;
+  transition: color 0.1s;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list > li:not(.betterdocs-nested-category-wrapper):hover {
+  color: var(--wp--preset--color--primary-hover);
+  background-color: var(--wp--preset--color--background-alt);
+  border-radius: 6px;
+  overflow: hidden;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list > li:not(.betterdocs-nested-category-wrapper):hover a {
+  color: var(--wp--preset--color--primary-hover);
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper {
+  margin: 0;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title {
+  transition: color 0.1s, background-color 0.1s;
+  padding: 4px;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title a {
+  color: var(--wp--preset--color--contrast);
+  width: 100%;
+  transition: color 0.1s;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title svg {
+  fill: var(--wp--preset--color--contrast);
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title:hover {
+  color: var(--wp--preset--color--primary-hover);
+  background-color: var(--wp--preset--color--background-alt);
+  border-radius: 6px;
+  overflow: hidden;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title:hover a {
+  color: var(--wp--preset--color--primary-hover);
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-list li {
+  transition: color 0.1s, background-color 0.1s;
+  padding: 4px;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-list li svg {
+  fill: var(--wp--preset--color--contrast);
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-list li a {
+  color: var(--wp--preset--color--contrast);
+  width: 100%;
+  transition: color 0.1s;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-list li:hover {
+  color: var(--wp--preset--color--primary-hover);
+  background-color: var(--wp--preset--color--background-alt);
+  border-radius: 6px;
+  overflow: hidden;
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-list li:hover a {
+  color: var(--wp--preset--color--primary-hover);
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper.active .betterdocs-single-category-inner .betterdocs-category-header {
+  border-color: var(--wp--preset--color--primary);
+  background-color: var(--wp--preset--color--background-alt);
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper.active .betterdocs-single-category-inner .betterdocs-category-header .betterdocs-category-header-inner h2.betterdocs-category-title {
+  color: var(--wp--preset--color--primary);
+}
+#betterdocs-sidebar .betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper:last-child .betterdocs-single-category-inner .betterdocs-body {
+  border-bottom: none;
+}
+
+#betterdocs-breadcrumb ul.betterdocs-breadcrumb-list li.betterdocs-breadcrumb-item a.bread-link {
+  color: var(--wp--preset--color--tertiary);
+  transition: 0.2s color;
+}
+#betterdocs-breadcrumb ul.betterdocs-breadcrumb-list li.betterdocs-breadcrumb-item a.bread-link:hover {
+  color: var(--wp--preset--color--primary-hover);
+  text-decoration: underline var(--wp--preset--color--primary-hover);
+}
+#betterdocs-breadcrumb ul.betterdocs-breadcrumb-list li.betterdocs-breadcrumb-item.breadcrumb-delimiter .icon-container svg {
+  color: var(--wp--preset--color--tertiary);
+}
+#betterdocs-breadcrumb ul.betterdocs-breadcrumb-list li.betterdocs-breadcrumb-item.item-current span {
+  letter-spacing: 0;
+  color: var(--wp--preset--color--contrast);
+}
+
+#wiki.betterdocs--category-archive .betterdocs--content-wrapper .betterdocs-content-area .betterdocs-content-inner-area .betterdocs-entry-title .betterdocs-entry-heading,
+#editor.betterdocs--category-archive .betterdocs--content-wrapper .betterdocs-content-area .betterdocs-content-inner-area .betterdocs-entry-title .betterdocs-entry-heading {
+  color: var(--wp--preset--color--secondary);
+  font-size: var(--wp--preset--font-size--x-large);
+  text-transform: uppercase;
+}
+
+/*# sourceMappingURL=betterdocs.css.map */

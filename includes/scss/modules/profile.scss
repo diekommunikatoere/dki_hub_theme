@@ -1,0 +1,99 @@
+.profile-wrapper {
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+	max-width: var(--wp--style--global--wide-size);
+	margin: 0 auto;
+	padding-top: 5%;
+
+	.profile-sidebar-wrapper {
+		flex: 1;
+
+		nav {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+			padding: 0.5rem 0;
+			background-color: var(--wp--preset--color--background-alt);
+			border-radius: 12px;
+
+			li {
+				list-style-type: none;
+
+				a {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: space-between;
+					padding: 0.3rem 1rem;
+					margin: 0 0.5rem;
+					background-color: var(--wp--preset--color--background-alt);
+					border-radius: 6px;
+					color: var(--wp--preset--color--contrast);
+					text-decoration: none;
+					transition: background 0.1s, color 0.1s;
+
+					span {
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+						gap: 0.5rem;
+
+						svg {
+							height: 1.2rem;
+							width: 1.2rem;
+							fill: var(--wp--preset--color--tertiary);
+							transition: fill 0.1s;
+						}
+					}
+
+					.notification-badge {
+						display: block;
+						pointer-events: none;
+						width: 8px;
+						height: 8px;
+						border-radius: 100px;
+						background-color: var(--wp--preset--color--primary);
+					}
+
+					&:hover {
+						color: var(--wp--preset--color--primary-hover);
+						background-color: var(--wp--preset--color--background);
+
+						svg {
+							fill: var(--wp--preset--color--primary-hover);
+						}
+					}
+
+					&.active {
+						color: var(--wp--preset--color--background);
+						background-color: var(--wp--preset--color--primary);
+
+						svg {
+							fill: var(--wp--preset--color--background);
+						}
+
+						.notification-badge {
+							background-color: var(--wp--preset--color--background);
+						}
+
+						&:hover {
+							color: var(--wp--preset--color--background);
+							background-color: var(--wp--preset--color--primary-hover);
+						}
+					}
+				}
+			}
+
+			span.divider {
+				display: block;
+				height: 2px;
+				background-color: var(--wp--preset--color--background);
+			}
+		}
+	}
+
+	.profile-content-wrapper {
+		flex: 3;
+	}
+}

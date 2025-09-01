@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "dki-wiki/profile-nav-item",
+	"version": "0.1.0",
+	"title": "Profile Nav Item",
+	"category": "widgets",
+	"description": "Displays a nav item that opens a dropdown with links to the user's profile, their revisions, onboardings and the logout page.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "profile-nav-item",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

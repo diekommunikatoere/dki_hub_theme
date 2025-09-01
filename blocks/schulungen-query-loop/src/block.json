@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "dki-wiki/schulungen-query-loop",
+	"version": "0.1.0",
+	"title": "Schulungen Query Loop",
+	"category": "widgets",
+	"description": "Inserts a block that allows you to access the users' revisions for the current post.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "schulungen-query-loop",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

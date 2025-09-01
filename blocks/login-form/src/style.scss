@@ -1,0 +1,258 @@
+main:has(.login-form) {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--wp--preset--color--background);
+	padding: 1rem;
+}
+
+#login-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	width: 100%;
+	max-width: clamp(300px, 90%, 500px);
+	box-sizing: border-box;
+	padding: 2rem;
+	border: 1px solid var(--wp--preset--color--tertiary-light);
+	border-radius: 12px;
+	box-shadow: var(--wp--preset--shadow--regular);
+
+	h1 {
+		font-size: 1.5rem;
+		margin: 0;
+	}
+
+	/* Login Form */
+	form.login-form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 0.5rem;
+		width: 100%;
+		margin-bottom: 1rem;
+
+		/* Login Input Fields */
+		.login-field-wrapper {
+			width: 100%;
+
+			/* Input Field Label Wrapper */
+			label {
+				position: relative;
+				display: block;
+				width: fit-content;
+				z-index: 2;
+				cursor: pointer;
+				color: var(--wp--preset--color--tertiary);
+				font-size: 1rem;
+				font-weight: 400;
+				transform: translate(4px, 12px);
+				background: white;
+				padding: 0 6px;
+				transition: color 0.1s;
+			}
+
+			.input-wrapper {
+				position: relative;
+				width: 100%;
+
+				/* Input Field */
+				input {
+					box-sizing: border-box;
+					position: relative;
+					width: 100%;
+					border: 1px solid black;
+					border-radius: 6px;
+					padding: 1rem 1rem 0.8rem 2.2rem;
+					transition: border-color 0.1s;
+
+					/* Input Field */
+					&::placeholder {
+						color: var(--wp--preset--color--tertiary);
+					}
+				}
+
+				/* Input Field Icon */
+				span.icon {
+					position: absolute;
+					top: 0;
+					left: 0.7rem;
+					display: flex;
+					align-items: center;
+					height: 100%;
+					pointer-events: none;
+
+					svg {
+						width: 1rem;
+						height: 1rem;
+						fill: var(--wp--preset--color--tertiary);
+						transition: 0.1s fill;
+					}
+				}
+			}
+
+			/* User Field */
+			&.username {
+				display: block;
+			}
+
+			/* Password Field */
+			&.password {
+				display: block;
+			}
+
+			/* Remember Me Checkbox & Submit Button */
+			&.submit {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 1rem;
+				margin-top: 1rem;
+
+				/* Remember Me Label */
+				label[for="remember-me"] {
+					display: grid;
+					grid-template-columns: 1.5em auto;
+					gap: 0.5em;
+					cursor: pointer;
+					background: none;
+					transform: unset;
+
+					/* Checkbox Field - invisible */
+					input[type="checkbox"] {
+						appearance: none;
+						margin: 0;
+						width: 1.5rem;
+						height: 1.5rem;
+						border: 1px solid var(--wp--preset--color--tertiary);
+						border-radius: 3px;
+						display: grid;
+						place-content: center;
+
+						&::before {
+							content: "";
+							width: 0.9rem;
+							height: 0.9rem;
+							cursor: pointer;
+							clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+							opacity: 0;
+							visibility: hidden;
+							box-shadow: inset 1em 1em var(--wp--preset--color--contrast);
+						}
+
+						&:checked {
+							border-color: var(--wp--preset--color--secondary);
+							background: var(--wp--preset--color--secondary);
+
+							&::before {
+								opacity: 1;
+								visibility: visible;
+							}
+						}
+
+						&:focus {
+							outline: none;
+						}
+
+						&:disabled {
+							cursor: not-allowed;
+						}
+					}
+				}
+
+				/* Submit Button */
+				button {
+					background-color: var(--wp--preset--color--secondary);
+					border-radius: 6px;
+					outline: none;
+					border: none;
+					color: var(--wp--preset--color--contrast);
+					font-family: var(--wp--preset--font--primary);
+					font-size: 1rem;
+					font-weight: 600;
+					padding: 0.5rem 2rem;
+					cursor: pointer;
+					box-shadow: var(--wp--preset--shadow--secondary-extra-small);
+					transition:
+						background-color 0.1s,
+						color 0.1s,
+						box-shadow 0.1s;
+
+					&:hover {
+						background-color: var(--wp--preset--color--secondary-hover);
+						box-shadow: var(--wp--preset--shadow--secondary-small);
+					}
+
+					&:active {
+						color: var(--wp--preset--color--background);
+						background-color: var(--wp--preset--color--secondary);
+						box-shadow: var(--wp--preset--shadow--secondary-tiny);
+					}
+				}
+			}
+
+			&:has(input:focus) {
+				label {
+					color: var(--wp--preset--color--primary);
+				}
+
+				.input-wrapper {
+					input {
+						border-color: var(--wp--preset--color--primary);
+						outline: none;
+					}
+
+					span.icon {
+						svg {
+							fill: var(--wp--preset--color--contrast);
+						}
+					}
+				}
+			}
+		}
+
+		.forgot-password {
+			display: flex;
+			justify-content: center;
+			margin-top: 1rem;
+
+			a {
+				color: var(--wp--preset--color--contrast);
+				font-size: 0.9rem;
+				text-decoration: none;
+
+				&:hover {
+					color: var(--wp--preset--color--primary-hover);
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}
+
+#login-message {
+	display: none;
+	border: 1px solid;
+	border-radius: 6px;
+	padding: 0.5rem 1.5rem;
+	font-size: 1rem;
+	text-align: center;
+
+	&.error {
+		display: block;
+		border-color: var(--wp--preset--color--error);
+		color: var(--wp--preset--color--error-dark);
+		background-color: var(--wp--preset--color--error-extra-light);
+	}
+
+	&.success {
+		display: block;
+		border-color: var(--wp--preset--color--success);
+		color: var(--wp--preset--color--success-dark);
+		background-color: var(--wp--preset--color--success-extra-light);
+	}
+}

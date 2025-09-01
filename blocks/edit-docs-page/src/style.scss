@@ -1,0 +1,25 @@
+.wp-block-dki-wiki-edit-docs-page {
+	.edit-docs-button {
+		display: flex;
+		flex-direction: row;
+		padding: 0.7rem;
+		background: var(--wp--preset--color--tertiary);
+		border-radius: 100px;
+		transition: background 0.1s;
+
+		svg {
+			height: 1rem;
+			width: 1rem;
+			fill: var(--wp--preset--color--background);
+			transition: fill 0.1s;
+		}
+
+		&:hover {
+			background: var(--wp--preset--color--secondary);
+
+			svg {
+				fill: var(--wp--preset--color--contrast);
+			}
+		}
+	}
+}

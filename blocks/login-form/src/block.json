@@ -1,0 +1,61 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "dki-wiki/login-form",
+	"version": "0.1.0",
+	"title": "Login Form",
+	"category": "widgets",
+	"description": "A block to display a login form.",
+	"example": {},
+	"attributes": {
+		"loginFormTitle": {
+			"type": "string",
+			"default": "Login"
+		},
+		"usernameLabel": {
+			"type": "string",
+			"default": "Username"
+		},
+		"username": {
+			"type": "string",
+			"default": ""
+		},
+		"usernamePlaceholder": {
+			"type": "string",
+			"default": "Username"
+		},
+		"passwordLabel": {
+			"type": "string",
+			"default": "Password"
+		},
+		"password": {
+			"type": "string",
+			"default": ""
+		},
+		"passwordPlaceholder": {
+			"type": "string",
+			"default": "Password"
+		},
+		"rememberMeLabel": {
+			"type": "string",
+			"default": "Remember Me"
+		},
+		"submitLabel": {
+			"type": "string",
+			"default": "Login"
+		},
+		"forgotPasswordLabel": {
+			"type": "string",
+			"default": "Forgot Password?"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "login-form",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

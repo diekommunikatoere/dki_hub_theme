@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "/Users/ssullivan/webdev/dki/dki_hub_theme/"
+		}
+	],
+	"settings": {},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "sass",
+				"type": "shell",
+				"command": "sass --watch includes/scss:includes/css",
+				"problemMatcher": [],
+				"group": {
+					"kind": "build",
+					"isDefault": true
+				}
+			}
+		]
+	}
+}

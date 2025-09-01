@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "dki-wiki/revisions-profile-overview",
+	"version": "0.1.0",
+	"title": "Revisions Profile Overview",
+	"category": "widgets",
+	"description": "Overview of all revisions of a user. If they are a moderator or an admin, they can see all revisions of all users. If they are a user, they can see all revisions of themselves.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "revisions-profile-overview",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}
