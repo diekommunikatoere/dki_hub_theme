@@ -37,3 +37,10 @@ node_modules/
 # package-lock
 package-lock.json
 /blocks/*/package-lock.json
+
+# local build release directory
+/release/
+
+# VS Code settings and workspace files
+.vscode/
+*.code-workspace

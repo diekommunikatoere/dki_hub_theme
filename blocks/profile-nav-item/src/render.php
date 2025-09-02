@@ -103,6 +103,14 @@
 			<?php endif; ?>
 		</a>
 		<span class="divider"></span>
+		<?php if($user_role == 'administrator' ): ?>
+			<a class="dropdown-item" href="/wp-admin/">
+				<span>
+					<?php echo $settingsIcon ?>
+					WP-Dashboard
+				</span>
+			</a>
+		<?php endif; ?>
 		<a class="dropdown-item" href="/logout">
 			<span>
 				<?php echo $logoutIcon ?>

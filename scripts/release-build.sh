@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# DKI Hub Theme Release Build Script (Worktree-based)
+# DKI Hub Theme Release Build Script (Worktree-based, dev parity)
 # 1. Creates a temporary git worktree for release branch
 # 2. Copies main branch contents into worktree
 # 3. Builds blocks in-place in worktree
-# 4. Prunes dev/source files
-# 5. Commits and pushes to release branch
+# 4. Compiles SCSS to CSS
+# 5. Removes files/dirs listed in .releaseignore
+# 6. Global cleanup: removes dev/source files and empty dirs
+# 7. Commits and pushes to release branch
 
 ROOT="$(pwd)"
 RELEASE_BRANCH="release"
@@ -14,6 +16,7 @@ MAIN_BRANCH="main"
 TIMESTAMP=$(date -u +%Y%m%dT%H%M%SZ)
 RELEASE_TAG="${RELEASE_TAG:-dev-$TIMESTAMP}"
 WORKTREE_DIR="$ROOT/.release-worktree"
+DRY_RUN="${DRY_RUN:-false}"
 
 echo "🚀 Starting DKI Hub Theme release build (worktree)..."
 echo "   Release branch: $RELEASE_BRANCH"
@@ -47,11 +50,11 @@ for block_dir in "$WORKTREE_DIR/blocks"/*/; do
         echo "  Building block: $block_name"
         cd "$block_dir"
         if [ -f "package-lock.json" ]; then
-            npm ci --silent
+            npm ci
         else
-            npm install --silent
+            npm install
         fi
-        npm run build --silent
+        npm run build
         cd "$WORKTREE_DIR"
         block_count=$((block_count + 1))
         echo "    ✅ $block_name built successfully"
@@ -60,22 +63,37 @@ done
 echo "  📊 Built $block_count blocks"
 
 echo ""
-echo "🧹 Pruning dev/source files from blocks..."
-for block_dir in "$WORKTREE_DIR/blocks"/*/; do
-    rm -rf "$block_dir/src" \
-           "$block_dir/node_modules" \
-           "$block_dir/tests" \
-           "$block_dir/.github"
-    rm -f "$block_dir/package.json" \
-          "$block_dir/package-lock.json" \
-          "$block_dir/yarn.lock" \
-          "$block_dir/.eslintrc"* \
-          "$block_dir/.prettierrc"* \
-          "$block_dir/.editorconfig" \
-          "$block_dir/.gitignore"
-    find "$block_dir" -name "*.scss" -type f -delete
-    find "$block_dir" -name "*.map" -type f -delete
-done
+echo "🎨 Compiling SCSS to CSS for main theme..."
+if [ -d "./includes/scss" ]; then
+    if command -v sass >/dev/null 2>&1; then
+        sass --no-source-map ./includes/scss:./includes/css
+        echo "Finished compiling SCSS to CSS"
+    else
+        echo "⚠️ sass CLI not found, skipping SCSS compilation."
+    fi
+else
+    echo "No SCSS directory found, skipping SCSS compilation."
+fi
+
+echo ""
+echo "🗑️ Removing files and directories listed in .releaseignore ..."
+if [ -f "$ROOT/.releaseignore" ]; then
+    while IFS= read -r pattern; do
+        [ -z "$pattern" ] && continue
+        if [ "$DRY_RUN" = "true" ]; then
+            echo "Would remove: $pattern"
+        else
+            find . -path "./$pattern" -exec rm -rf {} +
+        fi
+    done < "$ROOT/.releaseignore"
+    echo "Finished removing files from .releaseignore"
+fi
+
+echo "🧹 Global cleanup of dev/source files ..."
+find . -type f \( -name '*.ts' -o -name '*.tsx' -o -name '*.scss' -o -name '*.less' -o -name '*.md' -o -name 'tsconfig.json' -o -name 'webpack.config.js' -o -name 'package.json' -o -name 'package-lock.json' -o -name 'yarn.lock' \) -exec rm -f {} +
+find . -type d \( -name 'tests' -o -name '__tests__' -o -name '.github' -o -name '.vscode' -o -name 'scss' -o -name 'src' -o -name 'node_modules' \) -exec rm -rf {} +
+find . -type f -empty -delete
+find . -type d -empty -delete
 
 echo ""
 echo "🔒 Committing and pushing to $RELEASE_BRANCH..."
