@@ -39,9 +39,9 @@ jobs:
               run: chmod +x scripts/release-build.sh
 
             - name: Publish release branch
-                # Ensure clean workspace before switching branches
-                git reset --hard
               run: |
+                  # Ensure clean workspace before switching branches
+                  git reset --hard
                   git config --local user.name "github-actions[bot]"
                   git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
