@@ -27,7 +27,7 @@ jobs:
               with:
                   node-version: "22"
                   cache: "npm"
-                  cache-dependency-path: "blocks/*/package-lock.json"
+                  cache-dependency-path: "blocks/*/package.json"
 
             - name: Make release script executable
               run: chmod +x scripts/release-build.sh
