@@ -89,12 +89,6 @@ if [ -f "$ROOT/.releaseignore" ]; then
     echo "Finished removing files from .releaseignore"
 fi
 
-echo "🧹 Global cleanup of dev/source files ..."
-find . -type f \( -name '*.ts' -o -name '*.tsx' -o -name '*.scss' -o -name '*.less' -o -name '*.md' -o -name 'tsconfig.json' -o -name 'webpack.config.js' -o -name 'package.json' -o -name 'package-lock.json' -o -name 'yarn.lock' \) -exec rm -f {} +
-find . -type d \( -name 'tests' -o -name '__tests__' -o -name '.github' -o -name '.vscode' -o -name 'scss' -o -name 'src' -o -name 'node_modules' \) -exec rm -rf {} +
-find . -type f -empty -delete
-find . -type d -empty -delete
-
 echo ""
 echo "🔒 Committing and pushing to $RELEASE_BRANCH..."
 git add .
