@@ -93,13 +93,6 @@ jobs:
 
                   echo "✅ All smoke tests passed"
 
-            - name: Upload release artifact
-              uses: actions/upload-artifact@v4
-              with:
-                  name: dki-hub-theme-${{ inputs.release_tag }}
-                  path: release/dki-hub-theme-*.zip
-                  retention-days: 30
-
             - name: Create GitHub Release
               if: inputs.create_github_release
               uses: ncipollo/release-action@v1
