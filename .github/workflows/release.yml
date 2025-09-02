@@ -93,37 +93,6 @@ jobs:
 
                   echo "✅ All smoke tests passed"
 
-            - name: Create GitHub Release
-              if: inputs.create_github_release
-              uses: ncipollo/release-action@v1
-              with:
-                  tag: ${{ inputs.release_tag }}
-                  name: DKI Hub Theme ${{ inputs.release_tag }}
-                  body: |
-                      ## DKI Hub Theme Release ${{ inputs.release_tag }}
-
-                      WordPress theme with custom Gutenberg blocks for documentation, user profiles, and training content.
-
-                      ### Included Blocks
-                      - edit-docs-page
-                      - login-form  
-                      - profile-nav-item
-                      - profile-sidebar-nav
-                      - revisions-profile-overview
-                      - schulungen-query-loop
-                      - schulungen-read-status-widget
-                      - view-revisions
-
-                      ### Installation
-                      1. Download the theme ZIP file
-                      2. Upload to WordPress via Appearance > Themes > Add New > Upload
-                      3. Activate the theme
-
-                      Built from commit: ${{ github.sha }}
-                  artifacts: release/dki-hub-theme-*.zip
-                  draft: false
-                  prerelease: false
-                  token: ${{ secrets.GITHUB_TOKEN }}
             - name: Push expanded release contents to release branch
               run: |
                   git config --global user.name "github-actions[bot]"
