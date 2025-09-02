@@ -148,7 +148,6 @@ echo ""
 echo "📁 Creating release archive..."
 cd "$RELEASE_DIR"
 zip -r "$ZIP_NAME" . -q
-mv "$ZIP_NAME" "$ROOT/release/"
 cd "$ROOT"
 
 # Display summary
