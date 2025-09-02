@@ -38,6 +38,25 @@ jobs:
             - name: Make release script executable
               run: chmod +x scripts/release-build.sh
 
+            - name: Publish release branch
+              run: |
+                  git config --local user.name "github-actions[bot]"
+                  git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+                  RELEASE_BRANCH="release"
+                  if git rev-parse --verify origin/$RELEASE_BRANCH >/dev/null 2>&1; then
+                    git fetch origin $RELEASE_BRANCH:$RELEASE_BRANCH
+                    git checkout $RELEASE_BRANCH
+                  else
+                    git checkout --orphan $RELEASE_BRANCH
+                  fi
+
+                  git rm -rf . || true
+                  cp -r release/. .
+
+                  git add .
+                  git commit -m "Release: ${{ inputs.release_tag }} [ci skip]" || echo "No changes to commit"
+                  git push origin $RELEASE_BRANCH --force
             - name: Run release build
               run: ./scripts/release-build.sh
               env:
@@ -110,6 +129,8 @@ jobs:
                   fi
                   git rm -rf .
                   cp -r release/* .
+                  git config --local user.name "github-actions[bot]"
+                  git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
                   git add .
                   git commit -m "Release: ${{ inputs.release_tag }} [ci skip]" || echo "No changes to commit"
                   git push origin release --force
