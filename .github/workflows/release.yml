@@ -1,0 +1,144 @@
+name: Release Build
+
+on:
+    workflow_dispatch:
+        inputs:
+            release_tag:
+                description: "Release tag (e.g., v1.0.0)"
+                required: true
+                type: string
+            create_github_release:
+                description: "Create GitHub Release"
+                required: false
+                type: boolean
+                default: false
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/main'
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "18"
+                  cache: "npm"
+                  cache-dependency-path: "blocks/*/package-lock.json"
+
+            - name: Make release script executable
+              run: chmod +x scripts/release-build.sh
+
+            - name: Run release build
+              run: ./scripts/release-build.sh
+              env:
+                  RELEASE_TAG: ${{ inputs.release_tag }}
+
+            - name: Run smoke tests
+              run: |
+                  echo "Running smoke tests..."
+
+                  # Check that release directory was created
+                  if [ ! -d "release" ]; then
+                    echo "❌ Release directory not found"
+                    exit 1
+                  fi
+
+                  # Check each block has expected artifacts
+                  for block_dir in blocks/*/; do
+                    if [ -f "$block_dir/package.json" ]; then
+                      block_name=$(basename "$block_dir")
+                      echo "Checking block: $block_name"
+                      
+                      # Check block directory exists in release
+                      if [ ! -d "release/$block_name" ]; then
+                        echo "❌ Block $block_name not found in release"
+                        exit 1
+                      fi
+                      
+                      # Check for built assets (build/ or dist/)
+                      if [ ! -d "release/$block_name/build" ] && [ ! -d "release/$block_name/dist" ]; then
+                        echo "❌ Block $block_name missing built assets (build/ or dist/)"
+                        exit 1
+                      fi
+                      
+                      # Check for PHP files
+                      if ! find "release/$block_name" -name "*.php" | grep -q .; then
+                        echo "❌ Block $block_name missing PHP files"
+                        exit 1
+                      fi
+                      
+                      echo "✅ Block $block_name validated"
+                    fi
+                  done
+
+                  # Check theme files
+                  if [ ! -f "release/functions.php" ]; then
+                    echo "❌ Missing functions.php in release"
+                    exit 1
+                  fi
+
+                  if [ ! -d "release/includes/css" ]; then
+                    echo "❌ Missing compiled CSS in release"
+                    exit 1
+                  fi
+
+                  if [ ! -d "release/fonts" ]; then
+                    echo "❌ Missing fonts in release"
+                    exit 1
+                  fi
+
+                  echo "✅ All smoke tests passed"
+
+            - name: Upload release artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: dki-hub-theme-${{ inputs.release_tag }}
+                  path: release/dki-hub-theme-*.zip
+                  retention-days: 30
+
+            - name: Create GitHub Release
+              if: inputs.create_github_release
+              uses: ncipollo/release-action@v1
+              with:
+                  tag: ${{ inputs.release_tag }}
+                  name: DKI Hub Theme ${{ inputs.release_tag }}
+                  body: |
+                      ## DKI Hub Theme Release ${{ inputs.release_tag }}
+
+                      WordPress theme with custom Gutenberg blocks for documentation, user profiles, and training content.
+
+                      ### Included Blocks
+                      - edit-docs-page
+                      - login-form  
+                      - profile-nav-item
+                      - profile-sidebar-nav
+                      - revisions-profile-overview
+                      - schulungen-query-loop
+                      - schulungen-read-status-widget
+                      - view-revisions
+
+                      ### Installation
+                      1. Download the theme ZIP file
+                      2. Upload to WordPress via Appearance > Themes > Add New > Upload
+                      3. Activate the theme
+
+                      Built from commit: ${{ github.sha }}
+                  artifacts: release/dki-hub-theme-*.zip
+                  draft: false
+                  prerelease: false
+                  token: ${{ secrets.GITHUB_TOKEN }}
+            - name: Push expanded release contents to release branch
+              run: |
+                  git config --global user.name "github-actions[bot]"
+                  git config --global user.email "github-actions[bot]@users.noreply.github.com"
+                  git fetch origin release
+                  git checkout -B release origin/release || git checkout -B release
+                  git rm -rf .
+                  cp -r release/* .
+                  git add .
+                  git commit -m "Release: ${{ inputs.release_tag }} [ci skip]" || echo "No changes to commit"
+                  git push origin release --force
