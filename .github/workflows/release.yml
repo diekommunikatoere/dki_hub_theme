@@ -102,8 +102,12 @@ jobs:
               run: |
                   git config --global user.name "github-actions[bot]"
                   git config --global user.email "github-actions[bot]@users.noreply.github.com"
-                  git fetch origin release
-                  git checkout -B release origin/release || git checkout -B release
+                  git fetch --all
+                  if git ls-remote --exit-code origin release; then
+                    git checkout -B release origin/release
+                  else
+                    git checkout --orphan release
+                  fi
                   git rm -rf .
                   cp -r release/* .
                   git add .
