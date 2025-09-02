@@ -1,34 +1,47 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# DKI Hub Theme Release Build Script (Refactored)
-# 1. Copies repo from main branch into release/
-# 2. Builds blocks in-place in release/blocks/
-# 3. Removes dev/source files, keeps only built assets and runtime files
+# DKI Hub Theme Release Build Script (Worktree-based)
+# 1. Creates a temporary git worktree for release branch
+# 2. Copies main branch contents into worktree
+# 3. Builds blocks in-place in worktree
+# 4. Prunes dev/source files
+# 5. Commits and pushes to release branch
 
 ROOT="$(pwd)"
-RELEASE_DIR="$ROOT/release"
+RELEASE_BRANCH="release"
+MAIN_BRANCH="main"
 TIMESTAMP=$(date -u +%Y%m%dT%H%M%SZ)
 RELEASE_TAG="${RELEASE_TAG:-dev-$TIMESTAMP}"
-ZIP_NAME="dki-hub-theme-$RELEASE_TAG.zip"
+WORKTREE_DIR="$ROOT/.release-worktree"
 
-echo "🚀 Starting DKI Hub Theme release build..."
-echo "   Release tag: $RELEASE_TAG"
+echo "🚀 Starting DKI Hub Theme release build (worktree)..."
+echo "   Release branch: $RELEASE_BRANCH"
+echo "   Main branch: $MAIN_BRANCH"
 echo "   Timestamp: $TIMESTAMP"
-echo "   Output: $ZIP_NAME"
 
-# Clean and create release directory
-rm -rf "$RELEASE_DIR"
-mkdir -p "$RELEASE_DIR"
+# Clean up previous worktree if exists
+if [ -d "$WORKTREE_DIR" ]; then
+    echo "🧹 Removing previous worktree..."
+    rm -rf "$WORKTREE_DIR"
+    git worktree prune
+fi
+
+echo "🔀 Creating worktree for $RELEASE_BRANCH..."
+git fetch origin
+if ! git show-ref --verify --quiet "refs/heads/$RELEASE_BRANCH"; then
+    git branch "$RELEASE_BRANCH" "$MAIN_BRANCH"
+fi
+git worktree add "$WORKTREE_DIR" "$RELEASE_BRANCH"
+
+echo "🔄 Resetting worktree to main branch contents..."
+cd "$WORKTREE_DIR"
+git reset --hard "origin/$MAIN_BRANCH"
 
 echo ""
-echo "📦 Copying repository from main branch into release directory..."
-git -C "$ROOT" archive --format=tar main | tar -x -C "$RELEASE_DIR"
-
-echo ""
-echo "📦 Building blocks in release/blocks/..."
+echo "📦 Building blocks in worktree blocks/..."
 block_count=0
-for block_dir in "$RELEASE_DIR/blocks"/*/; do
+for block_dir in "$WORKTREE_DIR/blocks"/*/; do
     if [ -f "$block_dir/package.json" ]; then
         block_name=$(basename "$block_dir")
         echo "  Building block: $block_name"
@@ -39,7 +52,7 @@ for block_dir in "$RELEASE_DIR/blocks"/*/; do
             npm install --silent
         fi
         npm run build --silent
-        cd "$ROOT"
+        cd "$WORKTREE_DIR"
         block_count=$((block_count + 1))
         echo "    ✅ $block_name built successfully"
     fi
@@ -48,8 +61,7 @@ echo "  📊 Built $block_count blocks"
 
 echo ""
 echo "🧹 Pruning dev/source files from blocks..."
-for block_dir in "$RELEASE_DIR/blocks"/*/; do
-    # Remove dev/source files and folders
+for block_dir in "$WORKTREE_DIR/blocks"/*/; do
     rm -rf "$block_dir/src" \
            "$block_dir/node_modules" \
            "$block_dir/tests" \
@@ -66,49 +78,17 @@ for block_dir in "$RELEASE_DIR/blocks"/*/; do
 done
 
 echo ""
-echo "🎨 Copying theme-level files (functions.php, includes/, fonts/, style.css, etc.)..."
-cp "$ROOT/functions.php" "$RELEASE_DIR/" || true
-if [ -d "$ROOT/includes" ]; then
-    cp -r "$ROOT/includes" "$RELEASE_DIR/"
-fi
-if [ -d "$ROOT/fonts" ]; then
-    cp -r "$ROOT/fonts" "$RELEASE_DIR/"
-fi
-if [ -f "$ROOT/style.css" ]; then
-    cp "$ROOT/style.css" "$RELEASE_DIR/"
-fi
-if [ -f "$ROOT/index.php" ]; then
-    cp "$ROOT/index.php" "$RELEASE_DIR/"
-fi
-if [ -d "$ROOT/templates" ]; then
-    cp -r "$ROOT/templates" "$RELEASE_DIR/"
-fi
-for ext in png jpg jpeg gif; do
-    if [ -f "$ROOT/screenshot.$ext" ]; then
-        cp "$ROOT/screenshot.$ext" "$RELEASE_DIR/"
-        break
-    fi
-done
+echo "🔒 Committing and pushing to $RELEASE_BRANCH..."
+git add .
+git commit -m "Release build: $RELEASE_TAG"
+git push origin "$RELEASE_BRANCH"
 
 echo ""
-echo "🧹 Cleaning up release directory..."
-find "$RELEASE_DIR" -name "*.map" -delete 2>/dev/null || true
-find "$RELEASE_DIR" -type d -empty -delete 2>/dev/null || true
-
-echo ""
-echo "📁 Creating release archive..."
-cd "$RELEASE_DIR"
-zip -r "$ZIP_NAME" . -q
+echo "🧹 Cleaning up worktree..."
 cd "$ROOT"
+git worktree remove "$WORKTREE_DIR" --force
+git worktree prune
 
 echo ""
-echo "✅ Release build completed successfully!"
-echo "   📦 Archive: release/$ZIP_NAME"
-echo "   📊 Size: $(du -h "release/$ZIP_NAME" | cut -f1)"
-echo "   📁 Contents:"
-unzip -l "release/$ZIP_NAME" | head -20
-if [ $(unzip -l "release/$ZIP_NAME" | wc -l) -gt 25 ]; then
-    echo "   ... ($(unzip -l "release/$ZIP_NAME" | tail -1 | awk '{print $2}') total files)"
-fi
-echo ""
+echo "✅ Release branch updated and pushed!"
 echo "🎉 Ready for deployment!"
