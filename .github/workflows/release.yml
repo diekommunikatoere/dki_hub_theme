@@ -1,5 +1,8 @@
 name: Release Build
 
+permissions:
+    contents: write
+
 on:
     workflow_dispatch:
         inputs:
@@ -16,11 +19,14 @@ on:
 jobs:
     release:
         runs-on: ubuntu-latest
-        if: github.ref == 'refs/heads/main'
 
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
+              with:
+                  ref: main
+                  fetch-depth: 0
+                  persist-credentials: true
 
             - name: Setup Node.js
               uses: actions/setup-node@v4
@@ -40,7 +46,6 @@ jobs:
             - name: Run smoke tests
               run: |
                   echo "Running smoke tests..."
-
                   # Check that release directory was created
                   if [ ! -d "release" ]; then
                     echo "❌ Release directory not found"
