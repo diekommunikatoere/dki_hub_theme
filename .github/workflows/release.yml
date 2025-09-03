@@ -126,3 +126,8 @@ jobs:
                   git push origin $RELEASE_BRANCH --force
 
             - name: Summary
+              run: |
+                  echo "🎉 Release build completed successfully!"
+                  echo "📦 Release tag: ${{ inputs.release_tag }}"
+                  echo "🌿 Release branch: release"
+                  echo "📁 Artifacts available in release branch"
