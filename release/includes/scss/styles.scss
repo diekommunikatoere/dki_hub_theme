@@ -1,0 +1,23 @@
+/* NORMALIZATION */
+@use "config/normalize.css";
+
+/* General Styles */
+@use "./main.scss";
+
+/* Typography Styles */
+@use "modules/typography.scss";
+
+/* Header Styles */
+@use "modules/header.scss";
+
+/* Footer Styles */
+@use "modules/footer.scss";
+
+/* BetterDocs Styles */
+@use "modules/betterdocs.scss";
+
+/* Profile Styles */
+@use "modules/profile.scss";
+
+/* Login Styles */
+@use "modules/login.scss";

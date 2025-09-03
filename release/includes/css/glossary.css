@@ -1,0 +1,112 @@
+/* VARIABLES */
+/***/
+/*** ----- VARIABLES ----- ***/
+/***/
+/*** ----- Colors Default ----- ***/
+/***/
+/*** ----- Space ----- ***/
+/*** ----- Font Family ----- ***/
+/***/
+/*** ----- z-index ----- ***/
+/***/
+/*** ----- Breakpoints ----- ***/
+/***/
+/*** ----- Font Sizes ----- ***/
+/***/
+/*** ----- Line Heights ----- ***/
+/***/
+/*** ----- Border Radius ----- ***/
+/***/
+/*** ----- Box Shadows ----- ***/
+/***/
+/*** ----- Transitions ----- ***/
+/***/
+/*** ----- Easings ----- ***/
+/***/
+/*** ----- Animations ----- ***/
+/***/
+.glossary-filter {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 0.5rem;
+}
+.glossary-filter .glossary-filter__link {
+  text-decoration: none;
+  color: #1d1d1b;
+  font-weight: 600;
+  line-height: 1em;
+  padding: 0.5em;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: all 0.2s;
+}
+.glossary-filter .glossary-filter__link:hover:not(.inactive) {
+  border: 1px solid #1d1d1b;
+}
+.glossary-filter .glossary-filter__link.inactive {
+  color: #cececa;
+  cursor: not-allowed;
+}
+.glossary-filter .glossary-filter__link.active {
+  color: #fff;
+  background-color: #1d1d1b;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 6px, rgba(0, 0, 0, 0.1) 0px 1px 2px;
+  cursor: not-allowed;
+}
+
+#glossary {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 1rem + 0.5vw, 30px);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+#glossary .glossary-section {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 1rem + 0.5vw, 30px);
+  padding: 1rem 0 4rem 0;
+  height: auto;
+  transition: all 0.5s;
+}
+#glossary .glossary-section.hidden {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+#glossary .glossary-section-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+}
+#glossary .glossary-section-header__title {
+  line-height: 1em;
+  margin: 0;
+  min-width: 1em;
+}
+#glossary .glossary-section-header__divider {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #1d1d1b;
+}
+#glossary .glossary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px;
+}
+
+/*# sourceMappingURL=glossary.css.map */

@@ -60,78 +60,23 @@ add_filter( 'upload_mimes', 'fgd_mime_types' );
 
 // ----- START - Add favicon to public and admin area from WordPress root directory
 //
-function fgd_add_favicon() {
+function dki_hub_add_favicon() {
     echo '
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
         <link rel="manifest" href="/favicon/site.webmanifest">
-        <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#ffd144">
+        <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#ffffff">
         <link rel="shortcut icon" href="/favicon/favicon.ico">
-        <meta name="msapplication-TileColor" content="#ffd144">
+        <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-config" content="/favicon/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
     ';
 }
-add_action( 'wp_head', 'fgd_add_favicon' );
-add_action( 'admin_head', 'fgd_add_favicon' );
+add_action( 'wp_head', 'dki_hub_add_favicon' );
+add_action( 'admin_head', 'dki_hub_add_favicon' );
 
 // ----- END - Add favicon to public and admin area from WordPress root directory
-
-
-
-// ----- START - Add lazy loading to "post-featured-image"
-// 
-add_action( 'elementor/frontend/widget/before_render', function( $widget ) {
-    if( 'theme-post-featured-image' === $widget->get_name() ) {
-        add_filter( 'wp_get_attachment_image_attributes', 'add_lazy_loading_to_images', 10, 3 );
-    }
-}, 10 );
-
-function add_lazy_loading_to_images( $attr, $attachment, $size ) {
-    $attr['loading'] = 'lazy';
-    return $attr;
-}
-
-add_action( 'elementor/frontend/widget/after_render', function( $widget ) {
-    if( 'theme-post-featured-image' === $widget->get_name() ) {
-        remove_filter( 'wp_get_attachment_image_attributes', 'add_lazy_loading_to_images', 10, 3 );
-    }
-}, 10 );
-
-// ----- END - lazy loading
-
-
-
-// ----- START - Register Single Page page template
-//
-function register_single_page_template( $single_templates ) {
-    $single_templates['/includes/templates/single-page.php'] = 'Single Page';
-    return $single_templates;
-}
-add_filter( 'theme_page_templates', 'register_single_page_template' );
-
-// ----- END - Register Single Post page template
-
-
-
-// ----- START - Register Single Post page template
-//
-function register_single_post_template( $single_templates ) {
-    $single_templates['/includes/templates/single-post.php'] = 'Single Post';
-    return $single_templates;
-}
-add_filter( 'theme_post_templates', 'register_single_post_template' );
-
-// ----- END - Register Single Post page template
-
-
-
-// ----- START - Register custom text format in TinyMCE
-//
-require_once( __DIR__ . '/includes/utils/post_editor_styles.php' );
-
-// ----- END - Register custom text format in TinyMCE
 
 
 
@@ -177,10 +122,6 @@ function example_filter_allowed_block_types_when_post_provided( $allowed_block_t
 				'core/embed',
 				'core/file',
 				'core/footnotes',
-				'core/form',
-				'core/form-input',
-				'core/form-submission-notification',
-				'core/form-submit-button',
 				'core/gallery',
 				'core/group',
 				'core/heading',
@@ -194,8 +135,6 @@ function example_filter_allowed_block_types_when_post_provided( $allowed_block_t
 				'core/pullquote',
 				'core/quote',
 				'core/separator',
-				'core/social-link',
-				'core/social-links',
 				'core/spacer',
 				'core/table',
 				'core/verse',
