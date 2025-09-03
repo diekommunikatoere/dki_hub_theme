@@ -87,12 +87,14 @@
 				Mein Profil
 			</span>
 		</a>
+		<?php if($user_role == 'administrator' || $user_role == 'um_moderator' ): ?>
 		<a class="dropdown-item<?php if($currentUrl == '/user/revisionen/') echo ' active'; ?>" href="/user/revisionen">
 			<span>
 				<?php echo $revisionIcon ?>
 				Revisionen
 			</span>
 		</a>
+		<?php endif; ?>
 		<a class="dropdown-item<?php if($currentUrl == '/user/schulungen/') echo ' active'; ?>" href="/user/schulungen">
 			<span>
 				<?php echo $schulungenIcon ?>
