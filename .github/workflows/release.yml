@@ -64,6 +64,7 @@ jobs:
 
                     git rm -rf . || true
                     cp -r release/. .
+                    rm -rf release
 
                     git add .
                     git commit -m "Release: ${{ inputs.release_tag }} [ci skip]" || echo "No changes to commit"
