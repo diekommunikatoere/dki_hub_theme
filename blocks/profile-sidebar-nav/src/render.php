@@ -3,6 +3,12 @@
 	// Get current url
 	$currentUrl = $_SERVER['REQUEST_URI'];
 
+	// Get current user
+	$currentUser = wp_get_current_user();
+	
+	// User roles
+	$userRoles = $currentUser->roles;
+
 	$userIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/></svg>';
 
 	$revisionIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M315 315l158.4-215L444.1 70.6 229 229 315 315zm-187 5s0 0 0 0l0-71.7c0-15.3 7.2-29.6 19.5-38.6L420.6 8.4C428 2.9 437 0 446.2 0c11.4 0 22.4 4.5 30.5 12.6l54.8 54.8c8.1 8.1 12.6 19 12.6 30.5c0 9.2-2.9 18.2-8.4 25.6L334.4 396.5c-9 12.3-23.4 19.5-38.6 19.5L224 416l-25.4 25.4c-12.5 12.5-32.8 12.5-45.3 0l-50.7-50.7c-12.5-12.5-12.5-32.8 0-45.3L128 320zM7 466.3l63-63 70.6 70.6-31 31c-4.5 4.5-10.6 7-17 7L24 512c-13.3 0-24-10.7-24-24l0-4.7c0-6.4 2.5-12.5 7-17z"/></svg>';
@@ -52,14 +58,16 @@
 				Mein Profil
 			</span></a>
 	</li>
-	<li class="profile-sidebar-nav-item">
-		<a href="/user/revisionen" class="profile-sidebar-nav-link <?php if(str_contains($currentUrl, '/user/revisionen/')) echo ' active'; ?>">
-			<span>
-				<?php echo $revisionIcon ?>
-				Revisionen
-			</span>
-		</a>
-	</li>
+	<?php if($userRoles && (in_array('administrator', $userRoles) || in_array('um_moderator', $userRoles))) : ?>
+		<li class="profile-sidebar-nav-item">
+			<a href="/user/revisionen" class="profile-sidebar-nav-link <?php if(str_contains($currentUrl, '/user/revisionen/')) echo ' active'; ?>">
+				<span>
+					<?php echo $revisionIcon ?>
+					Revisionen
+				</span>
+			</a>
+		</li>
+		<?php endif; ?>
 	<li class="profile-sidebar-nav-item">
 		<a href="/user/schulungen" class="profile-sidebar-nav-link<?php if(str_contains($currentUrl, '/user/schulungen/')) echo ' active'; ?>">
 			<span>
@@ -72,6 +80,16 @@
 		</a>
 	</li>
 	<span class="divider"></span>
+	<?php if(in_array('administrator', $userRoles)) : ?>
+		<li class="profile-sidebar-nav-item">
+			<a href="/wp-admin" class="profile-sidebar-nav-link">
+				<span>
+					<?php echo $settingsIcon ?>
+					WP-Dashboard
+				</span>
+			</a>
+		</li>
+	<?php endif; ?>
 	<li class="profile-sidebar-nav-item">
 		<a href="/logout" class="profile-sidebar-nav-link">
 			<span>
