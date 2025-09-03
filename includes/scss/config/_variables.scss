@@ -1,0 +1,224 @@
+/***/
+/*** ----- VARIABLES ----- ***/
+/***/
+
+/*** ----- Colors Default ----- ***/
+// / dk Pink
+$color-pink: #db007a;
+$color-pink-hover: #f31b63;
+$color-pink-light: #f4bedc;
+$color-pink-dark: #910854;
+// / dk Gelb
+$color-gelb: #ffd640;
+$color-gelb-hover: #f7c200;
+$color-gelb-light: #f6e5b1;
+$color-gelb-dark: #765f0a;
+// / dk Grau
+$color-grau: #92907b;
+$color-grau-dark: #62604a;
+$color-grau-light: #d1d0c7;
+$color-schwarz: #282616;
+// / dk Off-White
+$color-offWhite: #f5f4f0;
+// / dk Weiss
+$color-weiss: #ffffff;
+/***/
+
+/*** ----- Space ----- ***/
+// Page Padding
+$page-padding: clamp(18px, calc(18px + 0.5vw), 30px);
+// Gutter Width
+$gutter-width: clamp(1rem, calc(1rem + 0.5vw), 30px);
+
+/*** ----- Font Family ----- ***/
+$font-primary: "Gibson", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-secondary: "Gill Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+/***/
+
+/*** ----- z-index ----- ***/
+$zIndex-low: -1;
+$zIndex-default: 1;
+$zIndex-high: 10;
+$zIndex-highest: 100;
+$zIndex-overlay: 1000;
+$zIndex-navbar: 9999;
+$zIndex-modal: 10000;
+/***/
+
+/*** ----- Breakpoints ----- ***/
+// / Mobile
+$breakpoint-mobile: 320px;
+$breakpoint-mobile-max: 767px;
+// / Tablet
+$breakpoint-tablet: 768px;
+$breakpoint-tablet-max: 1023px;
+// / Desktop
+$breakpoint-desktop: 1024px;
+$breakpoint-desktop-max: 1279px;
+// / Large Desktop
+$breakpoint-largeDesktop: 1280px;
+$breakpoint-largeDesktop-max: 1919px;
+// / Extra Large Desktop
+$breakpoint-extraLargeDesktop: 1920px;
+
+// second argument is optional
+@mixin media($breakpoint-min: null, $breakpoint-max: null) {
+	// mins
+	@if $breakpoint-max == null {
+		// 576px
+		@if $breakpoint-min == 576 {
+			@media (min-width: 576px) {
+				@content;
+			}
+		}
+		// 768px
+		@else if $breakpoint-min == 768 {
+			@media (min-width: 768px) {
+				@content;
+			}
+		}
+		// 992px
+		@else if $breakpoint-min == 992 {
+			@media (min-width: 992px) {
+				@content;
+			}
+		}
+		// 1280px
+		@else if $breakpoint-min == 1280 {
+			@media (min-width: 1280px) {
+				@content;
+			}
+		}
+		// 1920px
+		@else if $breakpoint-min == 1920 {
+			@media (min-width: 1920px) {
+				@content;
+			}
+		}
+		// 2560px
+		@else if $breakpoint-min == 2560 {
+			@media (min-width: 2560px) {
+				@content;
+			}
+		}
+		// custom px value. add px to the value
+		@else if $breakpoint-min != null {
+			@media (min-width: #{$breakpoint-min}) {
+				@content;
+			}
+		}
+
+		// max
+	} @else if $breakpoint-min == null {
+		@if $breakpoint-max == 576 {
+			@media (max-width: 576px) {
+				@content;
+			}
+		}
+		// custom px value. add px to the value
+		@else if $breakpoint-max != null {
+			@media (max-width: #{$breakpoint-max}) {
+				@content;
+			}
+		}
+
+		// min-max
+	} @else {
+		@media (min-width: #{$breakpoint-min}) and (max-width: #{$breakpoint-max}) {
+			@content;
+		}
+	}
+}
+
+/***/
+
+/*** ----- Font Sizes ----- ***/
+$fontSize-extraTiny: clamp(0.25rem, calc(0.25rem + 0.5vw), 0.5rem);
+$fontSize-tiny: clamp(0.5rem, calc(0.5rem + 0.5vw), 0.75rem);
+$fontSize-small: clamp(0.75rem, calc(0.75rem + 0.5vw), 1rem);
+$fontSize-regular: clamp(1rem, calc(1rem + 0.5vw), 1.25rem);
+$fontSize-large: clamp(1.25rem, calc(1.25rem + 0.5vw), 1.5rem);
+$fontSize-extraLarge: clamp(1.5rem, calc(1.5rem + 0.5vw), 1.75rem);
+$fontSize-huge: clamp(1.75rem, calc(1.75rem + 0.5vw), 2rem);
+$fontSize-extraHuge: clamp(2rem, calc(2rem + 0.5vw), 2.25rem);
+$fontSize-massive: clamp(3rem, calc(3rem + 0.5vw), 3.25rem);
+$fontSize-superMassive: clamp(4rem, calc(4rem + 0.5vw), 4.25rem);
+/***/
+
+/*** ----- Line Heights ----- ***/
+$lineHeight-tiny: clamp(1em, calc(1rem + 0.5vw), 1.25em);
+$lineHeight-small: clamp(1.25em, calc(1.25em + 0.5vw), 1.5em);
+$lineHeight-regular: clamp(1.5em, calc(1.5em + 0.5vw), 1.75em);
+$lineHeight-large: clamp(1.75em, calc(1.75em + 0.5vw), 2em);
+$lineHeight-extraLarge: clamp(2em, calc(2em + 0.5vw), 2.25em);
+/***/
+
+/*** ----- Border Radius ----- ***/
+$borderRadius-tiny: 3px;
+$borderRadius-small: 5px;
+$borderRadius-regular: 10px;
+$borderRadius-large: 15px;
+$borderRadius-extraLarge: 20px;
+$borderRadius-huge: 40px;
+$borderRadius-circle: 1000px;
+/***/
+
+/*** ----- Box Shadows ----- ***/
+// / Regular shadows
+$boxShadow-tiny: rgba(0, 0, 0, 0.16) 0px 1px 3px;
+$boxShadow-extraSmall: rgba(0, 0, 0, 0.16) 0px 2px 6px, rgba(0, 0, 0, 0.1) 0px 1px 2px;
+$boxShadow-small: rgba(0, 0, 0, 0.16) 0px 4px 12px, rgba(0, 0, 0, 0.1) 0px 2px 6px;
+$boxShadow-regular: rgba(50, 50, 93, 0.16) 0px 13px 27px -5px, rgba(0, 0, 0, 0.23) 0px 8px 16px -8px;
+$boxShadow-large: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.16) 0px 20px 60px -10px, rgba(0, 0, 0, 0.3) 0px 10px 30px -20px;
+$boxShadow-huge: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.16) 0px 20px 80px -10px, rgba(0, 0, 0, 0.3) 0px 15px 40px -20px;
+// / Pink shadows
+$boxShadow-pink-tiny: rgba($color-pink-dark, 0.25) 0px 1px 3px;
+$boxShadow-pink-extraSmall: rgba($color-pink, 0.4) 0px 2px 6px, rgba($color-pink-dark, 0.1) 0px 1px 2px;
+$boxShadow-pink-small: rgba($color-pink, 0.4) 0px 4px 12px, rgba($color-pink-dark, 0.1) 0px 2px 6px;
+$boxShadow-pink-regular: rgba($color-pink, 0.25) 0px 13px 27px -5px, rgba($color-pink-dark, 0.23) 0px 8px 16px -8px;
+$boxShadow-pink-large: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba($color-pink, 0.25) 0px 20px 60px -10px, rgba($color-pink-dark, 0.3) 0px 10px 30px -20px;
+$boxShadow-pink-huge: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba($color-pink, 0.25) 0px 20px 80px -10px, rgba($color-pink-dark, 0.3) 0px 15px 40px -20px;
+// / Gelb shadows
+$boxShadow-gelb-tiny: rgba($color-gelb-dark, 0.25) 0px 1px 3px;
+$boxShadow-gelb-extraSmall: rgba($color-gelb, 0.4) 0px 2px 6px, rgba($color-gelb-dark, 0.1) 0px 1px 2px;
+$boxShadow-gelb-small: rgba($color-gelb, 0.4) 0px 4px 12px, rgba($color-gelb-dark, 0.1) 0px 2px 6px;
+$boxShadow-gelb-regular: rgba($color-gelb, 0.25) 0px 13px 27px -5px, rgba($color-gelb-dark, 0.23) 0px 8px 16px -8px;
+$boxShadow-gelb-large: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba($color-gelb, 0.25) 0px 20px 60px -10px, rgba($color-gelb-dark, 0.3) 0px 10px 30px -20px;
+$boxShadow-gelb-huge: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba($color-gelb, 0.25) 0px 20px 80px -10px, rgba($color-gelb-dark, 0.3) 0px 15px 40px -20px;
+// / Grau shadows
+$boxShadow-grau-tiny: rgba($color-grau-dark, 0.25) 0px 1px 3px;
+$boxShadow-grau-extraSmall: rgba($color-grau, 0.4) 0px 2px 6px, rgba($color-grau-dark, 0.1) 0px 1px 2px;
+$boxShadow-grau-small: rgba($color-grau, 0.4) 0px 4px 12px, rgba($color-grau-dark, 0.1) 0px 2px 6px;
+$boxShadow-grau-regular: rgba($color-grau, 0.25) 0px 13px 27px -5px, rgba($color-grau-dark, 0.23) 0px 8px 16px -8px;
+$boxShadow-grau-large: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba($color-grau, 0.25) 0px 20px 60px -10px, rgba($color-grau-dark, 0.3) 0px 10px 30px -20px;
+$boxShadow-grau-huge: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba($color-grau, 0.25) 0px 20px 80px -10px, rgba($color-grau-dark, 0.3) 0px 15px 40px -20px;
+// / Inset Shadows
+$boxShadow-insetRegular: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+$boxShadow-insetLarge: rgba(0, 0, 0, 0.16) 0px 3px 6px 0px inset;
+$boxShadow-focus: rgba(50, 50, 93, 0.5) 0px 0px 0px 3px;
+// / Combined Shadows
+$boxShadow-focusSmall: rgba(0, 0, 0, 0.16) 0px 4px 12px, rgba(0, 0, 0, 0.1) 0px 2px 6px, rgba(50, 50, 93, 0.5) 0px 0px 0px 3px;
+$boxShadow-focusRegular: rgba(50, 50, 93, 0.16) 0px 13px 27px -5px, rgba(0, 0, 0, 0.23) 0px 8px 16px -8px, rgba(50, 50, 93, 0.5) 0px 0px 0px 3px;
+$boxShadow-focusLarge: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.16) 0px 20px 60px -10px, rgba(0, 0, 0, 0.3) 0px 10px 30px -20px, rgba(50, 50, 93, 0.5) 0px 0px 0px 3px;
+$boxShadow-focusInsetRegular: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset, rgba(50, 50, 93, 0.5) 0px 0px 0px 3px;
+$boxShadow-focusInsetLarge: rgba(0, 0, 0, 0.16) 0px 3px 6px 0px inset, rgba(50, 50, 93, 0.5) 0px 0px 0px 3px;
+/***/
+
+/*** ----- Transitions ----- ***/
+$transition-fast: 0.1s;
+$transition-regular: 0.3s;
+$transition-medium: 0.5s;
+$transition-slow: 0.5s;
+/***/
+
+/*** ----- Easings ----- ***/
+$easing-easeIn: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$easing-easeOut: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$easing-easeInOut: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+$easing-easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$easing-easeInBack: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+$easing-easeInOutBack: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+/***/
+
+/*** ----- Animations ----- ***/
+/***/
