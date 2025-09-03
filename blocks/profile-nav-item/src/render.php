@@ -87,29 +87,12 @@
 				Mein Profil
 			</span>
 		</a>
-		<?php if($user_role == 'administrator' || $user_role == 'um_moderator' ): ?>
-		<a class="dropdown-item<?php if($currentUrl == '/user/revisionen/') echo ' active'; ?>" href="/user/revisionen">
-			<span>
-				<?php echo $revisionIcon ?>
-				Revisionen
-			</span>
-		</a>
-		<?php endif; ?>
-		<a class="dropdown-item<?php if($currentUrl == '/user/schulungen/') echo ' active'; ?>" href="/user/schulungen">
-			<span>
-				<?php echo $schulungenIcon ?>
-				Schulungen
-			</span>
-			<?php if($unreadSchulungen) : ?>
-				<span class="notification-badge"></span>
-			<?php endif; ?>
-		</a>
 		<span class="divider"></span>
 		<?php if($user_role == 'administrator' ): ?>
 			<a class="dropdown-item" href="/wp-admin/">
 				<span>
 					<?php echo $settingsIcon ?>
-					WP-Dashboard
+					WP-Admin
 				</span>
 			</a>
 		<?php endif; ?>

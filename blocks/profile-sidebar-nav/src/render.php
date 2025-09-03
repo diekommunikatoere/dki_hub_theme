@@ -58,34 +58,13 @@
 				Mein Profil
 			</span></a>
 	</li>
-	<?php if($userRoles && (in_array('administrator', $userRoles) || in_array('um_moderator', $userRoles))) : ?>
-		<li class="profile-sidebar-nav-item">
-			<a href="/user/revisionen" class="profile-sidebar-nav-link <?php if(str_contains($currentUrl, '/user/revisionen/')) echo ' active'; ?>">
-				<span>
-					<?php echo $revisionIcon ?>
-					Revisionen
-				</span>
-			</a>
-		</li>
-		<?php endif; ?>
-	<li class="profile-sidebar-nav-item">
-		<a href="/user/schulungen" class="profile-sidebar-nav-link<?php if(str_contains($currentUrl, '/user/schulungen/')) echo ' active'; ?>">
-			<span>
-				<?php echo $schulungenIcon ?>
-				Schulungen
-			</span>
-			<?php if($unreadSchulungen) : ?>
-				<span class="notification-badge"></span>
-			<?php endif; ?>
-		</a>
-	</li>
 	<span class="divider"></span>
 	<?php if(in_array('administrator', $userRoles)) : ?>
 		<li class="profile-sidebar-nav-item">
 			<a href="/wp-admin" class="profile-sidebar-nav-link">
 				<span>
 					<?php echo $settingsIcon ?>
-					WP-Dashboard
+					WP-Admin
 				</span>
 			</a>
 		</li>
