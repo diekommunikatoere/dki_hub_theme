@@ -43,6 +43,7 @@ for block_dir in "$ROOT/blocks"/*/; do
         
         # Remove src and other development files from release block
         rm -rf "$release_block_dir/src"
+        rm -rf "$release_block_dir/node_modules"
         rm -f "$release_block_dir/package.json"
         rm -f "$release_block_dir/package-lock.json"
         rm -f "$release_block_dir/readme.txt"

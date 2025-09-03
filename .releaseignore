@@ -1,5 +1,8 @@
 # Development files and directories to exclude from release
 
+# Release build directory (to avoid recursion)
+release/
+
 # Source files
 src/
 scss/

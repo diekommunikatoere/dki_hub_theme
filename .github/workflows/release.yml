@@ -54,11 +54,7 @@ jobs:
                   # Stash any local changes before switching branches
                   git stash push -m "Build artifacts before release branch switch"
 
-                  RELEASE_BRANCH="release"|
-                    git config --local user.name "github-actions[bot]"
-                    git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-                    RELEASE_BRANCH="release"
+                  RELEASE_BRANCH="release"
                     if git rev-parse --verify origin/$RELEASE_BRANCH >/dev/null 2>&1; then
                       git fetch origin $RELEASE_BRANCH:$RELEASE_BRANCH
                       git checkout $RELEASE_BRANCH
