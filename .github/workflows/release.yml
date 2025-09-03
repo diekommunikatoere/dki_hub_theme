@@ -51,20 +51,23 @@ jobs:
                   git config --local user.name "github-actions[bot]"
                   git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+                  # Copy release directory to temp location before branch switch
+                  cp -r release /tmp/release-temp
+
                   # Stash any local changes before switching branches
                   git stash push -m "Build artifacts before release branch switch"
 
                   RELEASE_BRANCH="release"
-                    if git rev-parse --verify origin/$RELEASE_BRANCH >/dev/null 2>&1; then
-                      git fetch origin $RELEASE_BRANCH:$RELEASE_BRANCH
-                      git checkout $RELEASE_BRANCH
-                    else
-                      git checkout --orphan $RELEASE_BRANCH
-                    fi
+                  if git rev-parse --verify origin/$RELEASE_BRANCH >/dev/null 2>&1; then
+                    git fetch origin $RELEASE_BRANCH:$RELEASE_BRANCH
+                    git checkout $RELEASE_BRANCH
+                  else
+                    git checkout --orphan $RELEASE_BRANCH
+                  fi
 
-                    git rm -rf . || true
-                    cp -r release/. .
-                    rm -rf release
+                  git rm -rf . || true
+                  cp -r /tmp/release-temp/. .
+                  rm -rf /tmp/release-temp
 
                     git add .
                     git commit -m "Release: ${{ inputs.release_tag }} [ci skip]" || echo "No changes to commit"
