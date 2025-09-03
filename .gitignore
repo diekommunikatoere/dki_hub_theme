@@ -44,3 +44,6 @@ package-lock.json
 # VS Code settings and workspace files
 .vscode/
 *.code-workspace
+
+#MacOS files
+.DS_Store

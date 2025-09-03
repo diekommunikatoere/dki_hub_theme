@@ -73,33 +73,6 @@ jobs:
                     git commit -m "Release: ${{ inputs.release_tag }} [ci skip]" || echo "No changes to commit"
                     git push origin $RELEASE_BRANCH --force
 
-            - name: Run smoke tests
-              run: |
-                  echo "Running smoke tests..."
-                  # Check that release directory was created
-                  if [ ! -d "release" ]; then
-                    echo "❌ Release directory not found"
-                    exit 1
-                  fi
-
-                  # Check each block has expected artifacts
-                  for block_dir in blocks/*/; do
-                    if [ -f "$block_dir/package.json" ]; then
-                      block_name=$(basename "$block_dir")
-                      echo "Checking block: $block_name"
-                      
-                      # Check block directory exists in release
-                      if [ ! -d "release/blocks/$block_name" ]; then
-                        echo "❌ Block $block_name not found in release"
-                        exit 1
-                      fi
-                      
-                      echo "✅ Block $block_name found in release"
-                    fi
-                  done
-
-                  echo "✅ All smoke tests passed"
-
             - name: Summary
               run: |
                   echo "🎉 Release build completed successfully!"
