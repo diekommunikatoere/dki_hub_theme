@@ -1,0 +1,1 @@
+console.log("Hello World! (from dki-wiki-blocks-profile-sidebar-nav block)");
