@@ -101,6 +101,8 @@ jobs:
                   fi
                   echo "✅ Release directory created successfully"
 
+            - name: Remove changed_files.txt
+              run: rm -f changed_files.txt
             - name: Publish release branch
               run: |
                   git config --local user.name "github-actions[bot]"
