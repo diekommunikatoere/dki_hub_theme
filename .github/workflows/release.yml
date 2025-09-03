@@ -10,6 +10,21 @@ on:
                 description: "Release tag (e.g., v1.0.0)"
                 required: true
                 type: string
+            force_rebuild_all:
+                description: "Force rebuild all blocks (ignore change detection)"
+                required: false
+                type: boolean
+                default: false
+            verbose:
+                description: "Enable detailed logging"
+                required: false
+                type: boolean
+                default: true
+            parallel:
+                description: "Enable parallel block building"
+                required: false
+                type: boolean
+                default: true
 
 jobs:
     release:
@@ -30,13 +45,53 @@ jobs:
                   cache: "npm"
                   cache-dependency-path: "blocks/*/package.json"
 
+            - name: Cache block dependencies
+              uses: actions/cache@v4
+              with:
+                  path: |
+                      blocks/*/node_modules
+                      ~/.npm
+                  key: blocks-${{ hashFiles('blocks/*/package-lock.json') }}
+                  restore-keys: |
+                      blocks-
+
+            # Phase 2: Build artifact caching
+            - name: Cache block build artifacts
+              uses: actions/cache@v4
+              with:
+                  path: blocks/*/build
+                  key: build-artifacts-${{ hashFiles('blocks/*/src/**/*', 'blocks/*/package.json') }}
+                  restore-keys: |
+                      build-artifacts-
+                      build-
+
+            - name: Detect changed blocks
+              id: detect_changes
+              run: |
+                  LAST_TAG="${{ inputs.release_tag }}"
+                  CHANGED_FILES=$(git diff --name-only $LAST_TAG HEAD | grep "^blocks/" || true)
+                  CHANGED_BLOCKS=$(echo "$CHANGED_FILES" | awk -F/ '{print $2}' | sort | uniq | xargs)
+                  echo "changed_blocks=$CHANGED_BLOCKS" >> $GITHUB_OUTPUT
+                  echo "$CHANGED_FILES" > changed_files.txt
+
             - name: Make release script executable
               run: chmod +x scripts/release-build.sh
 
             - name: Run release build
-              run: ./scripts/release-build.sh
+              run: |
+                  BUILD_FLAGS=""
+                  if [ "${{ inputs.verbose }}" = "true" ]; then
+                    BUILD_FLAGS="$BUILD_FLAGS --verbose"
+                  fi
+                  if [ "${{ inputs.parallel }}" = "true" ]; then
+                    BUILD_FLAGS="$BUILD_FLAGS --parallel"
+                  fi
+                  ./scripts/release-build.sh $BUILD_FLAGS
               env:
                   RELEASE_TAG: ${{ inputs.release_tag }}
+                  FORCE_REBUILD_ALL: ${{ inputs.force_rebuild_all }}
+                  CHANGED_BLOCKS: ${{ steps.detect_changes.outputs.changed_blocks }}
+                  CHANGED_FILES_FILE: changed_files.txt
 
             - name: Verify release directory
               run: |
@@ -51,10 +106,7 @@ jobs:
                   git config --local user.name "github-actions[bot]"
                   git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-                  # Copy release directory to temp location before branch switch
                   cp -r release /tmp/release-temp
-
-                  # Stash any local changes before switching branches
                   git stash push -m "Build artifacts before release branch switch"
 
                   RELEASE_BRANCH="release"
@@ -69,13 +121,8 @@ jobs:
                   cp -r /tmp/release-temp/. .
                   rm -rf /tmp/release-temp
 
-                    git add .
-                    git commit -m "Release: ${{ inputs.release_tag }} [ci skip]" || echo "No changes to commit"
-                    git push origin $RELEASE_BRANCH --force
+                  git add .
+                  git commit -m "Release: ${{ inputs.release_tag }} [ci skip]" || echo "No changes to commit"
+                  git push origin $RELEASE_BRANCH --force
 
             - name: Summary
-              run: |
-                  echo "🎉 Release build completed successfully!"
-                  echo "📦 Release tag: ${{ inputs.release_tag }}"
-                  echo "🌿 Release branch: release"
-                  echo "📁 Artifacts available in release branch"
