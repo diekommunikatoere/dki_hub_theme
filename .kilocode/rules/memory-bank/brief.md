@@ -10,7 +10,7 @@
 
 ## Key Features
 
-- **Custom Gutenberg Blocks**: 8 specialized blocks including login-form, profile-sidebar-nav, edit-docs-page, revisions-profile-overview, schulungen-read-status-widget, and more
+- **Custom Gutenberg Blocks**: 9 specialized blocks including login-form, profile-sidebar-nav, edit-docs-page, revisions-profile-overview, schulungen-read-status-widget, copy-field, and more
 - **Modular Architecture**: Each block has its own package.json and build process
 - **Comprehensive Styling**: SCSS-based modular styles with compiled CSS output
 - **PHP Templates**: Server-side rendering support where needed
@@ -27,3 +27,14 @@
 ## Impact
 
 Improves authoring speed, enforces consistent UX across documentation and profiles, and simplifies maintenance for the DKI Hub frontend experience.
+
+## Language
+
+### German
+
+- All user-facing text, block interfaces, and documentation should be in German. This includes:
+- Block labels and descriptions
+- Placeholder text and button labels
+- Configuration panel text
+- Error messages and feedback
+- Documentation and help text

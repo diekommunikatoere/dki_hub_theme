@@ -92,6 +92,7 @@ article.post,
 .archive > article {
 	margin: 0 auto;
 	min-height: 850px;
+	padding-top: 100px;
 }
 
 /**
@@ -150,6 +151,8 @@ figure {
 }
 
 #wiki {
+	padding-top: 100px;
+
 	.wp-block-dki-wiki-edit-docs-page {
 		display: flex;
 		flex-direction: row;

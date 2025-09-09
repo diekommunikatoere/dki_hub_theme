@@ -1,0 +1,46 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "dki-wiki/copy-field",
+	"version": "0.1.0",
+	"title": "Copy Field",
+	"category": "widgets",
+	"description": "Ein Block zum Kopieren von formatiertem Text und Code-Snippets.",
+	"example": {},
+	"attributes": {
+		"inputType": {
+			"type": "string",
+			"default": "richtext",
+			"enum": ["richtext", "code"]
+		},
+		"label": {
+			"type": "string",
+			"default": "Text kopieren:"
+		},
+		"placeholder": {
+			"type": "string",
+			"default": "Formatierten Text hier eingeben..."
+		},
+		"content": {
+			"type": "string",
+			"default": ""
+		},
+		"codeLanguage": {
+			"type": "string",
+			"default": "bash"
+		},
+		"copyButtonText": {
+			"type": "string",
+			"default": "Kopieren"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "copy-field",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

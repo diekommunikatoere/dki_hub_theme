@@ -9,10 +9,15 @@ remove_action('wp_head', 'wp_generator');
 
 // ----- START - Enqueue styles
 //
-function dki_wiki_enqueue_styles() {
+function dki_wiki_enqueue_public_styles() {
     wp_enqueue_style( 'dki_wiki-style', get_stylesheet_directory_uri() . '/includes/css/styles.css', array(), '1.0.0', 'all' );
 }
-add_action( 'wp_enqueue_scripts', 'dki_wiki_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'dki_wiki_enqueue_public_styles' );
+
+
+function dki_wiki_enqueue_dashboard_styles() {
+}
+add_action( 'admin_enqueue_scripts', 'dki_wiki_enqueue_dashboard_styles');
 
 // ----- END - Enqueue styles
 
@@ -100,8 +105,8 @@ function dki_wiki_blocks_register_blocks() {
 add_action('init', 'dki_wiki_blocks_register_blocks');
 
 // END ----- Search all folders in the 'blocks' directory for block.json files and register them
- 
- 
+
+
 // START ----- Set allowed blocks for users in group "team"
 // https://developer.wordpress.org/reference/hooks/allowed_block_types_all/
 

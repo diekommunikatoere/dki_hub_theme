@@ -1,0 +1,171 @@
+/**
+ * Copy Field Block - Frontend styles
+ */
+
+.copy-field-wrapper {
+	display: flex;
+	flex-direction: column;
+	margin: 1rem 0;
+	border: 1px solid var(--wp--preset--color--tertiary-light, #ddd);
+	border-radius: 6px;
+	overflow: hidden;
+
+	.copy-field-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 6px 6px 6px 16px;
+		background-color: var(--wp--preset--color--background-alt);
+
+		.copy-field-label {
+			font-weight: 600;
+			color: var(--wp--preset--color--contrast, #1a1a1a);
+			font-size: 1rem;
+			margin-bottom: 0.25rem;
+			display: block;
+		}
+
+		.copy-field-button {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			min-height: 2.5rem;
+			font-family: var(--wp--preset--font-family--heading);
+			font-size: 0.875rem;
+			font-weight: 500;
+			white-space: nowrap;
+			background-color: var(--wp--preset--color--secondary);
+			color: var(--wp--preset--color--contrast);
+			border: none;
+			border-radius: 3px;
+			padding: 0.5rem 1rem;
+			box-shadow: var(--wp--preset--shadow--secondary-extra-small);
+			cursor: pointer;
+			transition: all 0.2s;
+
+			svg {
+				width: 16px;
+				height: 16px;
+				flex-shrink: 0;
+			}
+
+			&:hover:not(:disabled) {
+				background-color: var(--wp--preset--color--secondary-hover);
+				box-shadow: var(--wp--preset--shadow--secondary-small);
+			}
+
+			&:active:not(:disabled) {
+				background-color: var(--wp--preset--color--secondary-hover);
+				box-shadow: var(--wp--preset--shadow--secondary-tiny);
+			}
+
+			&:disabled {
+				background-color: var(--wp--preset--color--tertiary-light, #ddd);
+				color: var(--wp--preset--color--tertiary, #757575);
+				box-shadow: none;
+				cursor: not-allowed;
+				transform: none;
+			}
+
+			&.copied {
+				background-color: var(--wp--preset--color--success, #46b450);
+			}
+
+			&.error {
+				background-color: var(--wp--preset--color--alert, #dc3232);
+			}
+		}
+	}
+
+	.copy-field-content-wrapper {
+		display: flex;
+		gap: 0.5rem;
+		align-items: flex-start;
+
+		.copy-field-richtext {
+			flex: 1;
+			min-height: 2.5rem;
+			padding: 0.75rem;
+			border: 1px solid transparent;
+			border-radius: 0 0 6px 6px;
+			font-family: inherit;
+			font-size: 1rem;
+			line-height: 1.5;
+			transition: border-color 0.2s ease;
+			background-color: var(--wp--preset--color--base, #fff);
+
+			&:focus {
+				outline: none;
+				border-color: var(--wp--preset--color--primary, #007cba);
+				box-shadow: 0 0 0 1px var(--wp--preset--color--primary, #007cba);
+			}
+
+			&:empty::before {
+				content: attr(data-placeholder);
+				color: var(--wp--preset--color--tertiary, #757575);
+				font-style: italic;
+			}
+
+			&.empty::before {
+				content: attr(data-placeholder);
+				color: var(--wp--preset--color--tertiary, #757575);
+				font-style: italic;
+			}
+		}
+
+		.copy-field-code-block {
+			width: 100%;
+			max-width: 100%;
+			font-family: "Monaco", "Consolas", "Courier New", monospace;
+			font-size: 0.875rem;
+			line-height: 1.5;
+			border-radius: 0;
+			overflow: hidden;
+			background-color: var(--wp--preset--color--base, #fff);
+
+			.cm-editor {
+				height: auto;
+
+				.cm-scroller {
+					overflow: auto;
+				}
+			}
+		}
+	}
+
+	.copy-field-content-wrapper:has(.copy-field-code) {
+		background-color: #282c34;
+		overflow-x: hidden;
+
+		pre {
+			width: 100%;
+			max-width: 100%;
+			margin: 0;
+			padding: 0;
+			background: transparent;
+			border: none;
+			border-radius: 0;
+			font-size: 0.875rem;
+			line-height: 1.5;
+			overflow-x: hidden;
+		}
+
+		code {
+			font-family: "Monaco", "Consolas", "Courier New", monospace;
+			font-size: 0.875rem;
+			background: transparent;
+			padding: 0;
+			border: none;
+			border-radius: 0;
+		}
+	}
+
+	.copy-field-language-label {
+		align-items: center;
+		padding: 6px 6px 6px 16px;
+		background-color: var(--wp--preset--color--background-alt);
+		font-size: 0.75rem;
+		color: var(--wp--preset--color--tertiary, #757575);
+		font-style: italic;
+	}
+}
