@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       FAQ Search
- * Description:       Ein Block für die Suchleiste mit fuzzy Suche in FAQs.
+ * Description:       A block to search FAQ content.
  * Requires at least: 6.1
  * Requires PHP:      7.0
  * Version:           0.1.0
@@ -14,7 +14,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly.
+	exit; // Exit if accessed directly.
 }
 
 /**
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function dki_wiki_faq_search_block_init() {
-    register_block_type( __DIR__ . '/build' );
+function dki_wiki_faq_search_init() {
+	register_block_type( __DIR__ . '/build' );
 }
-add_action( 'init', 'dki_wiki_faq_search_block_init' );
+add_action( 'init', 'dki_wiki_faq_search_init' );

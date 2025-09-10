@@ -1,46 +1,48 @@
-/**
- * FAQ Search Block - Frontend styles
- */
+.wp-block-dki-wiki-faq-search {
+	margin: 1.5em 0;
 
-.faq-search-wrapper {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-	margin: 1rem 0;
+	.faq-search-wrapper {
+		position: relative;
+		display: flex;
+		align-items: center;
+	}
 
 	.faq-search-input {
 		width: 100%;
-		padding: 0.75rem 1rem;
-		border: 1px solid var(--wp--preset--color--tertiary-light, #ddd);
-		border-radius: 6px;
-		font-size: 1rem;
-		background-color: var(--wp--preset--color--base, #fff);
-		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		padding: 0.75em 1em;
+		font-size: 1em;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		transition: border-color 0.2s ease;
 
 		&:focus {
-			outline: none;
-			border-color: var(--wp--preset--color--primary, #007cba);
-			box-shadow: 0 0 0 1px var(--wp--preset--color--primary, #007cba);
-		}
-
-		&::placeholder {
-			color: var(--wp--preset--color--tertiary, #757575);
+			border-color: #0073aa;
+			outline: 2px solid #0073aa;
+			outline-offset: -2px;
 		}
 	}
 
-	.faq-search-results-count {
-		font-size: 0.875rem;
-		color: var(--wp--preset--color--tertiary, #757575);
-		text-align: center;
-		padding: 0.25rem;
-		background-color: var(--wp--preset--color--neutral-5, #f0f0f0);
-		border-radius: 4px;
-	}
+	.faq-search-clear {
+		position: absolute;
+		right: 10px;
+		background: none;
+		border: none;
+		font-size: 1.5em;
+		cursor: pointer;
+		color: #666;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		transition: background-color 0.2s ease;
 
-	.faq-search-no-results {
-		text-align: center;
-		color: var(--wp--preset--color--tertiary, #757575);
-		font-style: italic;
-		padding: 1rem;
+		&:hover,
+		&:focus {
+			background-color: #eee;
+			outline: 2px solid #0073aa;
+			outline-offset: -2px;
+		}
 	}
 }

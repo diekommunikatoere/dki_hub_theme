@@ -25,12 +25,12 @@
 
 	// Check if user has any unread schulungen
 	$unreadSchulungen = false;
-	foreach ($schulungen as $schulung) {
+	/* foreach ($schulungen as $schulung) {
 		if (!$readSchulungen || !is_array($readSchulungen) || !in_array($schulung->ID, $readSchulungen)) {
 			$unreadSchulungen = true;
 			break;
 		}
-	}
+	} */
 
 ?>
 

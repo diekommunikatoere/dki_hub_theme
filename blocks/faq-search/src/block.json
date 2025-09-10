@@ -3,20 +3,11 @@
 	"apiVersion": 3,
 	"name": "dki-wiki/faq-search",
 	"version": "0.1.0",
-	"title": "FAQ Search",
+	"title": "FAQ Suche",
 	"category": "widgets",
-	"description": "Suchleiste für fuzzy Suche in FAQs.",
+	"description": "Ein Block zur Suche in FAQ-Inhalten.",
 	"example": {},
-	"attributes": {
-		"targetDisplayId": {
-			"type": "string",
-			"default": ""
-		},
-		"placeholder": {
-			"type": "string",
-			"default": "Suchen Sie in den FAQs..."
-		}
-	},
+	"attributes": {},
 	"supports": {
 		"html": false
 	},

@@ -236,22 +236,33 @@ export default function Edit({ attributes, setAttributes }) {
 				</PanelBody>
 			</InspectorControls>
 
-			<div className="copy-field-wrapper">
-				<div className="copy-field-header">
-					{label && <label className="copy-field-label">{label}</label>}
-					<Button isPrimary className="copy-field-button" disabled>
-						{copyButtonText || "Kopieren"}
-					</Button>
+			{inputType === "richtext-compressed" ? (
+				<div className="copy-field-wrapper">
+					<div className="copy-field-content-wrapper">
+						{renderContentEditor()}
+						<Button isPrimary className="copy-field-button" disabled>
+							{copyButtonText || "Kopieren"}
+						</Button>
+					</div>
 				</div>
+			) : (
+				<div className="copy-field-wrapper">
+					<div className="copy-field-header">
+						{label && <label className="copy-field-label">{label}</label>}
+						<Button isPrimary className="copy-field-button" disabled>
+							{copyButtonText || "Kopieren"}
+						</Button>
+					</div>
 
-				<div className="copy-field-content-wrapper">{renderContentEditor()}</div>
+					<div className="copy-field-content-wrapper">{renderContentEditor()}</div>
 
-				{inputType === "code" && codeLanguage && (
-					<small className="copy-field-language-label">
-						{__("Sprache:", "copy-field")} {codeLanguage}
-					</small>
-				)}
-			</div>
+					{inputType === "code" && codeLanguage && (
+						<small className="copy-field-language-label">
+							{__("Sprache:", "copy-field")} {codeLanguage}
+						</small>
+					)}
+				</div>
+			)}
 		</div>
 	);
 }

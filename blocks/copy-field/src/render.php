@@ -28,12 +28,19 @@ $copy_icon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" vie
 			>
 				<?php echo wp_kses_post($content); ?>
 			</div>
+			<button 
+				type="button"
+				class="copy-field-button"
+				data-copy-target="#<?php echo esc_attr($block_id); ?>"
+				data-copy-text="<?php echo esc_attr($copy_button_text); ?>"
+				data-copied-text="<?php echo esc_attr(__('Kopiert!', 'copy-field')); ?>"
+				data-error-text="<?php echo esc_attr(__('Fehler beim Kopieren', 'copy-field')); ?>"
+				<?php echo empty($content) ? 'disabled' : ''; ?>
+			>
+				<?php echo $copy_icon; ?>
+				<span class="copy-button-text"><?php echo esc_html($copy_button_text); ?></span>
+			</button>
 		</div>
-		<?php if (!empty($label)): ?>
-			<label class="copy-field-label" for="<?php echo esc_attr($block_id); ?>">
-				<?php echo esc_html($label); ?>
-			</label>
-		<?php endif; ?>
 	<?php else: ?>
 		<div class="copy-field-header">
 			<?php if (!empty($label)): ?>

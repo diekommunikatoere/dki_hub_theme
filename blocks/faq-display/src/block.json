@@ -3,21 +3,11 @@
 	"apiVersion": 3,
 	"name": "dki-wiki/faq-display",
 	"version": "0.1.0",
-	"title": "FAQ Display",
+	"title": "FAQ Anzeige",
 	"category": "widgets",
-	"description": "Zeigt FAQs in nested Akkordeons an.",
+	"description": "Ein Block zur Anzeige von FAQ-Abschnitten und -Elementen in einem akkordeonartigen Format.",
 	"example": {},
-	"attributes": {
-		"showSections": {
-			"type": "boolean",
-			"default": true
-		},
-		"accordionStyle": {
-			"type": "string",
-			"default": "default",
-			"enum": ["default", "modern"]
-		}
-	},
+	"attributes": {},
 	"supports": {
 		"html": false
 	},

@@ -18,8 +18,8 @@ WordPress theme with PHP templates and modular Gutenberg blocks architecture. Ea
 │   ├── schulungen-query-loop/
 │   ├── schulungen-read-status-widget/
 │   ├── view-revisions/
-│   ├── faq-display/                 # New: Display block for nested FAQ accordions with custom ordering
-│   └── faq-search/                  # New: Search block for fuzzy FAQ filtering
+│   ├── faq-display/
+│   ├── faq-search/
 │   └── [...additional blocks]
 ├── includes/
 │   ├── css/                         # Compiled stylesheets
@@ -98,6 +98,5 @@ Each block follows a consistent structure:
 - **CPT Registration**: [`includes/utils/register-cpt-faq.php`](includes/utils/register-cpt-faq.php:1) - 'faq' CPT with supports, 'faq_section' taxonomy
 - **Ordering**: Meta fields '_faq_order' (post meta) and '_section_order' (term meta) for custom sort; metabox in post editor, number field in term edit
 - **Admin Reorder**: [`includes/js/admin-faq-reorder.js`](includes/js/admin-faq-reorder.js:1) - Drag-drop for FAQs list with AJAX; sections via number input
-- **Blocks**: faq-display renders ordered nested accordions; faq-search with Fuse.js fuzzy filter
 - **Templates**: [`templates/archive-faq.php`](templates/archive-faq.php:1) and [`templates/single-faq.php`](templates/single-faq.php:1) for CPT views
 - **Migration**: [`includes/utils/migrate-faqs.php`](includes/utils/migrate-faqs.php:1) - Imports from BetterDocs, sets default order meta

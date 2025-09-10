@@ -1,54 +1,87 @@
 /**
- * FAQ Display Block - Frontend functionality
- * Handles accordion toggle enhancements and icon animations
+ * FAQ Display Block Frontend JavaScript
+ * Implements accessible accordion functionality according to WCAG standards
  */
 
 document.addEventListener("DOMContentLoaded", function () {
-	// Enhance accordion functionality for better UX
-	const accordions = document.querySelectorAll(".faq-display-wrapper details");
+	// Get all FAQ accordions
+	const accordions = document.querySelectorAll(".wp-block-dki-wiki-faq-display .faq-accordion");
 
 	accordions.forEach((accordion) => {
-		const summary = accordion.querySelector("summary");
-		const content = accordion.querySelector(".faq-section-content, .faq-item-content");
-		const toggleIcon = accordion.querySelector(".faq-toggle-icon");
+		// Get all buttons in this accordion
+		const buttons = accordion.querySelectorAll(".faq-question-button");
 
-		if (summary && content && toggleIcon) {
-			// Add click handler to summary for toggle
-			summary.addEventListener("click", function (e) {
-				e.preventDefault();
-				accordion.toggleAttribute("open");
-				updateToggleIcon();
+		buttons.forEach((button, index) => {
+			// Add click event listener
+			button.addEventListener("click", function () {
+				toggleAccordion(this, accordion);
 			});
 
-			// Function to update toggle icon
-			function updateToggleIcon() {
-				if (accordion.open) {
-					toggleIcon.textContent = "−";
-					toggleIcon.style.transform = "rotate(180deg)";
-				} else {
-					toggleIcon.textContent = "+";
-					toggleIcon.style.transform = "rotate(0deg)";
-				}
-			}
-
-			// Initial state
-			updateToggleIcon();
-
-			// Handle keyboard accessibility
-			summary.addEventListener("keydown", function (e) {
+			// Add keyboard event listener
+			button.addEventListener("keydown", function (e) {
+				// Enter or Space: Toggle the panel
 				if (e.key === "Enter" || e.key === " ") {
 					e.preventDefault();
-					accordion.toggleAttribute("open");
-					updateToggleIcon();
+					toggleAccordion(this, accordion);
+				}
+
+				// Arrow keys: Navigate between headers
+				if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+					e.preventDefault();
+					const buttonsArray = Array.from(buttons);
+					let nextIndex;
+
+					if (e.key === "ArrowDown") {
+						nextIndex = (index + 1) % buttonsArray.length;
+					} else {
+						// ArrowUp
+						nextIndex = (index - 1 + buttonsArray.length) % buttonsArray.length;
+					}
+
+					buttonsArray[nextIndex].focus();
+				}
+
+				// Home key: Focus first header
+				if (e.key === "Home") {
+					e.preventDefault();
+					buttons[0].focus();
+				}
+
+				// End key: Focus last header
+				if (e.key === "End") {
+					e.preventDefault();
+					buttons[buttons.length - 1].focus();
 				}
 			});
-		}
+		});
 	});
 
-	// Close all accordions except the first one on page load (optional UX)
-	// accordions.forEach((acc, index) => {
-	// 	if (index > 0) {
-	// 		acc.removeAttribute('open');
-	// 	}
-	// });
+	/**
+	 * Toggle accordion panel visibility
+	 * @param {HTMLElement} button - The button that was clicked
+	 * @param {HTMLElement} accordion - The accordion container
+	 */
+	function toggleAccordion(button, accordion) {
+		// Get the associated content panel
+		const contentId = button.getAttribute("aria-controls");
+		const content = document.getElementById(contentId);
+
+		// Check if content is currently expanded
+		const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+		// For this implementation, we allow collapsing all panels
+		// If you want to enforce one panel always open, modify this logic
+
+		if (isExpanded) {
+			// Collapse the content
+			content.hidden = true;
+			button.setAttribute("aria-expanded", "false");
+			button.classList.remove("is-open");
+		} else {
+			// Expand the content
+			content.hidden = false;
+			button.setAttribute("aria-expanded", "true");
+			button.classList.add("is-open");
+		}
+	}
 });

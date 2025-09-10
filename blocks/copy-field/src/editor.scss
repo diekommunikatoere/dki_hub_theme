@@ -26,28 +26,28 @@
 				margin-bottom: 0.5rem;
 				display: block;
 			}
+		}
 
-			.copy-field-button {
-				display: flex;
-				align-items: center;
-				gap: 0.5rem;
-				padding: 0.75rem 1rem;
-				background-color: var(--wp--preset--color--tertiary-light, #ddd);
-				color: var(--wp--preset--color--tertiary, #757575);
-				cursor: not-allowed;
-				border: none;
-				border-radius: 6px;
-				font-size: 0.875rem;
-				font-weight: 500;
-				white-space: nowrap;
-				transition: all 0.2s ease;
-				min-height: 2.5rem;
+		.copy-field-button {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			padding: 0.75rem 1rem;
+			background-color: var(--wp--preset--color--tertiary-light, #ddd);
+			color: var(--wp--preset--color--tertiary, #757575);
+			cursor: not-allowed;
+			border: none;
+			border-radius: 6px;
+			font-size: 0.875rem;
+			font-weight: 500;
+			white-space: nowrap;
+			transition: all 0.2s ease;
+			min-height: 2.5rem;
 
-				svg {
-					width: 16px;
-					height: 16px;
-					flex-shrink: 0;
-				}
+			svg {
+				width: 16px;
+				height: 16px;
+				flex-shrink: 0;
 			}
 		}
 

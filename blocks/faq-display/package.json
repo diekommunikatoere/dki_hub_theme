@@ -1,7 +1,7 @@
 {
 	"name": "faq-display",
 	"version": "0.1.0",
-	"description": "FAQ Display Block - Zeigt FAQs in nested Akkordeons an",
+	"description": "FAQ Display Block",
 	"author": "The WordPress Contributors",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
@@ -16,9 +16,5 @@
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^27.9.0"
-	},
-	"dependencies": {
-		"@wordpress/components": "^28.5.0",
-		"@wordpress/element": "^6.25.0"
 	}
 }
