@@ -1,0 +1,169 @@
+/**
+ * FAQ Display Block - Frontend styles
+ * Styles for nested accordions
+ */
+
+.faq-display-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin: 1rem 0;
+
+	&.faq-accordion-default {
+		.faq-section-accordion,
+		.faq-item-accordion {
+			border: 1px solid var(--wp--preset--color--tertiary-light, #ddd);
+			border-radius: 6px;
+			overflow: hidden;
+		}
+
+		.faq-section-details,
+		.faq-item-details {
+			details[open] > summary {
+				background-color: var(--wp--preset--color--secondary);
+				color: var(--wp--preset--color--contrast);
+			}
+
+			summary {
+				list-style: none;
+				cursor: pointer;
+				padding: 1rem;
+				background-color: var(--wp--preset--color--background-alt);
+				transition: background-color 0.2s ease;
+
+				&:hover {
+					background-color: var(--wp--preset--color--secondary-hover);
+				}
+
+				&::-webkit-details-marker {
+					display: none;
+				}
+			}
+
+			> .faq-section-content,
+			> .faq-item-content {
+				padding: 0;
+				overflow: visible;
+				transition: all 0.3s ease;
+			}
+
+			details[open] > .faq-section-content,
+			details[open] > .faq-item-content {
+				padding: 1rem;
+			}
+		}
+
+		.faq-section-title,
+		.faq-question {
+			font-weight: 600;
+			font-size: 1rem;
+			margin: 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.faq-answer {
+			margin-top: 0.5rem;
+			line-height: 1.5;
+		}
+
+		.faq-excerpt {
+			font-size: 0.875rem;
+			color: var(--wp--preset--color--tertiary, #757575);
+			margin-top: 0.5rem;
+			padding-top: 0.5rem;
+			border-top: 1px solid var(--wp--preset--color--tertiary-light, #eee);
+		}
+
+		.faq-toggle-icon {
+			font-size: 1.2rem;
+			font-weight: bold;
+			transition: transform 0.2s ease;
+			user-select: none;
+		}
+	}
+
+	&.faq-accordion-modern {
+		.faq-section-accordion,
+		.faq-item-accordion {
+			box-shadow: var(--wp--preset--shadow--secondary-small);
+			border-radius: 8px;
+			background-color: var(--wp--preset--color--base, #fff);
+		}
+
+		.faq-section-details,
+		.faq-item-details {
+			details[open] > summary {
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+				background: linear-gradient(135deg, var(--wp--preset--color--primary, #007cba) 0%, var(--wp--preset--color--secondary, #005a87) 100%);
+				color: white;
+			}
+
+			summary {
+				list-style: none;
+				cursor: pointer;
+				padding: 1rem;
+				background-color: var(--wp--preset--color--neutral-5, #f0f0f0);
+				transition: all 0.3s ease;
+				border-radius: 8px;
+
+				&:hover {
+					background-color: var(--wp--preset--color--neutral-10, #e0e0e0);
+					transform: translateY(-1px);
+				}
+
+				&::-webkit-details-marker {
+					display: none;
+				}
+			}
+
+			> .faq-section-content,
+			> .faq-item-content {
+				padding: 0;
+				overflow: hidden;
+				max-height: 0;
+				transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+				background-color: var(--wp--preset--color--base, #fff);
+
+				details[open] > & {
+					padding: 1rem;
+					max-height: 1000px;
+					border-bottom-left-radius: 8px;
+					border-bottom-right-radius: 8px;
+				}
+			}
+		}
+
+		.faq-section-title,
+		.faq-question {
+			font-weight: 600;
+			font-size: 1rem;
+			margin: 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.faq-answer {
+			margin-top: 0.5rem;
+			line-height: 1.5;
+		}
+
+		.faq-excerpt {
+			font-size: 0.875rem;
+			color: var(--wp--preset--color--tertiary, #757575);
+			margin-top: 0.5rem;
+			padding-top: 0.5rem;
+			border-top: 1px solid var(--wp--preset--color--tertiary-light, #eee);
+		}
+
+		.faq-toggle-icon {
+			font-size: 1.2rem;
+			font-weight: bold;
+			transition: transform 0.3s ease;
+			user-select: none;
+		}
+	}
+}

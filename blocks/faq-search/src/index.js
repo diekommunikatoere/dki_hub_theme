@@ -1,5 +1,6 @@
 /**
- * Registers a new block provided a unique name and an object defining its behavior.
+ * FAQ Search Block Registration
+ * Registers a new block for FAQ search functionality
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
@@ -20,18 +21,10 @@ import "./style.scss";
 import Edit from "./edit";
 import metadata from "./block.json";
 
-const editIcon = (
-	<svg
-		id="uuid-3bd8cef8-b3c9-4336-9e67-536a386854b3"
-		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
-		viewBox="0 0 24 24"
-	>
-		<path
-			class="uuid-37a94574-7d8e-417f-a0b7-ccf78abbec51"
-			d="M5,21c-.55,0-1.02-.2-1.41-.59-.39-.39-.59-.86-.59-1.41V5c0-.55.2-1.02.59-1.41.39-.39.86-.59,1.41-.59h14c.55,0,1.02.2,1.41.59s.59.86.59,1.41v14c0,.55-.2,1.02-.59,1.41-.39.39-.86.59-1.41.59H5ZM12,19h7V5h-7v14Z"
-		/>
+// Search icon for the block
+const searchIcon = (
+	<svg id="uuid-89ded76f-674b-4d18-b48f-80469107f77f" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+		<path class="uuid-98ed824d-d9c0-4b1f-8290-4b7cef102585" d="M9.5,16c-1.82,0-3.35-.63-4.61-1.89s-1.89-2.8-1.89-4.61.63-3.35,1.89-4.61,2.8-1.89,4.61-1.89,3.35.63,4.61,1.89,1.89,2.8,1.89,4.61c0,.73-.12,1.43-.35,2.08s-.55,1.23-.95,1.73l5.6,5.6c.18.18.28.42.28.7s-.09.52-.28.7-.42.28-.7.28-.52-.09-.7-.28l-5.6-5.6c-.5.4-1.08.72-1.73.95s-1.34.35-2.08.35ZM9.5,14c1.25,0,2.31-.44,3.19-1.31s1.31-1.94,1.31-3.19-.44-2.31-1.31-3.19-1.94-1.31-3.19-1.31-2.31.44-3.19,1.31-1.31,1.94-1.31,3.19.44,2.31,1.31,3.19,1.94,1.31,3.19,1.31Z" />
 	</svg>
 );
 
@@ -45,5 +38,9 @@ registerBlockType(metadata.name, {
 	 * @see ./edit.js
 	 */
 	edit: Edit,
-	icon: editIcon,
+
+	/**
+	 * Block icon
+	 */
+	icon: searchIcon,
 });

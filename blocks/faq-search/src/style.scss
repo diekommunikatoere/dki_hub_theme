@@ -1,0 +1,46 @@
+/**
+ * FAQ Search Block - Frontend styles
+ */
+
+.faq-search-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin: 1rem 0;
+
+	.faq-search-input {
+		width: 100%;
+		padding: 0.75rem 1rem;
+		border: 1px solid var(--wp--preset--color--tertiary-light, #ddd);
+		border-radius: 6px;
+		font-size: 1rem;
+		background-color: var(--wp--preset--color--base, #fff);
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+		&:focus {
+			outline: none;
+			border-color: var(--wp--preset--color--primary, #007cba);
+			box-shadow: 0 0 0 1px var(--wp--preset--color--primary, #007cba);
+		}
+
+		&::placeholder {
+			color: var(--wp--preset--color--tertiary, #757575);
+		}
+	}
+
+	.faq-search-results-count {
+		font-size: 0.875rem;
+		color: var(--wp--preset--color--tertiary, #757575);
+		text-align: center;
+		padding: 0.25rem;
+		background-color: var(--wp--preset--color--neutral-5, #f0f0f0);
+		border-radius: 4px;
+	}
+
+	.faq-search-no-results {
+		text-align: center;
+		color: var(--wp--preset--color--tertiary, #757575);
+		font-style: italic;
+		padding: 1rem;
+	}
+}

@@ -162,6 +162,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		} else if (element.classList.contains("copy-field-richtext")) {
 			// For rich text, preserve HTML content
 			return element.innerHTML;
+		} else if (element.classList.contains("copy-field-richtext-compressed")) {
+			// For compressed rich text, preserve HTML content
+			return element.innerHTML;
 		} else {
 			// Fallback to text content
 			return element.textContent || element.innerText || element.value || "";
@@ -203,35 +206,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		});
 	}
-
-	// Handle contenteditable rich text fields
-	const richTextFields = document.querySelectorAll(".copy-field-richtext");
-	richTextFields.forEach((field) => {
-		// Update copy button state when content changes
-		field.addEventListener("input", function () {
-			const wrapper = field.closest(".copy-field-wrapper");
-			const copyButton = wrapper ? wrapper.querySelector(".copy-field-button") : null;
-
-			if (copyButton) {
-				const hasContent = field.textContent.trim().length > 0;
-				copyButton.disabled = !hasContent;
-			}
-		});
-
-		// Show placeholder when empty
-		field.addEventListener("blur", function () {
-			if (!field.textContent.trim()) {
-				field.classList.add("empty");
-			} else {
-				field.classList.remove("empty");
-			}
-		});
-
-		// Initialize placeholder state
-		if (!field.textContent.trim()) {
-			field.classList.add("empty");
-		}
-	});
 
 	// Handle code fields (CodeMirror blocks)
 	const codeMirrorBlocks = document.querySelectorAll(".copy-field-code-block");

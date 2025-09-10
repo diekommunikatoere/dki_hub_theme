@@ -11,7 +11,7 @@
 		"inputType": {
 			"type": "string",
 			"default": "richtext",
-			"enum": ["richtext", "code"]
+			"enum": ["richtext", "richtext-compressed", "code"]
 		},
 		"label": {
 			"type": "string",
@@ -19,7 +19,7 @@
 		},
 		"placeholder": {
 			"type": "string",
-			"default": "Formatierten Text hier eingeben..."
+			"default": "Text hier eingeben..."
 		},
 		"content": {
 			"type": "string",

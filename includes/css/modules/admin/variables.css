@@ -1,0 +1,70 @@
+:root {
+	/* Colors from theme.json palette */
+	--wp--preset--color--background: #ffffff;
+	--wp--preset--color--background-alt: #f5f4f0;
+	--wp--preset--color--contrast: #282616;
+	--wp--preset--color--primary: #db007a;
+	--wp--preset--color--secondary: #ffd640;
+	--wp--preset--color--tertiary: #92907b;
+	--wp--preset--color--primary-hover: #f31b63;
+	--wp--preset--color--primary-light: #f4bedc;
+	--wp--preset--color--primary-extra-light: #ffe7f4;
+	--wp--preset--color--primary-dark: #910854;
+	--wp--preset--color--secondary-hover: #f7c200;
+	--wp--preset--color--secondary-light: #f6e5b1;
+	--wp--preset--color--secondary-extra-light: #fff5d5;
+	--wp--preset--color--secondary-dark: #765f0a;
+	--wp--preset--color--tertiary-light: #d1d0c7;
+	--wp--preset--color--tertiary-dark: #62604a;
+	--wp--preset--color--error: #f31b63;
+	--wp--preset--color--error-light: #f4bedc;
+	--wp--preset--color--error-extra-light: #ffe7f4;
+	--wp--preset--color--error-dark: #910854;
+	--wp--preset--color--success: #4ade80;
+	--wp--preset--color--success-light: #b0f7c5;
+	--wp--preset--color--success-extra-light: #e6ffed;
+	--wp--preset--color--success-dark: #0e8c4a;
+
+	/* Shadows from theme.json presets */
+	--wp--preset--shadow--tiny: rgba(0, 0, 0, 0.16) 0px 1px 3px;
+	--wp--preset--shadow--extra-small: rgba(0, 0, 0, 0.16) 0px 2px 6px, rgba(0, 0, 0, 0.1) 0px 1px 2px;
+	--wp--preset--shadow--small: rgba(0, 0, 0, 0.16) 0px 4px 12px, rgba(0, 0, 0, 0.1) 0px 2px 6px;
+	--wp--preset--shadow--regular: rgba(50, 50, 93, 0.16) 0px 13px 27px -5px, rgba(0, 0, 0, 0.23) 0px 8px 16px -8px;
+	--wp--preset--shadow--large: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.16) 0px 20px 60px -10px, rgba(0, 0, 0, 0.3) 0px 10px 30px -20px;
+	--wp--preset--shadow--huge: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.16) 0px 20px 80px -10px, rgba(0, 0, 0, 0.3) 0px 15px 40px -20px;
+	--wp--preset--shadow--primary-tiny: rgba(from var(--wp--preset--color--primary-dark) r g b / 0.25) 0px 1px 3px;
+	--wp--preset--shadow--primary-extra-small: rgba(from var(--wp--preset--color--primary) r g b / 0.4) 0px 2px 6px, rgba(from var(--wp--preset--color--primary-dark) r g b / 0.1) 0px 1px 2px;
+	--wp--preset--shadow--primary-small: rgba(from var(--wp--preset--color--primary) r g b / 0.4) 0px 4px 12px, rgba(from var(--wp--preset--color--primary-dark) r g b / 0.1) 0px 2px 6px;
+	--wp--preset--shadow--primary-regular: rgba(from var(--wp--preset--color--primary) r g b / 0.25) 0px 13px 27px -5px, rgba(from var(--wp--preset--color--primary-dark) r g b / 0.23) 0px 8px 16px -8px;
+	--wp--preset--shadow--primary-large: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(from var(--wp--preset--color--primary) r g b / 0.25) 0px 20px 60px -10px, rgba(from var(--wp--preset--color--primary-dark) r g b / 0.3) 0px 10px 30px -20px;
+	--wp--preset--shadow--primary-huge: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(from var(--wp--preset--color--primary) r g b / 0.25) 0 20px 80px -10px, rgba(from var(--wp--preset--color--primary-dark) r g b / 0.3) 0px 15px 40px -20px;
+	--wp--preset--shadow--secondary-tiny: rgba(from var(--wp--preset--color--secondary-dark) r g b / 0.25) 0px 1px 3px;
+	--wp--preset--shadow--secondary-extra-small: rgba(from var(--wp--preset--color--secondary) r g b / 0.4) 0px 2px 6px, rgba(from var(--wp--preset--color--secondary-dark) r g b / 0.1) 0px 1px 2px;
+	--wp--preset--shadow--secondary-small: rgba(from var(--wp--preset--color--secondary) r g b / 0.4) 0px 4px 12px, rgba(from var(--wp--preset--color--secondary-dark) r g b / 0.1) 0px 2px 6px;
+	--wp--preset--shadow--secondary-regular: rgba(from var(--wp--preset--color--secondary) r g b / 0.25) 0px 13px 27px -5px, rgba(from var(--wp--preset--color--secondary-dark) r g b / 0.23) 0px 8px 16px -8px;
+	--wp--preset--shadow--secondary-large: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(from var(--wp--preset--color--secondary) r g b / 0.25) 0px 20px 60px -10px, rgba(from var(--wp--preset--color--secondary-dark) r g b / 0.3) 0px 10px 30px -20px;
+	--wp--preset--shadow--secondary-huge: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(from var(--wp--preset--color--secondary) r g b / 0.25) 0 20px 80px -10 px, rgba(from var(--wp--preset--color--secondary-dark) r g b / 0.3) 0px 15px 40px -20px;
+	--wp--preset--shadow--tertiary-tiny: rgba(from var(--wp--preset--color--tertiary-dark) r g b / 0.25) 0px 1px 3px;
+	--wp--preset--shadow--tertiary-extra-small: rgba(from var(--wp--preset--color--tertiary) r g b / 0.4) 0px 2px 6px, rgba(from var(--wp--preset--color--tertiary-dark) r g b / 0.1) 0px 1px 2px;
+	--wp--preset--shadow--tertiary-small: rgba(from var(--wp--preset--color--tertiary) r g b / 0.4) 0px 4px 12px, rgba(from var(--wp--preset--color--tertiary-dark) r g b / 0.1) 0px 2px 6px;
+	--wp--preset--shadow--tertiary-regular: rgba(from var(--wp--preset--color--tertiary) r g b / 0.25) 0px 13px 27px -5px, rgba(from var(--wp--preset--color--tertiary-dark) r g b / 0.23) 0px 8px 16px -8px;
+	--wp--preset--shadow--tertiary-large: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(from var(--wp--preset--color--tertiary) r g b / 0.25) 0px 20px 60px -10px, rgba(from var(--wp--preset--color--tertiary-dark) r g b / 0.3) 0px 10px 30 px -20px;
+	--wp--preset--shadow--tertiary-huge: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(from var(--wp--preset--color--tertiary) r g b / 0.25) 0 20px 80px -10px, rgba(from var(--wp--preset--color--tertiary-dark) r g b / 0.3) 0px 15px 40px -20px;
+
+	/* Font families from theme.json */
+	--wp--preset--font-family--body: "Gill Sans", sans-serif;
+	--wp--preset--font-family--heading: "Gibson", sans-serif;
+	--wp--preset--font-family--system-sans-serif: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+	--wp--preset--font-family--system-monospace: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+
+	/* Font sizes from theme.json */
+	--wp--preset--font-size--small: 0.9rem;
+	--wp--preset--font-size--medium: 1.05rem;
+	--wp--preset--font-size--large: 1.85rem;
+	--wp--preset--font-size--x-large: 2.5rem;
+	--wp--preset--font-size--xx-large: 3.27rem;
+
+	/* Custom fonts */
+	--wp--custom--font--primary: "Gibson", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	--wp--custom--font--secondary: "Gill Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}

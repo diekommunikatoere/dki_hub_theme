@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "dki-wiki/faq-display",
+	"version": "0.1.0",
+	"title": "FAQ Display",
+	"category": "widgets",
+	"description": "Zeigt FAQs in nested Akkordeons an.",
+	"example": {},
+	"attributes": {
+		"showSections": {
+			"type": "boolean",
+			"default": true
+		},
+		"accordionStyle": {
+			"type": "string",
+			"default": "default",
+			"enum": ["default", "modern"]
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "faq-display",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

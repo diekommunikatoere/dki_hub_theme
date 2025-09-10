@@ -122,3 +122,31 @@ npm run start
 - Maintain modular organization by component
 - Use consistent variable naming from `config/_variables.scss`
 - Test styles across different screen sizes
+
+## Reorder FAQs and Sections
+
+**When to use:**
+
+- After creating or editing FAQs/sections to set display order
+- For editorial control over frontend presentation
+
+**Files to modify:**
+
+- Admin: [`includes/js/admin-faq-reorder.js`](includes/js/admin-faq-reorder.js:1) - Drag-drop JS
+- PHP: [`includes/utils/register-cpt-faq.php`](includes/utils/register-cpt-faq.php:1) - Meta registration and metabox
+- Frontend: Block render queries
+
+**Steps:**
+
+1. Drag items/sections in admin list view or edit form
+2. Save order via AJAX or form submit to '_faq_order' meta or '_section_order' term meta
+3. Queries use 'meta_value_num' for sorting with fallback to title
+4. Test order in frontend blocks and archives
+
+**Important notes:**
+
+- Order is per-section for FAQs; global for sections
+- Drag-drop for FAQs, number field for sections
+- Defaults set automatically on creation (sequential) and bulk for existing (sorted by name)
+- Fallback to alphabetical if no order meta
+- Update migration to set defaults

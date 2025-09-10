@@ -2,8 +2,18 @@
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
+// Include CPT registrations
+require_once get_stylesheet_directory() . '/includes/utils/register-cpt-faq.php';
+require_once get_stylesheet_directory() . '/includes/utils/admin-faq-reorder-page.php';
 
-// Remoce WP version from head
+// Initialize default section orders on theme setup
+function dki_wiki_initialize_section_orders() {
+    dki_wiki_bulk_set_default_section_orders();
+}
+add_action( 'after_setup_theme', 'dki_wiki_initialize_section_orders' );
+
+
+// Remove WP version from head
 remove_action('wp_head', 'wp_generator');
 
 
@@ -16,6 +26,8 @@ add_action( 'wp_enqueue_scripts', 'dki_wiki_enqueue_public_styles' );
 
 
 function dki_wiki_enqueue_dashboard_styles() {
+    wp_enqueue_style('dki_wiki_admin-style', get_stylesheet_directory_uri() . '/includes/css/modules/admin/variables.css', array(), '1.0.0', 'all');
+    wp_enqueue_style('dki_wiki_faq-style', get_stylesheet_directory_uri() . '/includes/css/modules/admin/faq_admin.css', array(), '1.0.0', 'all');
 }
 add_action( 'admin_enqueue_scripts', 'dki_wiki_enqueue_dashboard_styles');
 
@@ -48,6 +60,19 @@ function dki_wiki_enqueue_scripts() {
 add_action( 'wp_enqueue_scripts', 'dki_wiki_enqueue_scripts' );
 
 // ----- END - Enqueue scripts
+
+
+
+// ----- START - Enable Admin JS modules
+//
+function dki_wiki_enqueue_admin_scripts() {
+    $admin_js_files = glob( get_stylesheet_directory() . '/includes/js/admin/*.js' );
+    foreach( $admin_js_files as $admin_js_file ) {
+        $admin_js_file_name = basename( $admin_js_file, '.js' );
+        wp_enqueue_script_module( $admin_js_file_name, get_stylesheet_directory_uri() . '/includes/js/admin/' . $admin_js_file_name . '.js', array(), '1.0.0', true );
+    }
+}
+add_action( 'admin_enqueue_scripts', 'dki_wiki_enqueue_admin_scripts' );
 
 
 
@@ -333,4 +358,167 @@ function schulungen_ajax_script() {
         )
     );
 }
-add_action('wp_enqueue_scripts', 'schulungen_ajax_script');
+add_action('wp_enqueue_scripts', 'schulungen_ajax_script' );
+
+// Extend search to include 'faq' post type
+function dki_wiki_search_faq( $query ) {
+    if ( ! is_admin() && $query->is_main_query() ) {
+        if ( is_search() ) {
+            $post_types = $query->get( 'post_type' );
+            if ( $post_types === 'post' || empty( $post_types ) ) {
+                $query->set( 'post_type', array( 'post', 'faq' ) );
+            } elseif ( is_array( $post_types ) ) {
+                $post_types[] = 'faq';
+                $query->set( 'post_type', $post_types );
+            }
+        }
+    }
+}
+add_action( 'pre_get_posts', 'dki_wiki_search_faq' );
+
+// Enqueue admin FAQ reorder script
+function dki_wiki_enqueue_admin_faq_reorder( $hook ) {
+    $screen = get_current_screen();
+    $is_faq_list = ( $screen->post_type === 'faq' && $screen->base === 'edit' );
+    $is_section_list = ( $screen->taxonomy === 'faq_section' && $screen->base === 'edit-tags' );
+    $is_reorder_page = ( $screen->id === 'faq_page_faq-reorder' );
+
+    if ( $is_faq_list || $is_section_list || $is_reorder_page ) {
+        if ( $is_reorder_page ) {
+            // Enqueue for reorder page
+            wp_enqueue_script( 'jquery-ui-sortable' );
+            wp_enqueue_script( 'admin-faq-reorder', get_stylesheet_directory_uri() . '/includes/js/admin/admin-faq-reorder.js', array( 'jquery', 'jquery-ui-sortable' ), '1.0.0', true );
+            wp_localize_script( 'admin-faq-reorder', 'faqReorder', array(
+                'ajaxurl' => admin_url( 'admin-ajax.php' ),
+                'nonce' => wp_create_nonce( 'faq_reorder_nonce' ),
+                'isReorderPage' => true,
+                'saveAction' => 'update_faq_reorder_bulk'
+            ) );
+            wp_enqueue_style( 'admin-faq-reorder-style', get_stylesheet_directory_uri() . '/includes/css/admin-faq-reorder.css', array(), '1.0.0' );
+        } else {
+            // Existing enqueue for list views, but disable drag in JS
+            wp_enqueue_script( 'jquery-ui-sortable' );
+            wp_enqueue_script( 'admin-faq-reorder', get_stylesheet_directory_uri() . '/includes/js/admin-faq-reorder.js', array( 'jquery', 'jquery-ui-sortable' ), '1.0.0', true );
+            wp_localize_script( 'admin-faq-reorder', 'faqReorder', array(
+                'ajaxurl' => admin_url( 'admin-ajax.php' ),
+                'nonce' => wp_create_nonce( 'faq_reorder_nonce' ),
+                'isReorderPage' => false
+            ) );
+        }
+        // Add order column to FAQ list
+        add_filter( 'manage_faq_posts_columns', 'dki_wiki_faq_order_column' );
+        add_action( 'manage_faq_posts_custom_column', 'dki_wiki_faq_order_column_content', 10, 2 );
+    }
+}
+add_action( 'admin_enqueue_scripts', 'dki_wiki_enqueue_admin_faq_reorder' );
+
+// Add order column to FAQ admin list
+function dki_wiki_faq_order_column( $columns ) {
+    $columns['order'] = __( 'Reihenfolge', 'dki-wiki' );
+    return $columns;
+}
+
+// Content for order column
+function dki_wiki_faq_order_column_content( $column, $post_id ) {
+    if ( $column === 'order' ) {
+        $order = get_post_meta( $post_id, '_faq_order', true );
+        echo esc_html( $order ?: 'N/A' );
+    }
+}
+
+// AJAX handler for updating FAQ order
+function dki_wiki_update_faq_order() {
+    check_ajax_referer( 'faq_reorder_nonce', 'nonce' );
+    if ( ! current_user_can( 'edit_posts' ) ) {
+        wp_die( 'Insufficient permissions' );
+    }
+
+    $order = isset( $_POST['order'] ) ? (array) $_POST['order'] : array();
+    foreach ( $order as $index => $post_id ) {
+        update_post_meta( $post_id, '_faq_order', $index + 1 );
+    }
+
+    wp_send_json_success( 'Order updated' );
+}
+
+// New AJAX handler for bulk reorder on subpage (sections and nested FAQs)
+function dki_wiki_update_faq_reorder_bulk() {
+    check_ajax_referer( 'faq_reorder_nonce', 'nonce' );
+    if ( ! current_user_can( 'edit_posts' ) ) {
+        wp_send_json_error( 'Insufficient permissions' );
+    }
+
+    $sections_order = isset( $_POST['sections_order'] ) ? (array) $_POST['sections_order'] : array();
+    $faqs_per_section = isset( $_POST['faqs_per_section'] ) ? (array) $_POST['faqs_per_section'] : array();
+
+    // Update sections order
+    foreach ( $sections_order as $index => $term_id ) {
+        update_term_meta( $term_id, '_section_order', $index + 1 );
+    }
+
+    // Update FAQs per section
+    foreach ( $faqs_per_section as $section_id => $faq_order ) {
+        if ( is_array( $faq_order ) ) {
+            foreach ( $faq_order as $index => $post_id ) {
+                update_post_meta( $post_id, '_faq_order', $index + 1 );
+            }
+        }
+    }
+
+    wp_send_json_success( __( 'Reihenfolge gespeichert.', 'dki-wiki' ) );
+}
+add_action( 'wp_ajax_update_faq_order', 'dki_wiki_update_faq_order' );
+add_action( 'wp_ajax_update_faq_reorder_bulk', 'dki_wiki_update_faq_reorder_bulk' );
+
+// For sections: Add order field to term edit form
+function dki_wiki_faq_section_order_field( $taxonomy ) {
+    if ( $taxonomy['name'] === 'faq_section' ) {
+        wp_add_inline_script( 'admin-faq-reorder', 'console.log("Section order ready");' ); // Placeholder for term sortable
+    }
+}
+add_action( 'edit_terms_fields', 'dki_wiki_faq_section_order_field' );
+
+// Metabox for section order (simple number field for terms)
+function dki_wiki_edit_faq_section_form_fields( $taxonomy ) {
+    //
+}
+add_action( 'faq_section_edit_form_fields', 'dki_wiki_faq_section_order_edit', 10, 2 );
+
+function dki_wiki_faq_section_order_edit( $term, $taxonomy ) {
+    if ( $taxonomy === 'faq_section' ) {
+        $order = get_term_meta( $term->term_id, '_section_order', true );
+        ?>
+        <tr class="form-field">
+            <th scope="row" valign="top"><label for="section_order"><?php _e( 'Reihenfolge', 'dki-wiki' ); ?></label></th>
+            <td>
+                <input type="number" name="section_order" id="section_order" value="<?php echo esc_attr( $order ); ?>" />
+                <p class="description"><?php _e( 'Benutzerdefinierte Reihenfolge für diesen Abschnitt.', 'dki-wiki' ); ?></p>
+            </td>
+        </tr>
+        <?php
+    }
+}
+add_action( 'faq_section_edit_form_fields', 'dki_wiki_faq_section_order_edit', 10, 2 );
+
+// Save section order
+function dki_wiki_save_faq_section_order( $term_id ) {
+    if ( isset( $_POST['section_order'] ) ) {
+        $order = intval( $_POST['section_order'] );
+        update_term_meta( $term_id, '_section_order', $order );
+    }
+}
+add_action( 'edited_faq_section', 'dki_wiki_save_faq_section_order' );
+add_action( 'create_faq_section', 'dki_wiki_save_faq_section_order' );
+
+// Add FAQ reorder subpage to admin menu
+function dki_wiki_add_faq_reorder_submenu() {
+    add_submenu_page(
+        'edit.php?post_type=faq',  // Parent slug
+        __( 'Reihenfolge anpassen', 'dki-wiki' ),  // Page title
+        __( 'Reihenfolge', 'dki-wiki' ),  // Menu title
+        'edit_posts',  // Capability
+        'faq-reorder',  // Menu slug
+        'dki_wiki_faq_reorder_page'  // Callback
+    );
+}
+add_action( 'admin_menu', 'dki_wiki_add_faq_reorder_submenu' );

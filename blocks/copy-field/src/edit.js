@@ -35,10 +35,6 @@ export default function Edit({ attributes, setAttributes }) {
 		setAttributes({ label: newLabel });
 	};
 
-	const handlePlaceholderChange = (newPlaceholder) => {
-		setAttributes({ placeholder: newPlaceholder });
-	};
-
 	const handleContentChange = (newContent) => {
 		setAttributes({ content: newContent });
 	};
@@ -57,6 +53,19 @@ export default function Edit({ attributes, setAttributes }) {
 
 			if (inputType === "richtext" && richTextRef.current) {
 				// For rich text, insert 4 spaces at cursor position
+				const selection = window.getSelection();
+				const range = selection.getRangeAt(0);
+				const span = document.createTextNode("    ");
+				range.insertNode(span);
+				range.setStartAfter(span);
+				selection.removeAllRanges();
+				selection.addRange(range);
+
+				// Update content
+				const newContent = richTextRef.current.innerHTML;
+				setAttributes({ content: newContent });
+			} else if (inputType === "richtext-compressed" && richTextRef.current) {
+				// For compressed rich text, insert 4 spaces at cursor position
 				const selection = window.getSelection();
 				const range = selection.getRangeAt(0);
 				const span = document.createTextNode("    ");
@@ -171,6 +180,8 @@ export default function Edit({ attributes, setAttributes }) {
 	const renderContentEditor = () => {
 		if (inputType === "richtext") {
 			return <RichText ref={richTextRef} tagName="div" value={content} onChange={handleContentChange} placeholder={placeholder} className="copy-field-richtext" allowedFormats={["core/bold", "core/italic", "core/link", "core/strikethrough"]} onKeyDown={handleTabKey} />;
+		} else if (inputType === "richtext-compressed") {
+			return <RichText ref={richTextRef} tagName="div" value={content} onChange={handleContentChange} placeholder={placeholder} className="copy-field-richtext-compressed" allowedFormats={["core/bold", "core/italic", "core/link", "core/strikethrough"]} onKeyDown={handleTabKey} />;
 		} else if (inputType === "code") {
 			return <div ref={codeMirrorRef} className="copy-field-code-editor" />;
 		}
@@ -185,14 +196,13 @@ export default function Edit({ attributes, setAttributes }) {
 						value={inputType}
 						options={[
 							{ label: __("Rich Text (Standard)", "copy-field"), value: "richtext" },
+							{ label: __("Rich Text (Kompakt)", "copy-field"), value: "richtext-compressed" },
 							{ label: __("Code-Block", "copy-field"), value: "code" },
 						]}
 						onChange={handleInputTypeChange}
 					/>
 
 					<TextControl label={__("Feldname", "copy-field")} value={label} onChange={handleLabelChange} />
-
-					<TextControl label={__("Platzhaltertext", "copy-field")} value={placeholder} onChange={handlePlaceholderChange} />
 
 					{inputType === "code" && (
 						<SelectControl
