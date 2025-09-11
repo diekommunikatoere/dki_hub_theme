@@ -65,7 +65,7 @@ build_block() {
   if [ -d "$block_path" ]; then
     log "Building block: $block"
     pushd "$block_path" >/dev/null
-    run npm ci
+    run npm install
     run npm run build
     popd >/dev/null
     mkdir -p "$RELEASE_DIR/blocks/$block"

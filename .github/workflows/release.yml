@@ -117,6 +117,7 @@ jobs:
             - name: Publish release branch
               uses: peaceiris/actions-gh-pages@v4
               with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./release
                   publish_branch: release
                   force_orphan: true
