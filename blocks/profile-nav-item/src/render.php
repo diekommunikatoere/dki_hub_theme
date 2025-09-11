@@ -5,35 +5,6 @@
 	 */
 ?>
 
-<?php
-
-	// Get all schulungen
-	$args = array(
-		'post_type' => 'docs',
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'doc_category',
-				'field' => 'term_id',
-				'terms' => 42
-			)
-		)
-	);
-	$schulungen = get_posts($args);
-
-	// Get unread schulungen by comparing to current_user "read_schulungen" meta
-	$readSchulungen = get_user_meta(wp_get_current_user()->ID, 'read_schulungen', true);
-
-	// Check if user has any unread schulungen
-	$unreadSchulungen = false;
-	/* foreach ($schulungen as $schulung) {
-		if (!$readSchulungen || !is_array($readSchulungen) || !in_array($schulung->ID, $readSchulungen)) {
-			$unreadSchulungen = true;
-			break;
-		}
-	} */
-
-?>
-
 
 <?php
 	// Get current user
@@ -71,9 +42,6 @@
 <li class="nav-item dropdown">
 	<button class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Profil von <?php echo $user_display_name; ?>" aria-label="Profil von <?php echo $user_display_name; ?>" type="button">
 		<img src="<?php echo $user_avatar; ?>" class="nav-item-avatar" width="32" height="32" alt="Profilbild von <?php echo $user_display_name; ?>">
-		<?php if($unreadSchulungen) : ?>
-			<span class="notification-badge"></span>
-		<?php endif; ?>
 	</button>
 	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 		<div class="user-info">

@@ -4,6 +4,9 @@
 src/
 scss/
 
+# Source blocks directory (we copy built blocks separately)
+blocks/
+
 # Node.js dependencies
 node_modules/
 package-lock.json

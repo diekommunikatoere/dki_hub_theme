@@ -68,8 +68,12 @@ build_block() {
     run npm install
     run npm run build
     popd >/dev/null
-    mkdir -p "$RELEASE_DIR/blocks/$block"
-    cp -r "$block_path/build/." "$RELEASE_DIR/blocks/$block/"
+    mkdir -p "$RELEASE_DIR/blocks/$block/build"
+    cp -r "$block_path/build/." "$RELEASE_DIR/blocks/$block/build/"
+    # Copy the PHP file if it exists
+    if [ -f "$block_path/$block.php" ]; then
+      cp "$block_path/$block.php" "$RELEASE_DIR/blocks/$block/"
+    fi
   else
     log "⚠️ Block directory not found: $block"
   fi

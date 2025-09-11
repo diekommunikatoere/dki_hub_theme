@@ -24,19 +24,6 @@
 			// click through the avatar
 			pointer-events: none;
 		}
-
-		.notification-badge {
-			position: absolute;
-			display: block;
-			pointer-events: none;
-			bottom: -4px;
-			right: -4px;
-			width: 10px;
-			height: 10px;
-			border: 3px solid var(--wp--preset--color--background);
-			border-radius: 100px;
-			background-color: var(--wp--preset--color--primary);
-		}
 	}
 
 	&.dropdown {
@@ -60,9 +47,7 @@
 				color: var(--wp--preset--color--contrast);
 				border-radius: 6px;
 				text-decoration: none;
-				transition:
-					background-color 0.1s,
-					color 0.1s;
+				transition: background-color 0.1s, color 0.1s;
 
 				span {
 					display: flex;

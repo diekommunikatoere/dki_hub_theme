@@ -562,6 +562,7 @@ article.post,
 .archive > article {
   margin: 0 auto;
   min-height: 850px;
+  padding-top: 100px;
 }
 
 /**
@@ -606,6 +607,9 @@ figure button.lightbox-trigger:hover svg path {
   background: var(--wp--preset--color--secondary) !important;
 }
 
+#wiki {
+  padding-top: 100px;
+}
 #wiki .wp-block-dki-wiki-edit-docs-page {
   display: flex;
   flex-direction: row;

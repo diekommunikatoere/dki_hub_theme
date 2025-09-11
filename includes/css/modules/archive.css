@@ -1,0 +1,43 @@
+/**
+ * Archive Module - Styles for archive pages including FAQ
+ * Extends global styles for FAQ archive and single views
+ */
+.faq-archive-list {
+  display: grid;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.faq-archive-list .faq-item {
+  border: 1px solid var(--wp--preset--color--tertiary-light, #ddd);
+  border-radius: 6px;
+  padding: 1rem;
+  background-color: var(--wp--preset--color--base, #fff);
+  box-shadow: var(--wp--preset--shadow--secondary-tiny);
+}
+.faq-archive-list .faq-item .faq-question {
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+  color: var(--wp--preset--color--contrast, #1a1a1a);
+}
+.faq-archive-list .faq-item .faq-answer {
+  line-height: 1.6;
+  color: var(--wp--preset--color--neutral-700, #50575e);
+}
+.faq-archive-list .faq-item .faq-section {
+  font-size: 0.875rem;
+  color: var(--wp--preset--color--tertiary, #757575);
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.archive-description {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: var(--wp--preset--color--neutral-5, #f0f0f0);
+  border-left: 4px solid var(--wp--preset--color--primary, #007cba);
+  border-radius: 4px;
+}
+
+/*# sourceMappingURL=archive.css.map */
