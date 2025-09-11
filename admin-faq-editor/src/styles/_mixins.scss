@@ -1,0 +1,35 @@
+// Shared mixins
+@mixin card {
+  background: var(--wp--preset--color--background, #fff);
+  border: 1px solid var(--wp--preset--color--tertiary-light, #d1d0c7);
+  border-radius: var(--dki-radius-lg);
+  box-shadow: var(--dki-shadow-extra-small);
+}
+
+@mixin header {
+  display: flex;
+  align-items: center;
+  gap: var(--dki-spacing-md);
+  padding: var(--dki-spacing-md);
+  background: var(--wp--preset--color--background, #fff);
+  border-bottom: 1px solid var(--wp--preset--color--tertiary-light, #d1d0c7);
+}
+
+@mixin drag-handle {
+  color: var(--wp--preset--color--tertiary, #92907b);
+  cursor: grab;
+  transition: color var(--dki-transition-fast);
+  
+  &:hover {
+    color: var(--wp--preset--color--primary, #db007a);
+  }
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+@mixin action-buttons {
+  display: flex;
+  gap: var(--dki-spacing-sm);
+}
+

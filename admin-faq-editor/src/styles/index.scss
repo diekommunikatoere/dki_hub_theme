@@ -1,0 +1,98 @@
+// Import CSS variables from WordPress theme
+// These will be available from wp_localize_script or inline styles
+@use "variables" as *;
+@use "mixins" as *;
+
+// Import component styles
+@use "../components/FAQEditor.scss";
+@use "../components/SectionAccordion.scss";
+@use "../components/FAQItemAccordion.scss";
+@use "../components/CreateSectionForm.scss";
+@use "../components/CreateFAQForm.scss";
+@use "../components/WYSIWYGEditor.scss";
+@use "../components/LoadingSpinner.scss";
+
+// Global FAQ Editor styles
+.faq-editor {
+	font-family: "Gill Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	color: var(--wp--preset--color--contrast, #282616);
+
+	// Ensure WordPress admin styles work properly
+	.button {
+		font-family: inherit;
+	}
+
+	.dashicons {
+		font-family: dashicons;
+		font-size: inherit;
+		line-height: 1;
+	}
+
+	.spinner {
+		background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwIDNWN0M2LjEzNCA3IDMgMTAuMTM0IDMgMTRDMyAxNy44NjYgNi4xMzQgMjEgMTAgMjFDMTMuODY2IDIxIDE3IDE3Ljg2NiAxNyAxNEMxNyAxMi4yIDEzLjggMTAgMTAgMTBaIiBmaWxsPSIjZGIwMDdhIi8+Cjwvc3ZnPgo=") no-repeat center;
+		background-size: 20px 20px;
+		width: 20px;
+		height: 20px;
+		margin: 0;
+		animation: spinner 0.6s linear infinite;
+	}
+
+	@keyframes spinner {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	// Required field indicator
+	.required {
+		color: var(--wp--preset--color--error, #f31b63);
+	}
+
+	.optional {
+		color: var(--wp--preset--color--tertiary, #92907b);
+		font-style: italic;
+		font-size: 0.9em;
+	}
+
+	// Form table overrides for better spacing in React
+	.form-table {
+		th {
+			padding-right: 20px;
+			vertical-align: top;
+			padding-top: 15px;
+		}
+
+		td {
+			padding-top: 10px;
+			padding-bottom: 15px;
+		}
+	}
+
+	// Notice overrides
+	.notice {
+		margin: 15px 0;
+		padding: 12px;
+		border-left: 4px solid;
+		background: #fff;
+		box-shadow: var(--wp--preset--shadow--tiny, rgba(0, 0, 0, 0.16) 0px 1px 3px);
+
+		&.notice-error {
+			border-left-color: var(--wp--preset--color--error, #f31b63);
+		}
+
+		&.notice-warning {
+			border-left-color: var(--wp--preset--color--secondary, #ffd640);
+		}
+
+		&.notice-info {
+			border-left-color: var(--wp--preset--color--primary, #db007a);
+		}
+
+		&.notice-success {
+			border-left-color: var(--wp--preset--color--success, #4ade80);
+		}
+	}
+}

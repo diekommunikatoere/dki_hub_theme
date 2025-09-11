@@ -6,6 +6,10 @@ if ( !defined( 'ABSPATH' ) ) exit;
 require_once get_stylesheet_directory() . '/includes/utils/register-cpt-faq.php';
 require_once get_stylesheet_directory() . '/includes/utils/admin-faq-reorder-page.php';
 
+// Include new React-based FAQ editor
+require_once get_stylesheet_directory() . '/includes/utils/faq-rest-api.php';
+require_once get_stylesheet_directory() . '/includes/utils/faq-editor-admin-page.php';
+
 // Initialize default section orders on theme setup
 function dki_wiki_initialize_section_orders() {
     dki_wiki_bulk_set_default_section_orders();
@@ -28,6 +32,7 @@ add_action( 'wp_enqueue_scripts', 'dki_wiki_enqueue_public_styles' );
 function dki_wiki_enqueue_dashboard_styles() {
     wp_enqueue_style('dki_wiki_admin-style', get_stylesheet_directory_uri() . '/includes/css/modules/admin/variables.css', array(), '1.0.0', 'all');
     wp_enqueue_style('dki_wiki_faq-style', get_stylesheet_directory_uri() . '/includes/css/modules/admin/faq_admin.css', array(), '1.0.0', 'all');
+    wp_enqueue_style('dki_wiki_faq-editor-style', get_stylesheet_directory_uri() . '/includes/js/admin/faq-editor/faq-editor.css', array(), '1.0.0', 'all');
 }
 add_action( 'admin_enqueue_scripts', 'dki_wiki_enqueue_dashboard_styles');
 
