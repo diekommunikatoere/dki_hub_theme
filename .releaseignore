@@ -56,3 +56,10 @@ yarn-error.log*
 tmp/
 temp/
 .tmp/
+
+# Jekyll files
+.nojekyll
+
+# Miscellaneous
+RELEASE.md
+changed_files.txt
