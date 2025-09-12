@@ -10,6 +10,9 @@
 	"dependencies": {
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
+		"@atlaskit/pragmatic-drag-and-drop": "^1.7.7",
+		"@atlaskit/pragmatic-drag-and-drop-react-drop-indicator": "^1.2.0",
+		"@atlaskit/pragmatic-drag-and-drop-hitbox": "^1.1.0",
 		"react-beautiful-dnd": "^13.1.1",
 		"@wordpress/api-fetch": "^7.30.0",
 		"@wordpress/i18n": "^6.3.0",
@@ -20,7 +23,6 @@
 	"devDependencies": {
 		"@types/react": "^18.3.24",
 		"@types/react-dom": "^18.3.7",
-		"@types/react-beautiful-dnd": "^13.1.8",
 		"typescript": "^5.9.2",
 		"webpack": "^5.101.3",
 		"webpack-cli": "^6.0.1",

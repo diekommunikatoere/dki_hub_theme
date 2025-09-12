@@ -3,7 +3,7 @@
 ## Stack
 
 - **PHP** (WordPress-compatible)
-- **JavaScript** (Gutenberg/React)
+- **JavaScript** (Gutenberg/React, TypeScript for admin editor)
 - **SCSS → CSS** (Sass compilation)
 - **npm** for block builds and dependency management
 
@@ -20,6 +20,13 @@
 - Per-block: run `npm install` then `npm run build` or `npm run start` for development
 - Global styles: compile via project's SCSS tooling (see [`includes/scss/`](includes/scss/main.scss:1))
 
+### Admin FAQ Editor Development
+
+- Navigate to `admin-faq-editor/`
+- Run `npm install` to install dependencies
+- Run `npm run build` for production build
+- Run `npm run start` for development with watch mode
+
 ## Common Commands
 
 ### Block Development
@@ -27,19 +34,29 @@
 ```bash
 # Build a single block
 cd blocks/<block-name> && npm install && npm run build
-
+ 
 # Development watch mode
 npm run start
-
+ 
 # Linting and formatting
 npm run lint:js
 npm run lint:css
 npm run format
 ```
 
+### Admin FAQ Editor Development
+
+```bash
+# Build the admin FAQ editor
+cd admin-faq-editor && npm install && npm run build
+
+# Development watch mode for admin FAQ editor
+cd admin-faq-editor && npm run start
+```
+
 ### Asset Management
 
-- Build all blocks before theme deployment
+- Build all blocks and admin editor before theme deployment
 - Ensure assets enqueued via [`functions.php`](functions.php:12) use versioning for cache busting
 - JavaScript modules auto-enqueued from [`includes/js/`](includes/js/) directory
 
@@ -51,6 +68,12 @@ npm run format
 - Uses `@wordpress/scripts` for standardized builds
 - Webpack configuration handles asset bundling
 - PHP files copied during build process (`--webpack-copy-php`)
+
+### Admin FAQ Editor Setup
+
+- Located in `admin-faq-editor/`
+- Uses Webpack for bundling React/TypeScript assets
+- Output compiled to `includes/js/admin/faq-editor/`
 
 ### Global Styles
 
@@ -65,6 +88,7 @@ npm run format
 - Keep PHP render templates minimal; prefer JavaScript for interactive behavior
 - Maintain block modularity with self-contained packages
 - Use consistent naming conventions across blocks
+- Admin FAQ editor is a separate React application
 
 ## Dependencies
 
@@ -73,6 +97,8 @@ npm run format
 - WordPress core (Gutenberg blocks)
 - `@wordpress/scripts` for build tooling
 - Sass for SCSS compilation
+- `@atlaskit/pragmatic-drag-and-drop`
+- `@atlaskit/pragmatic-drag-and-drop-hitbox`
 
 ### Font Assets
 

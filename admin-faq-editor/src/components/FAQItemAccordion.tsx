@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
-import { Draggable } from "react-beautiful-dnd";
+import { draggable, dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
+import { setCustomNativeDragPreview } from "@atlaskit/pragmatic-drag-and-drop/element/set-custom-native-drag-preview";
+import { attachClosestEdge, extractClosestEdge, Edge } from "@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge";
 import classNames from "classnames";
 import { __ } from "@wordpress/i18n";
 import { useFAQ } from "../context/FAQContext";
@@ -12,9 +14,10 @@ interface FAQItemAccordionProps {
 	faqItem: FAQItem;
 	index: number;
 	sectionId: number;
+	onFAQDrop?: (sourceIndex: number, destinationIndex: number, sectionId: number) => void;
 }
 
-const FAQItemAccordion: React.FC<FAQItemAccordionProps> = ({ faqItem, index, sectionId }) => {
+const FAQItemAccordion: React.FC<FAQItemAccordionProps> = ({ faqItem, index, sectionId, onFAQDrop }) => {
 	const { dispatch, setError } = useFAQ();
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [isEditing, setIsEditing] = useState(false);
@@ -22,7 +25,96 @@ const FAQItemAccordion: React.FC<FAQItemAccordionProps> = ({ faqItem, index, sec
 	const [editContent, setEditContent] = useState(faqItem.content);
 	const [isDeleting, setIsDeleting] = useState(false);
 	const [isSaving, setIsSaving] = useState(false);
+	const [isDragging, setIsDragging] = useState(false);
+	const [closestEdge, setClosestEdge] = useState<Edge | null>(null);
 	const titleInputRef = useRef<HTMLInputElement>(null);
+	const elementRef = useRef<HTMLDivElement>(null);
+	const dragHandleRef = useRef<HTMLDivElement>(null);
+
+	// Set up draggable and drop target for FAQ items
+	useEffect(() => {
+		const element = elementRef.current;
+		const dragHandle = dragHandleRef.current;
+		if (!element || !dragHandle) return;
+
+		const draggableCleanup = draggable({
+			element: dragHandle,
+			getInitialData: () => ({
+				type: "faq-item",
+				faqItemId: faqItem.id.toString(),
+				index: index.toString(),
+				sectionId: sectionId.toString(),
+			}),
+			onDragStart: () => setIsDragging(true),
+			onDrop: () => setIsDragging(false),
+		});
+
+		const dropTargetCleanup = dropTargetForElements({
+			element,
+			// Allow dropping only when dragging a FAQ item from the same section and not onto itself
+			canDrop: ({ source }) => source.data.type === "faq-item" && source.data.sectionId === sectionId.toString() && source.data.faqItemId !== faqItem.id.toString(),
+			getIsSticky: () => true,
+			getData: ({ input, element, source }) => {
+				// Determine allowed edges based on what's being dragged
+				let allowedEdges: Edge[] = ["bottom"];
+
+				if (index === 0) {
+					// First FAQ item always allows top and bottom
+					allowedEdges = ["top", "bottom"];
+				} else if (index === 1 && source.data.index === "0") {
+					// Second FAQ item allows top when first FAQ item is being dragged
+					allowedEdges = ["top", "bottom"];
+				}
+
+				return attachClosestEdge(
+					{
+						type: "faq-item",
+						faqItemId: faqItem.id.toString(),
+						index: index.toString(),
+						sectionId: sectionId.toString(),
+					},
+					{
+						input,
+						element,
+						allowedEdges,
+					}
+				);
+			},
+			onDrag: ({ source, self }) => {
+				// Avoid showing indicators on the dragged element itself
+				if (source.data.faqItemId === faqItem.id.toString()) {
+					setClosestEdge(null);
+					return;
+				}
+				const edge = extractClosestEdge(self.data);
+				setClosestEdge(edge);
+			},
+			onDragLeave: () => setClosestEdge(null),
+			onDrop: ({ source, self }) => {
+				setClosestEdge(null);
+
+				if (!onFAQDrop) {
+					return;
+				}
+
+				const sourceIndex = parseInt(source.data.index as string);
+				let destinationIndex = parseInt(self.data.index as string);
+
+				const closestEdge = extractClosestEdge(self.data);
+
+				if (closestEdge === "bottom") {
+					destinationIndex++;
+				}
+
+				onFAQDrop(sourceIndex, destinationIndex, sectionId);
+			},
+		});
+
+		return () => {
+			draggableCleanup();
+			dropTargetCleanup();
+		};
+	}, [faqItem.id, index, sectionId, onFAQDrop]);
 
 	useEffect(() => {
 		if (isEditing && titleInputRef.current) {
@@ -112,86 +204,83 @@ const FAQItemAccordion: React.FC<FAQItemAccordionProps> = ({ faqItem, index, sec
 	}, []);
 
 	return (
-		<Draggable draggableId={`faq-${faqItem.id}`} index={index}>
-			{(provided, snapshot) => (
-				<div
-					ref={provided.innerRef}
-					{...provided.draggableProps}
-					className={classNames("faq-item-accordion", {
-						"faq-item-accordion--expanded": isExpanded,
-						"faq-item-accordion--editing": isEditing,
-						"faq-item-accordion--dragging": snapshot.isDragging,
-						"faq-item-accordion--deleting": isDeleting,
-					})}
-				>
-					<div className="faq-item-accordion__header">
-						<div {...provided.dragHandleProps} className="faq-item-accordion__drag-handle" title={__("Drag to reorder FAQ item", "dki-wiki")}>
-							<span className="dashicons dashicons-move"></span>
-						</div>
+		<div
+			ref={elementRef}
+			className={classNames("faq-item-accordion", {
+				"faq-item-accordion--expanded": isExpanded,
+				"faq-item-accordion--editing": isEditing,
+				"faq-item-accordion--deleting": isDeleting,
+				"faq-item-accordion--dragging": isDragging,
+				"faq-item-accordion--drop-target-top": closestEdge === "top",
+				"faq-item-accordion--drop-target-bottom": closestEdge === "bottom",
+			})}
+		>
+			<div className="faq-item-accordion__header">
+				<div ref={dragHandleRef} className="faq-item-accordion__drag-handle" title={__("Drag to reorder FAQ item", "dki-wiki")} style={{ cursor: isDragging ? "grabbing" : "grab" }}>
+					<span className="dashicons dashicons-move"></span>
+				</div>
 
-						<button className="faq-item-accordion__toggle" onClick={handleToggle} aria-expanded={isExpanded} aria-label={__("Toggle FAQ item", "dki-wiki")} disabled={isEditing}>
-							<span
-								className={classNames("dashicons", {
-									"dashicons-arrow-down-alt2": !isExpanded,
-									"dashicons-arrow-up-alt2": isExpanded,
-								})}
-							></span>
-						</button>
+				<button className="faq-item-accordion__toggle" onClick={handleToggle} aria-expanded={isExpanded} aria-label={__("Toggle FAQ item", "dki-wiki")} disabled={isEditing}>
+					<span
+						className={classNames("dashicons", {
+							"dashicons-arrow-down-alt2": !isExpanded,
+							"dashicons-arrow-up-alt2": isExpanded,
+						})}
+					></span>
+				</button>
 
-						<div className="faq-item-accordion__title-container">
-							{isEditing ? (
-								<input ref={titleInputRef} type="text" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} onKeyDown={handleKeyDown} className="faq-item-accordion__title-input" disabled={isSaving} />
-							) : (
-								<h4 className="faq-item-accordion__title" onClick={handleToggle}>
-									{faqItem.title}
-								</h4>
-							)}
+				<div className="faq-item-accordion__title-container">
+					{isEditing ? (
+						<input ref={titleInputRef} type="text" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} onKeyDown={handleKeyDown} className="faq-item-accordion__title-input" disabled={isSaving} />
+					) : (
+						<h4 className="faq-item-accordion__title" onClick={handleToggle}>
+							{faqItem.title}
+						</h4>
+					)}
 
-							<div className="faq-item-accordion__meta">
-								<span className="faq-item-accordion__status">{faqItem.status === "publish" ? __("Published", "dki-wiki") : __("Draft", "dki-wiki")}</span>
-								<span className="faq-item-accordion__modified">
-									{__("Modified", "dki-wiki")}: {new Date(faqItem.dateModified).toLocaleDateString()}
-								</span>
-							</div>
-						</div>
-
-						<div className="faq-item-accordion__actions">
-							{!isEditing ? (
-								<>
-									<button className="button button-small" onClick={handleEditStart} title={__("Edit FAQ item", "dki-wiki")}>
-										<span className="dashicons dashicons-edit"></span>
-									</button>
-									<button className="button button-small button-link-delete" onClick={handleDelete} disabled={isDeleting} title={__("Delete FAQ item", "dki-wiki")}>
-										<span className="dashicons dashicons-trash"></span>
-									</button>
-								</>
-							) : (
-								<>
-									<button className="button button-small button-primary" onClick={handleEditSave} disabled={isSaving || !editTitle.trim()} title={__("Save changes", "dki-wiki")}>
-										{isSaving ? <span className="spinner is-active" style={{ float: "none" }}></span> : <span className="dashicons dashicons-yes"></span>}
-									</button>
-									<button className="button button-small" onClick={handleEditCancel} disabled={isSaving} title={__("Cancel editing", "dki-wiki")}>
-										<span className="dashicons dashicons-no"></span>
-									</button>
-								</>
-							)}
-						</div>
+					<div className="faq-item-accordion__meta">
+						<span className="faq-item-accordion__status">{faqItem.status === "publish" ? __("Published", "dki-wiki") : __("Draft", "dki-wiki")}</span>
+						<span className="faq-item-accordion__modified">
+							{__("Modified", "dki-wiki")}: {new Date(faqItem.dateModified).toLocaleDateString()}
+						</span>
 					</div>
+				</div>
 
-					{isExpanded && (
-						<div className="faq-item-accordion__content">
-							{isEditing ? (
-								<div className="faq-item-accordion__editor">
-									<WYSIWYGEditor value={editContent} onChange={handleContentChange} placeholder={__("Enter the FAQ answer...", "dki-wiki")} disabled={isSaving} />
-								</div>
-							) : (
-								<div className="faq-item-accordion__content-display" dangerouslySetInnerHTML={{ __html: faqItem.content }} />
-							)}
+				<div className="faq-item-accordion__actions">
+					{!isEditing ? (
+						<>
+							<button className="button button-small" onClick={handleEditStart} title={__("Edit FAQ item", "dki-wiki")}>
+								<span className="dashicons dashicons-edit"></span>
+							</button>
+							<button className="button button-small button-link-delete" onClick={handleDelete} disabled={isDeleting} title={__("Delete FAQ item", "dki-wiki")}>
+								<span className="dashicons dashicons-trash"></span>
+							</button>
+						</>
+					) : (
+						<>
+							<button className="button button-small button-primary" onClick={handleEditSave} disabled={isSaving || !editTitle.trim()} title={__("Save changes", "dki-wiki")}>
+								{isSaving ? <span className="spinner is-active" style={{ float: "none" }}></span> : <span className="dashicons dashicons-yes"></span>}
+							</button>
+							<button className="button button-small" onClick={handleEditCancel} disabled={isSaving} title={__("Cancel editing", "dki-wiki")}>
+								<span className="dashicons dashicons-no"></span>
+							</button>
+						</>
+					)}
+				</div>
+			</div>
+
+			{isExpanded && (
+				<div className="faq-item-accordion__content">
+					{isEditing ? (
+						<div className="faq-item-accordion__editor">
+							<WYSIWYGEditor value={editContent} onChange={handleContentChange} placeholder={__("Enter the FAQ answer...", "dki-wiki")} disabled={isSaving} />
 						</div>
+					) : (
+						<div className="faq-item-accordion__content-display" dangerouslySetInnerHTML={{ __html: faqItem.content }} />
 					)}
 				</div>
 			)}
-		</Draggable>
+		</div>
 	);
 };
 

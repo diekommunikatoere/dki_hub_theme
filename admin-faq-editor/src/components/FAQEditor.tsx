@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import { __ } from "@wordpress/i18n";
 import { useFAQ } from "../context/FAQContext";
 import { sectionsAPI, faqItemsAPI, bulkAPI } from "../services/api";
@@ -41,96 +40,86 @@ const FAQEditor: React.FC = () => {
 	}, [setLoading, setError, setSections, setFAQItems]);
 
 	// Handle drag and drop for sections
-	const handleSectionDrop = async (result: DropResult) => {
-		if (!result.destination) return;
+	const handleSectionDrop = async (sourceIndex: number, destinationIndex: number) => {
+		if (sourceIndex === destinationIndex) return;
 
-		const { source, destination } = result;
+		// Correct destination index when moving downwards:
+		// after removing the source, indices shift left for items after source
+		let targetIndex = destinationIndex;
+		if (sourceIndex < destinationIndex) {
+			targetIndex -= 1;
+		}
 
-		if (source.droppableId === "sections" && destination.droppableId === "sections") {
-			// Reorder sections
-			const newSections = Array.from(state.sections);
-			const [reorderedSection] = newSections.splice(source.index, 1);
-			newSections.splice(destination.index, 0, reorderedSection);
+		// Reorder sections
+		const newSections = Array.from(state.sections);
+		const [reorderedSection] = newSections.splice(sourceIndex, 1);
 
-			// Update order values
-			const updatedSections = newSections.map((section, index) => ({
-				...section,
-				order: index + 1,
-			}));
+		// Clamp index for safety
+		const clampedIndex = Math.max(0, Math.min(targetIndex, newSections.length));
+		newSections.splice(clampedIndex, 0, reorderedSection);
 
-			dispatch({ type: "REORDER_SECTIONS", payload: updatedSections });
-			setHasUnsavedChanges(true);
+		// Update order values
+		const updatedSections = newSections.map((section, index) => ({
+			...section,
+			order: index + 1,
+		}));
 
-			try {
-				await sectionsAPI.reorder(updatedSections.map((s) => s.id));
-				setHasUnsavedChanges(false);
-			} catch (error) {
-				console.error("Error reordering sections:", error);
-				setError(__("Failed to save section order. Please try again.", "dki-wiki"));
-			}
-		} else if (source.droppableId.startsWith("section-") && destination.droppableId.startsWith("section-")) {
-			// Handle FAQ item reordering within sections
-			const sourceSectionId = parseInt(source.droppableId.replace("section-", ""));
-			const destinationSectionId = parseInt(destination.droppableId.replace("section-", ""));
+		dispatch({ type: "REORDER_SECTIONS", payload: updatedSections });
+		setHasUnsavedChanges(true);
 
-			const sourceFAQs = state.faqItems[sourceSectionId] || [];
-			const destinationFAQs = sourceSectionId === destinationSectionId ? sourceFAQs : state.faqItems[destinationSectionId] || [];
-
-			// Move FAQ item
-			const newSourceFAQs = Array.from(sourceFAQs);
-			const [movedItem] = newSourceFAQs.splice(source.index, 1);
-
-			let newDestinationFAQs;
-			if (sourceSectionId === destinationSectionId) {
-				newDestinationFAQs = newSourceFAQs;
-				newDestinationFAQs.splice(destination.index, 0, {
-					...movedItem,
-					sectionId: destinationSectionId,
-				});
-			} else {
-				newDestinationFAQs = Array.from(destinationFAQs);
-				newDestinationFAQs.splice(destination.index, 0, {
-					...movedItem,
-					sectionId: destinationSectionId,
-				});
-			}
-
-			// Update order values
-			const updatedSourceFAQs = newSourceFAQs.map((item, index) => ({
-				...item,
-				order: index + 1,
-			}));
-
-			const updatedDestinationFAQs = newDestinationFAQs.map((item, index) => ({
-				...item,
-				order: index + 1,
-			}));
-
-			dispatch({ type: "REORDER_FAQ_ITEMS", payload: { sectionId: sourceSectionId, items: updatedSourceFAQs } });
-			if (sourceSectionId !== destinationSectionId) {
-				dispatch({ type: "REORDER_FAQ_ITEMS", payload: { sectionId: destinationSectionId, items: updatedDestinationFAQs } });
-			}
-
-			setHasUnsavedChanges(true);
-
-			try {
-				await faqItemsAPI.reorder(
-					sourceSectionId,
-					updatedSourceFAQs.map((f) => f.id)
-				);
-				if (sourceSectionId !== destinationSectionId) {
-					await faqItemsAPI.reorder(
-						destinationSectionId,
-						updatedDestinationFAQs.map((f) => f.id)
-					);
-				}
-				setHasUnsavedChanges(false);
-			} catch (error) {
-				console.error("Error reordering FAQ items:", error);
-				setError(__("Failed to save FAQ order. Please try again.", "dki-wiki"));
-			}
+		try {
+			await sectionsAPI.reorder(updatedSections.map((s) => s.id));
+			setHasUnsavedChanges(false);
+		} catch (error) {
+			console.error("Error reordering sections:", error);
+			setError(__("Failed to save section order. Please try again.", "dki-wiki"));
 		}
 	};
+
+	// Handle drag and drop for FAQ items within sections
+	const handleFAQDrop = async (sourceIndex: number, destinationIndex: number, sectionId: number) => {
+		if (sourceIndex === destinationIndex) return;
+
+		const sectionFAQs = state.faqItems[sectionId] || [];
+		if (sectionFAQs.length === 0) return;
+
+		// Correct destination index when moving downwards:
+		// after removing the source, indices shift left for items after source
+		let targetIndex = destinationIndex;
+		if (sourceIndex < destinationIndex) {
+			targetIndex -= 1;
+		}
+
+		// Reorder FAQ items within the section
+		const newFAQs = Array.from(sectionFAQs);
+		const [reorderedFAQ] = newFAQs.splice(sourceIndex, 1);
+
+		// Clamp index for safety
+		const clampedIndex = Math.max(0, Math.min(targetIndex, newFAQs.length));
+		newFAQs.splice(clampedIndex, 0, reorderedFAQ);
+
+		// Update order values
+		const updatedFAQs = newFAQs.map((faq, index) => ({
+			...faq,
+			order: index + 1,
+		}));
+
+		dispatch({ type: "REORDER_FAQ_ITEMS", payload: { sectionId, items: updatedFAQs } });
+		setHasUnsavedChanges(true);
+
+		try {
+			await faqItemsAPI.reorder(
+				sectionId,
+				updatedFAQs.map((f) => f.id)
+			);
+			setHasUnsavedChanges(false);
+		} catch (error) {
+			console.error("Error reordering FAQ items:", error);
+			setError(__("Failed to save FAQ item order. Please try again.", "dki-wiki"));
+		}
+	};
+
+	// Removed container-level drop target. Drop logic is now handled in SectionAccordion.
 
 	const handleCreateSection = () => {
 		setShowCreateSection(true);
@@ -156,50 +145,33 @@ const FAQEditor: React.FC = () => {
 
 			{state.error && <ErrorMessage message={state.error} onDismiss={() => setError(null)} />}
 
-			<DragDropContext
-				onDragStart={(result) => {
-					console.log("Drag started:", result);
-					console.log("Draggable ID:", result.draggableId);
-					console.log("Source droppable:", result.source.droppableId);
-				}}
-				onDragEnd={(result) => {
-					console.log("Drag ended:", result);
-					handleSectionDrop(result); // Keep existing handler
-				}}
-			>
-				<div className="faq-editor__content">
-					{state.sections.length === 0 ? (
-						<div className="faq-editor__empty-state">
-							<h2>{__("No FAQ sections yet", "dki-wiki")}</h2>
-							<p>{__("Create your first FAQ section to get started.", "dki-wiki")}</p>
-							<button className="button button-primary" onClick={handleCreateSection}>
-								{__("Create First Section", "dki-wiki")}
+			<div className="faq-editor__content">
+				{state.sections.length === 0 ? (
+					<div className="faq-editor__empty-state">
+						<h2>{__("No FAQ sections yet", "dki-wiki")}</h2>
+						<p>{__("Create your first FAQ section to get started.", "dki-wiki")}</p>
+						<button className="button button-primary" onClick={handleCreateSection}>
+							{__("Create First Section", "dki-wiki")}
+						</button>
+					</div>
+				) : (
+					<>
+						<div className="faq-sections">
+							{state.sections.map((section, index) => (
+								<SectionAccordion key={section.id} section={section} index={index} faqItems={state.faqItems[section.id] || []} onSectionDrop={handleSectionDrop} onFAQDrop={handleFAQDrop} />
+							))}
+						</div>
+
+						<div className="faq-editor__actions">
+							<button className="button button-secondary" onClick={handleCreateSection}>
+								{__("Add New Section", "dki-wiki")}
 							</button>
 						</div>
-					) : (
-						<>
-							<Droppable droppableId="sections" type="SECTION">
-								{(provided) => (
-									<div className="faq-sections" {...provided.droppableProps} ref={provided.innerRef}>
-										{state.sections.map((section, index) => (
-											<SectionAccordion key={section.id} section={section} index={index} faqItems={state.faqItems[section.id] || []} />
-										))}
-										{provided.placeholder}
-									</div>
-								)}
-							</Droppable>
+					</>
+				)}
 
-							<div className="faq-editor__actions">
-								<button className="button button-secondary" onClick={handleCreateSection}>
-									{__("Add New Section", "dki-wiki")}
-								</button>
-							</div>
-						</>
-					)}
-
-					{showCreateSection && <CreateSectionForm onSectionCreated={handleSectionCreated} onCancel={() => setShowCreateSection(false)} />}
-				</div>
-			</DragDropContext>
+				{showCreateSection && <CreateSectionForm onSectionCreated={handleSectionCreated} onCancel={() => setShowCreateSection(false)} />}
+			</div>
 		</div>
 	);
 };

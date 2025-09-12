@@ -7,8 +7,16 @@ WordPress theme with PHP templates and modular Gutenberg blocks architecture. Ea
 ## Directory Structure
 
 ```
-/ 
+/
 ├── functions.php                    # Theme entry point, asset registration, search extensions
+├── admin-faq-editor/                # React-based admin application for FAQ management
+│   ├── src/
+│   │   ├── components/              # React components (FAQEditor, SectionAccordion, FAQItemAccordion)
+│   │   ├── context/                 # React context for FAQ data management
+│   │   ├── services/                # API service for FAQ sections and items
+│   │   ├── styles/                  # SCSS styles for the editor
+│   │   └── types/                   # TypeScript type definitions
+│   └── [...build files]
 ├── blocks/                          # Custom Gutenberg blocks
 │   ├── edit-docs-page/
 │   ├── login-form/
@@ -26,7 +34,7 @@ WordPress theme with PHP templates and modular Gutenberg blocks architecture. Ea
 │   ├── scss/                        # Source SCSS files
 │   │   ├── config/                  # Variables, fonts, normalize
 │   │   └── modules/                 # Component-specific styles, including archive for FAQ templates
-│   ├── js/                          # JavaScript modules, including admin-faq-reorder.js for drag-drop
+│   ├── js/                          # JavaScript modules, including admin-faq-reorder.js for legacy drag-drop
 │   ├── templates/                   # PHP template files
 │   └── utils/                       # Utility functions, including register-cpt-faq.php for CPTs/taxonomies
 ├── templates/                       # WordPress template files, including archive-faq.php and single-faq.php
@@ -96,7 +104,9 @@ Each block follows a consistent structure:
 ### FAQ System
 
 - **CPT Registration**: [`includes/utils/register-cpt-faq.php`](includes/utils/register-cpt-faq.php:1) - 'faq' CPT with supports, 'faq_section' taxonomy
-- **Ordering**: Meta fields '_faq_order' (post meta) and '_section_order' (term meta) for custom sort; metabox in post editor, number field in term edit
-- **Admin Reorder**: [`includes/js/admin-faq-reorder.js`](includes/js/admin-faq-reorder.js:1) - Drag-drop for FAQs list with AJAX; sections via number input
+- **Ordering**: Meta fields '_faq_order' (post meta) and '_section_order' (term meta) for custom sort.
+- **Admin Management**: A dedicated React-based admin editor (`admin-faq-editor/`) provides a comprehensive interface for managing FAQ sections and items. This includes:
+  - Creating, editing, and deleting sections and FAQ items.
+  - Drag-and-drop reordering for both FAQ sections and FAQ items within their respective sections.
+  - The legacy [`includes/js/admin-faq-reorder.js`](includes/js/admin-faq-reorder.js:1) handles drag-drop for the traditional WordPress FAQs list.
 - **Templates**: [`templates/archive-faq.php`](templates/archive-faq.php:1) and [`templates/single-faq.php`](templates/single-faq.php:1) for CPT views
-- **Migration**: [`includes/utils/migrate-faqs.php`](includes/utils/migrate-faqs.php:1) - Imports from BetterDocs, sets default order meta

@@ -1,5 +1,7 @@
-import React, { useState, useCallback } from "react";
-import { Draggable, Droppable } from "react-beautiful-dnd";
+import React, { useState, useCallback, useEffect, useRef } from "react";
+import { draggable, dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
+import { setCustomNativeDragPreview } from "@atlaskit/pragmatic-drag-and-drop/element/set-custom-native-drag-preview";
+import { attachClosestEdge, extractClosestEdge, Edge } from "@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge";
 import classNames from "classnames";
 import { __ } from "@wordpress/i18n";
 import { useFAQ } from "../context/FAQContext";
@@ -13,17 +15,100 @@ interface SectionAccordionProps {
 	section: FAQSection;
 	index: number;
 	faqItems: FAQItem[];
+	onSectionDrop?: (sourceIndex: number, destinationIndex: number) => void;
+	onFAQDrop?: (sourceIndex: number, destinationIndex: number, sectionId: number) => void;
 }
 
-const SectionAccordion: React.FC<SectionAccordionProps> = ({ section, index, faqItems }) => {
+const SectionAccordion: React.FC<SectionAccordionProps> = ({ section, index, faqItems, onSectionDrop, onFAQDrop }) => {
 	const { dispatch, setError } = useFAQ();
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [isEditing, setIsEditing] = useState(false);
 	const [editTitle, setEditTitle] = useState(section.name);
 	const [showCreateFAQ, setShowCreateFAQ] = useState(false);
 	const [isDeleting, setIsDeleting] = useState(false);
+	const [isDragging, setIsDragging] = useState(false);
+	const [closestEdge, setClosestEdge] = useState<Edge | null>(null);
+	const elementRef = useRef<HTMLDivElement>(null);
+	const dragHandleRef = useRef<HTMLDivElement>(null);
 
-	console.log("Rendering SectionAccordion:", section.id, "index:", index, "Draggable setup check");
+	// Set up draggable and drop target
+	useEffect(() => {
+		const element = elementRef.current;
+		const dragHandle = dragHandleRef.current;
+		if (!element || !dragHandle) return;
+
+		const draggableCleanup = draggable({
+			element: dragHandle,
+			getInitialData: () => ({ type: "section", sectionId: section.id.toString(), index: index.toString() }),
+			onDragStart: () => setIsDragging(true),
+			onDrop: () => setIsDragging(false),
+		});
+
+		const dropTargetCleanup = dropTargetForElements({
+			element,
+			// Allow dropping only when dragging a section and not onto itself
+			canDrop: ({ source }) => source.data.type === "section" && source.data.sectionId !== section.id.toString(),
+			getIsSticky: () => true,
+			getData: ({ input, element, source }) => {
+				// Determine allowed edges based on what's being dragged
+				let allowedEdges: Edge[] = ["bottom"];
+
+				if (index === 0) {
+					// First section always allows top and bottom
+					allowedEdges = ["top", "bottom"];
+				} else if (index === 1 && source.data.index === "0") {
+					// Second section allows top when first section is being dragged
+					allowedEdges = ["top", "bottom"];
+				}
+
+				return attachClosestEdge(
+					{
+						type: "section",
+						sectionId: section.id.toString(),
+						index: index.toString(),
+					},
+					{
+						input,
+						element,
+						allowedEdges,
+					}
+				);
+			},
+			onDrag: ({ source, self }) => {
+				// Avoid showing indicators on the dragged element itself
+				if (source.data.sectionId === section.id.toString()) {
+					setClosestEdge(null);
+					return;
+				}
+				const edge = extractClosestEdge(self.data);
+				setClosestEdge(edge);
+			},
+			onDragLeave: () => setClosestEdge(null),
+			onDrop: ({ source, self }) => {
+				setClosestEdge(null);
+
+				if (!onSectionDrop) {
+					return;
+				}
+
+				const sourceIndex = parseInt(source.data.index as string);
+				let destinationIndex = parseInt(self.data.index as string);
+
+				const closestEdge = extractClosestEdge(self.data);
+
+				if (closestEdge === "bottom") {
+					destinationIndex++;
+				}
+
+				onSectionDrop(sourceIndex, destinationIndex);
+			},
+		});
+
+		return () => {
+			draggableCleanup();
+			dropTargetCleanup();
+		};
+	}, [section.id, index]);
 
 	const handleToggle = useCallback(
 		(e?: React.MouseEvent) => {
@@ -110,141 +195,125 @@ const SectionAccordion: React.FC<SectionAccordionProps> = ({ section, index, faq
 	);
 
 	return (
-		<Draggable draggableId={`section-${section.id}`} index={index}>
-			{(provided, snapshot) => (
-				<div
-					ref={provided.innerRef}
-					{...provided.draggableProps}
-					className={classNames("section-accordion", {
-						"section-accordion--expanded": isExpanded,
-						"section-accordion--dragging": snapshot.isDragging,
-						"section-accordion--deleting": isDeleting,
-					})}
+		<div
+			ref={elementRef}
+			className={classNames("section-accordion", {
+				"section-accordion--expanded": isExpanded,
+				"section-accordion--dragging": isDragging,
+				"section-accordion--deleting": isDeleting,
+				"section-accordion--drop-target-top": closestEdge === "top",
+				"section-accordion--drop-target-bottom": closestEdge === "bottom",
+			})}
+		>
+			<div className="section-accordion__header" onClick={(e) => handleToggle(e)}>
+				<div ref={dragHandleRef} className="section-accordion__drag-handle" title={__("Drag to reorder section", "dki-wiki")} style={{ cursor: isDragging ? "grabbing" : "grab" }}>
+					<span className="dashicons dashicons-move"></span>
+				</div>
+
+				<button
+					className="section-accordion__toggle"
+					onClick={(e) => {
+						e.stopPropagation();
+						handleToggle();
+					}}
+					aria-expanded={isExpanded}
+					aria-label={__("Toggle section", "dki-wiki")}
 				>
-					<div className="section-accordion__header" onClick={(e) => handleToggle(e)}>
-						<div {...provided.dragHandleProps} className="section-accordion__drag-handle" title={__("Drag to reorder section", "dki-wiki")}>
-							<span className="dashicons dashicons-move"></span>
-						</div>
+					<span
+						className={classNames("dashicons", {
+							"dashicons-arrow-down-alt2": !isExpanded,
+							"dashicons-arrow-up-alt2": isExpanded,
+						})}
+					></span>
+				</button>
 
-						<button
-							className="section-accordion__toggle"
-							onClick={(e) => {
-								e.stopPropagation();
-								handleToggle();
-							}}
-							aria-expanded={isExpanded}
-							aria-label={__("Toggle section", "dki-wiki")}
-						>
-							<span
-								className={classNames("dashicons", {
-									"dashicons-arrow-down-alt2": !isExpanded,
-									"dashicons-arrow-up-alt2": isExpanded,
-								})}
-							></span>
-						</button>
+				<div className="section-accordion__title-container">
+					{isEditing ? <input type="text" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} onKeyDown={handleKeyDown} onBlur={handleEditSave} className="section-accordion__title-input" onClick={(e) => e.stopPropagation()} autoFocus /> : <h3 className="section-accordion__title">{section.name}</h3>}
 
-						<div className="section-accordion__title-container">
-							{isEditing ? <input type="text" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} onKeyDown={handleKeyDown} onBlur={handleEditSave} className="section-accordion__title-input" onClick={(e) => e.stopPropagation()} autoFocus /> : <h3 className="section-accordion__title">{section.name}</h3>}
-
-							<div className="section-accordion__meta">
-								<span className="section-accordion__count">
-									{faqItems.length} {faqItems.length === 1 ? __("item", "dki-wiki") : __("items", "dki-wiki")}
-								</span>
-							</div>
-						</div>
-
-						<div className="section-accordion__actions" onClick={(e) => e.stopPropagation()}>
-							{!isEditing ? (
-								<>
-									<button
-										className="button button-small"
-										onClick={(e) => {
-											e.stopPropagation();
-											handleEditStart();
-										}}
-										title={__("Edit section title", "dki-wiki")}
-									>
-										<span className="dashicons dashicons-edit"></span>
-									</button>
-									<button
-										className="button button-small button-link-delete"
-										onClick={(e) => {
-											e.stopPropagation();
-											handleDelete();
-										}}
-										disabled={isDeleting}
-										title={__("Delete section", "dki-wiki")}
-									>
-										<span className="dashicons dashicons-trash"></span>
-									</button>
-								</>
-							) : (
-								<>
-									<button
-										className="button button-small button-primary"
-										onClick={(e) => {
-											e.stopPropagation();
-											handleEditSave();
-										}}
-										title={__("Save changes", "dki-wiki")}
-									>
-										<span className="dashicons dashicons-yes"></span>
-									</button>
-									<button
-										className="button button-small"
-										onClick={(e) => {
-											e.stopPropagation();
-											handleEditCancel();
-										}}
-										title={__("Cancel editing", "dki-wiki")}
-									>
-										<span className="dashicons dashicons-no"></span>
-									</button>
-								</>
-							)}
-						</div>
+					<div className="section-accordion__meta">
+						<span className="section-accordion__count">
+							{faqItems.length} {faqItems.length === 1 ? __("item", "dki-wiki") : __("items", "dki-wiki")}
+						</span>
 					</div>
+				</div>
 
-					{isExpanded && (
-						<div className="section-accordion__content">
-							<Droppable droppableId={`section-${section.id}`} type="FAQ_ITEM">
-								{(provided, snapshot) => (
-									<div
-										ref={provided.innerRef}
-										{...provided.droppableProps}
-										className={classNames("section-accordion__faq-list", {
-											"section-accordion__faq-list--drag-over": snapshot.isDraggingOver,
-										})}
-									>
-										{faqItems.map((faqItem, faqIndex) => (
-											<FAQItemAccordion key={faqItem.id} faqItem={faqItem} index={faqIndex} sectionId={section.id} />
-										))}
-										{provided.placeholder}
-
-										{faqItems.length === 0 && !showCreateFAQ && (
-											<div className="section-accordion__empty-state">
-												<p>{__("No FAQ items in this section yet.", "dki-wiki")}</p>
-											</div>
-										)}
-									</div>
-								)}
-							</Droppable>
-
-							<div className="section-accordion__footer">
-								{showCreateFAQ ? (
-									<CreateFAQForm sectionId={section.id} onFAQCreated={handleFAQCreated} onCancel={() => setShowCreateFAQ(false)} />
-								) : (
-									<button className="button button-secondary" onClick={handleCreateFAQ}>
-										<span className="dashicons dashicons-plus"></span>
-										{__("Add FAQ Item", "dki-wiki")}
-									</button>
-								)}
-							</div>
-						</div>
+				<div className="section-accordion__actions" onClick={(e) => e.stopPropagation()}>
+					{!isEditing ? (
+						<>
+							<button
+								onClick={(e) => {
+									e.stopPropagation();
+									handleEditStart();
+								}}
+								title={__("Edit section title", "dki-wiki")}
+							>
+								<span className="dashicons dashicons-edit"></span>
+							</button>
+							<button
+								className="button-delete"
+								onClick={(e) => {
+									e.stopPropagation();
+									handleDelete();
+								}}
+								disabled={isDeleting}
+								title={__("Delete section", "dki-wiki")}
+							>
+								<span className="dashicons dashicons-trash"></span>
+							</button>
+						</>
+					) : (
+						<>
+							<button
+								className="button-save"
+								onClick={(e) => {
+									e.stopPropagation();
+									handleEditSave();
+								}}
+								title={__("Save changes", "dki-wiki")}
+							>
+								<span className="dashicons dashicons-yes"></span>
+							</button>
+							<button
+								onClick={(e) => {
+									e.stopPropagation();
+									handleEditCancel();
+								}}
+								title={__("Cancel editing", "dki-wiki")}
+							>
+								<span className="dashicons dashicons-no"></span>
+							</button>
+						</>
 					)}
 				</div>
+			</div>
+
+			{isExpanded && (
+				<div className="section-accordion__content">
+					<div className="section-accordion__faq-list">
+						{faqItems.map((faqItem, faqIndex) => (
+							<FAQItemAccordion key={faqItem.id} faqItem={faqItem} index={faqIndex} sectionId={section.id} onFAQDrop={onFAQDrop} />
+						))}
+
+						{faqItems.length === 0 && !showCreateFAQ && (
+							<div className="section-accordion__empty-state">
+								<p>{__("No FAQ items in this section yet.", "dki-wiki")}</p>
+							</div>
+						)}
+					</div>
+
+					<div className="section-accordion__footer">
+						{showCreateFAQ ? (
+							<CreateFAQForm sectionId={section.id} onFAQCreated={handleFAQCreated} onCancel={() => setShowCreateFAQ(false)} />
+						) : (
+							<button className="button button-secondary" onClick={handleCreateFAQ}>
+								<span className="dashicons dashicons-plus"></span>
+								{__("Add FAQ Item", "dki-wiki")}
+							</button>
+						)}
+					</div>
+				</div>
 			)}
-		</Draggable>
+		</div>
 	);
 };
 

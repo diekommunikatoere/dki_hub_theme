@@ -2,6 +2,7 @@
 
 .faq-item-accordion {
 	@include card;
+	position: relative;
 	margin-bottom: var(--dki-spacing-md);
 	transition: all var(--dki-transition-normal);
 
@@ -19,6 +20,30 @@
 		transform: rotate(1deg);
 		box-shadow: var(--dki-shadow-regular);
 		z-index: 100;
+	}
+
+	&--drop-target-top::before {
+		content: "";
+		position: absolute;
+		top: -1px;
+		left: 0;
+		right: 0;
+		height: 3px;
+		background-color: var(--wp--preset--color--secondary, #ffd640);
+		z-index: 999;
+		border-radius: 2px;
+	}
+
+	&--drop-target-bottom::after {
+		content: "";
+		position: absolute;
+		bottom: -1px;
+		left: 0;
+		right: 0;
+		height: 3px;
+		background-color: var(--wp--preset--color--secondary, #ffd640);
+		z-index: 999;
+		border-radius: 2px;
 	}
 
 	&--deleting {

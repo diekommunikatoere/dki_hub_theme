@@ -1,53 +1,53 @@
 .loading-spinner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--dki-spacing-xl);
-  text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: var(--dki-spacing-xl);
+	text-align: center;
 
-  &--small {
-    padding: var(--dki-spacing-md);
+	&--small {
+		padding: var(--dki-spacing-md);
 
-    .spinner {
-      width: 16px;
-      height: 16px;
-    }
+		.spinner {
+			width: 16px;
+			height: 16px;
+		}
 
-    &__message {
-      font-size: 0.85em;
-    }
-  }
+		&__message {
+			font-size: 0.85em;
+		}
+	}
 
-  &--medium {
-    padding: var(--dki-spacing-lg);
+	&--medium {
+		padding: var(--dki-spacing-lg);
 
-    .spinner {
-      width: 20px;
-      height: 20px;
-    }
-  }
+		.spinner {
+			width: 20px;
+			height: 20px;
+		}
+	}
 
-  &--large {
-    padding: var(--dki-spacing-xl);
+	&--large {
+		padding: var(--dki-spacing-xl);
 
-    .spinner {
-      width: 32px;
-      height: 32px;
-    }
+		.spinner {
+			width: 32px;
+			height: 32px;
+		}
 
-    &__message {
-      font-size: 1.1em;
-    }
-  }
+		&__message {
+			font-size: 1.1em;
+		}
+	}
 
-  .spinner {
-    margin-bottom: var(--dki-spacing-md);
-  }
+	.spinner {
+		margin-bottom: var(--dki-spacing-md);
+	}
 
-  &__message {
-    color: var(--wp--preset--color--tertiary-dark, #62604a);
-    margin: 0;
-    font-weight: 500;
-  }
+	&__message {
+		color: var(--wp--preset--color--tertiary-dark, #62604a);
+		margin: 0;
+		font-weight: 500;
+	}
 }

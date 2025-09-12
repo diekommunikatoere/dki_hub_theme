@@ -17,20 +17,20 @@
 - **UPDATED**: [`functions.php`](functions.php:1) - Added init hook for bulk section orders; Include CPT, search extension, admin enqueue, AJAX handlers
 - **UPDATED**: [`includes/scss/modules/archive.scss`](includes/scss/modules/archive.scss:1) - Styles for FAQ archives
 - Implemented German localization throughout new features
+- **NEW**: Implemented drag-and-drop reordering for FAQ items within sections in the FAQ editor.
 - Updated memory bank documentation with new FAQ system details
 
 ## Next steps
 
 - Monitor project for any structural changes that require memory bank updates
 - Continue maintaining and extending Gutenberg blocks as needed
-- Test the new default ordering in FAQ display block
 - Test new features in WordPress environment
 - Keep context.md updated as work progresses
 
 ## Project status
 
 - **Active blocks**: 11 custom Gutenberg blocks (edit-docs-page, login-form, profile-nav-item, profile-sidebar-nav, revisions-profile-overview, schulungen-query-loop, schulungen-read-status-widget, view-revisions, copy-field, faq-display, faq-search)
-- **Latest addition**: FAQ system with CPT 'faq', taxonomy 'faq_section', blocks, templates, fuzzy search (Fuse.js threshold adjusted to 0.5), and custom ordering (drag-drop for items, number field for sections)
+- **Latest addition**: FAQ system with CPT 'faq', taxonomy 'faq_section', blocks, templates, fuzzy search (Fuse.js threshold adjusted to 0.5), and custom ordering (drag-drop for sections and items, number field for sections)
 - **Language**: German UI implemented across all user-facing elements
 - **Styling system**: SCSS modular architecture with compiled CSS output, extended for FAQ
 - **Build system**: Individual npm builds per block using @wordpress/scripts
