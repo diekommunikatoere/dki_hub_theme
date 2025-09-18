@@ -38,6 +38,12 @@ run() {
   "$@"
 }
 
+# Check and install Sass if not available
+if ! command -v sass &> /dev/null; then
+  log "Sass not found, installing globally..."
+  run npm install -g sass
+fi
+
 # -----------------------------
 # Clean release directory
 # -----------------------------
@@ -74,11 +80,18 @@ build_block() {
     if [ -f "$block_path/$block.php" ]; then
       cp "$block_path/$block.php" "$RELEASE_DIR/blocks/$block/"
     fi
+
+    # Clean up dev files in release block dir
+    rm -rf "$RELEASE_DIR/blocks/$block/src"
+    rm -rf "$RELEASE_DIR/blocks/$block/node_modules"
+    rm -rf "$RELEASE_DIR/blocks/$block/package.json"
+    rm -rf "$RELEASE_DIR/blocks/$block/package-lock.json"
+    rm -rf "$RELEASE_DIR/blocks/$block/readme.txt"
+
   else
     log "⚠️ Block directory not found: $block"
   fi
 }
-
 export -f log run build_block
 export RELEASE_DIR BLOCKS_DIR VERBOSE
 
@@ -90,6 +103,22 @@ else
   done
 fi
 
+log "Compiling global SCSS..."
+cd includes/assets
+sass scss/:css/ --style=compressed --no-source-map
+cd "$ROOT_DIR"
+
+log "Building admin FAQ editor..."
+if [ -d admin-faq-editor ]; then
+pushd admin-faq-editor >/dev/null
+run npm install
+run npm run build
+popd >/dev/null
+mkdir -p "$RELEASE_DIR/includes/assets/js/admin/faq-editor"
+cp -r admin-faq-editor/build/. "$RELEASE_DIR/includes/assets/js/admin/faq-editor/"
+log "Copied admin FAQ editor build"
+fi
+
 # -----------------------------
 # Copy theme files with .releaseignore
 # -----------------------------
@@ -99,7 +128,42 @@ if [ -f "$RELEASEIGNORE" ]; then
   RSYNC_EXCLUDES="--exclude-from=$RELEASEIGNORE"
 fi
 
-rsync -a $RSYNC_EXCLUDES "$ROOT_DIR/" "$RELEASE_DIR/"
+# Exclude blocks/ to preserve clean built structure
+rsync -a $RSYNC_EXCLUDES --exclude=blocks/ "$ROOT_DIR/" "$RELEASE_DIR/"
+
+# Explicitly copy SCSS sources (bypasses .releaseignore exclusion)
+if [ -d "$ROOT_DIR/includes/assets/scss" ]; then
+  mkdir -p "$RELEASE_DIR/includes/assets/scss"
+  cp -r "$ROOT_DIR/includes/assets/scss/." "$RELEASE_DIR/includes/assets/scss/"
+  log "Explicitly copied includes/assets/scss/"
+fi
+
+# Copy utils if exists
+if [ -d includes/utils ]; then
+  mkdir -p "$RELEASE_DIR/includes/utils"
+  cp -r includes/utils/ "$RELEASE_DIR/includes/utils/"
+  log "Copied includes/utils/"
+fi
+
+# -----------------------------
+# Version bumping
+# -----------------------------
+if [ -n "$RELEASE_TAG" ]; then
+  log "Bumping versions to $RELEASE_TAG"
+  sed -i "s/Version: [0-9.]\+;/Version: $RELEASE_TAG;/" "$RELEASE_DIR/style.css"
+  if [ -f "$RELEASE_DIR/theme.json" ]; then
+    sed -i "s/\"version\": \"[0-9.]\+\"/\"version\": \"$RELEASE_TAG\"/g" "$RELEASE_DIR/theme.json"
+  fi
+  for block in $(ls "$RELEASE_DIR/blocks" 2>/dev/null || true); do
+    if [ -f "$RELEASE_DIR/blocks/$block/build/block.json" ]; then
+      sed -i "s/\"version\": \"[0-9.]\+\"/\"version\": \"$RELEASE_TAG\"/g" "$RELEASE_DIR/blocks/$block/build/block.json"
+    fi
+  done
+fi
+
+# Clean up source maps
+find "$RELEASE_DIR" -name "*.map" -delete
+log "Cleaned up source maps"
 
 # -----------------------------
 # Tag marker

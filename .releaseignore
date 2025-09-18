@@ -61,3 +61,18 @@ temp/
 # Miscellaneous
 RELEASE.md
 changed_files.txt
+
+# Block dev files (redundant but explicit)
+blocks/*/src/
+blocks/*/node_modules/
+blocks/*/package.json
+blocks/*/package-lock.json
+blocks/*/readme.txt
+
+# Admin editor dev
+admin-faq-editor/src/
+admin-faq-editor/node_modules/
+admin-faq-editor/package.json
+admin-faq-editor/package-lock.json
+admin-faq-editor/tsconfig.json
+admin-faq-editor/webpack.config.js

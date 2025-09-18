@@ -2,6 +2,7 @@ name: Release Build
 
 permissions:
     contents: write
+    actions: write
 
 on:
     workflow_dispatch:
@@ -44,6 +45,9 @@ jobs:
                   cache: "npm"
                   cache-dependency-path: "blocks/*/package.json"
 
+            - name: Install Sass
+              run: npm install -g sass
+
             - name: Cache block dependencies
               uses: actions/cache@v4
               with:
@@ -64,9 +68,9 @@ jobs:
             - name: Detect changed files
               id: detect_changes
               run: |
-                  LAST_TAG="${{ inputs.release_tag }}"
-                  CHANGED_FILES=$(git diff --name-only $LAST_TAG HEAD | grep -E "^(blocks/|theme/|shared/)" || true)
-                  CHANGED_BLOCKS=$(echo "$CHANGED_FILES" | awk -F/ '{print $2}' | sort | uniq | xargs)
+                  LAST_TAG=$(git describe --tags --abbrev=0)
+                  CHANGED_FILES=$(git diff --name-only $LAST_TAG HEAD | grep -E "^(blocks/|includes/|parts/|templates/|functions\.php|style\.css|theme\.json)" || true)
+                  CHANGED_BLOCKS=$(echo "$CHANGED_FILES" | grep "^blocks/" | awk -F/ '{print $2}' | sort | uniq | xargs)
                   echo "changed_blocks=$CHANGED_BLOCKS" >> $GITHUB_OUTPUT
                   echo "$CHANGED_FILES" > changed_files.txt
 
@@ -97,6 +101,24 @@ jobs:
                   fi
                   echo "✅ Release directory created successfully"
 
+                  # Verify structure
+                  if [ ! -d "release/includes/core" ] || \
+                     [ ! -d "release/includes/features/faq" ] || \
+                     [ ! -d "release/includes/features/schulungen" ] || \
+                     [ ! -f "release/functions.php" ] || \
+                     [ ! -d "release/blocks" ] || \
+                     [ ! -d "release/parts" ] || \
+                     [ ! -d "release/templates" ] || \
+                     [ ! -d "release/includes/assets/css" ] || \
+                     [ ! -d "release/includes/assets/fonts" ] || \
+                     [ ! -d "release/includes/assets/js" ] || \
+                     [ ! -d "release/includes/assets/scss" ]; then
+                    echo "❌ Required structure missing in release/"
+                    ls -la release/ || true
+                    exit 1
+                  fi
+                  echo "✅ Release structure verified"
+
             - name: Upload release artifact
               uses: actions/upload-artifact@v4
               with:
@@ -119,7 +141,7 @@ jobs:
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./release
-                  publish_branch: release
+                  publish_branch: release/${{ inputs.release_tag }}
                   force_orphan: true
                   commit_message: "Release: ${{ inputs.release_tag }} [ci skip]"
 
