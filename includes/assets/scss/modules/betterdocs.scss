@@ -1,0 +1,754 @@
+@use "../config/variables" as *;
+
+#wiki,
+#editor {
+	/* General Styles and Overrides */
+	.betterdocs-category-title {
+		color: var(--wp--preset--color--primary);
+		font-family: var(--wp--preset--font-family--heading);
+		font-weight: 600;
+		letter-spacing: 1px;
+	}
+
+	/* Item Count */
+	.betterdocs-category-items-counts {
+		background-color: var(--wp--preset--color--background);
+		padding: 0;
+
+		/* Item Count Number */
+		span {
+			min-height: 1em;
+			min-width: 1em;
+			height: 1em;
+			width: 1em;
+			padding: 0.5rem;
+			color: var(--wp--preset--color--background);
+			font-size: 14px;
+			text-align: center;
+			background-color: var(--wp--preset--color--tertiary);
+		}
+	}
+
+	/* Article List */
+	.betterdocs-articles-list {
+		li {
+			/* Article List Item – Icon */
+			i {
+			}
+
+			/* Article List Item – Link */
+			a {
+				font-size: 1rem;
+				color: var(--wp--preset--color--primary);
+
+				&:hover {
+					color: var(--wp--preset--color--primary-hover);
+
+					i + & {
+						color: var(--wp--preset--color--primary-hover);
+					}
+
+					li & {
+						background-color: var(--wp--preset--color--primary-hover);
+					}
+				}
+
+				& + i {
+					color: var(--wp--preset--color--primary);
+				}
+			}
+		}
+	}
+
+	.betterdocs-anchor {
+	}
+
+	.betterdocs--comment-section {
+		/* Kommentar Sektion Headline */
+		.wp-block-comments-title {
+		}
+
+		/* Kommentare */
+		ol.betterdocs--comment-section--comments {
+			/* Einzelner Kommentar */
+			li.comment {
+				/* Kommentar Container */
+				.wp-block-columns {
+					padding: 1rem 1rem 1.5rem;
+					border: 2px solid var(--wp--preset--color--tertiary-light);
+					border-radius: 12px;
+
+					/* Avatar */
+					.wp-block-column {
+						/* Avatar Image */
+						img.avatar {
+						}
+					}
+
+					/* Kommentar Inhalt */
+					.wp-block-column {
+						/* Kommentar Autor */
+						.wp-block-comment-author-name {
+							font-family: var(--wp--preset--font-family--heading);
+							font-weight: 600;
+							color: var(--wp--preset--color--primary);
+						}
+
+						/* Kommentar Datum & Bearbeiten Link */
+						.wp-block-group {
+							padding-bottom: 0.5rem;
+							border-bottom: 1px solid var(--wp--preset--color--tertiary-light);
+
+							.wp-block-comment-date {
+								color: var(--wp--preset--color--tertiary);
+								transition: 0.1s color;
+
+								&:hover {
+									color: var(--wp--preset--color--primary-hover);
+								}
+							}
+
+							.wp-block-comment-edit-link {
+								color: var(--wp--preset--color--contrast);
+								transition: 0.1s color;
+
+								&:hover {
+									color: var(--wp--preset--color--primary-hover);
+								}
+							}
+						}
+
+						/* Kommentar Inhalt */
+						.wp-block-comment-content {
+							color: var(--wp--preset--color--contrast);
+							font-size: 1rem;
+						}
+
+						/* Antworten Link */
+						.wp-block-comment-reply-link {
+							a.comment-reply-link {
+								display: inline-block;
+								padding: 0.5rem 1rem;
+								background-color: var(--wp--preset--color--tertiary);
+								color: var(--wp--preset--color--background);
+								border-radius: 3px;
+								box-shadow: var(--wp--preset--shadow--extra-small);
+								transition: 0.2s all;
+
+								&:hover {
+									background-color: var(--wp--preset--color--secondary);
+									color: var(--wp--preset--color--contrast);
+									box-shadow: var(--wp--preset--shadow--small);
+									text-decoration: none;
+								}
+
+								&:active {
+									background-color: var(--wp--preset--color--secondary);
+									color: var(--wp--preset--color--contrast);
+									box-shadow: var(--wp--preset--shadow--tiny);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#wiki,
+#editor {
+	.betterdocs-blocks {
+		/* Category Overview Block */
+		&.betterdocs-category-grid-wrapper {
+			.betterdocs-category-grid-inner-wrapper {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				gap: 1rem;
+
+				/* Single Category Item */
+				article.betterdocs-single-category-wrapper {
+					/* Single Category Item Inner Wrapper */
+					background-color: var(--wp--preset--color--background-alt);
+					border: 1px solid var(--wp--preset--color--tertiary-light);
+					border-radius: 12px;
+					box-shadow: $boxShadow-regular;
+					overflow: hidden;
+
+					&[data-id="42"] {
+						border-color: var(--wp--preset--color--primary);
+					}
+
+					.betterdocs-single-category-inner {
+						/* Single Category Header Section */
+						display: flex;
+						flex-direction: column;
+						justify-content: space-between;
+						align-items: stretch;
+
+						.betterdocs-category-header {
+							/* Single Category Header Section – Inner */
+							flex-grow: unset;
+
+							.betterdocs-category-header-inner {
+								border-bottom: 1px solid var(--wp--preset--color--tertiary-light);
+								/* Icon */
+								.betterdocs-category-icon {
+									/* Icon Image */
+									img.betterdocs-category-icon-img {
+									}
+								}
+
+								/* Title */
+								.betterdocs-category-title {
+								}
+
+								/* Item Count */
+								.betterdocs-category-items-counts {
+									/* Item Count Number */
+									span {
+									}
+								}
+							}
+						}
+
+						/* Single Category Body Section */
+						.betterdocs-body {
+							flex-grow: 1;
+							padding: 6px 4px 4px;
+
+							/* Article List */
+							.betterdocs-articles-list {
+								width: 100%;
+
+								& > li:not(.betterdocs-nested-category-wrapper) {
+									transition:
+										color 0.1s,
+										background-color 0.1s;
+									padding: 4px;
+
+									a {
+										width: 100%;
+										transition: color 0.1s;
+									}
+
+									&:hover {
+										color: var(--wp--preset--color--primary-hover);
+										background-color: var(--wp--preset--color--background-alt);
+										border-radius: 6px;
+										overflow: hidden;
+									}
+								}
+
+								.betterdocs-nested-category-wrapper {
+									margin: 0;
+
+									.betterdocs-nested-category-title {
+										transition:
+											color 0.1s,
+											background-color 0.1s;
+										padding: 4px;
+
+										a {
+											width: 100%;
+											transition: color 0.1s;
+										}
+
+										&:hover {
+											color: var(--wp--preset--color--primary-hover);
+											background-color: var(--wp--preset--color--background-alt);
+											border-radius: 6px;
+											overflow: hidden;
+										}
+									}
+
+									.betterdocs-nested-category-list {
+										li {
+											transition:
+												color 0.1s,
+												background-color 0.1s;
+											padding: 4px;
+
+											a {
+												width: 100%;
+												transition: color 0.1s;
+											}
+
+											&:hover {
+												color: var(--wp--preset--color--primary-hover);
+												background-color: var(--wp--preset--color--background-alt);
+												border-radius: 6px;
+												overflow: hidden;
+											}
+										}
+									}
+								}
+							}
+						}
+
+						/* Single Category Footer Section */
+						.betterdocs-footer {
+							flex-grow: unset;
+
+							/* Category Link */
+							.betterdocs-category-link-btn {
+								font-family: var(--wp--preset--font-family--heading);
+								font-weight: 500;
+								font-size: 1rem;
+								background-color: var(--wp--preset--color--secondary);
+								color: var(--wp--preset--color--contrast);
+								border: none;
+								border-radius: 3px;
+								padding: 0.5rem 2rem;
+								box-shadow: $boxShadow-gelb-extraSmall;
+								transition: all 0.2s;
+
+								&:hover {
+									background-color: var(--wp--preset--color--secondary-hover);
+									box-shadow: $boxShadow-gelb-small;
+								}
+
+								&:active {
+									background-color: var(--wp--preset--color--secondary-hover);
+									box-shadow: $boxShadow-gelb-tiny;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/* Table of Contents */
+		&.betterdocs-toc-block {
+			.betterdocs-toc {
+				padding: 1.5rem 2rem;
+
+				span.toc-title {
+					font-family: $font-primary;
+					font-size: 1.5rem;
+					letter-spacing: 0.07em;
+					text-transform: uppercase;
+				}
+				ul.toc-list {
+					li.betterdocs-toc-heading-level-2 {
+						& > a {
+							font-family: $font-primary;
+							font-size: 1rem;
+						}
+
+						ul.betterdocs-toc-list-level-2 {
+						}
+					}
+				}
+			}
+		}
+
+		/* Search Form Wrapper */
+		&.betterdocs-search-form-wrapper {
+			padding: 2rem 0;
+			background-color: unset;
+
+			/* Search Form Wrapper - Inner */
+			.betterdocs-live-search {
+				/* Search Form – Form Wrapper */
+				.betterdocs-searchform {
+					/* Search Form – Search Field Wrapper */
+					border-color: var(--wp--preset--color--tertiary-light);
+
+					/* Search Form – Results Wrapper */
+					.betterdocs-search-result-wrap {
+						width: 100%;
+
+						/* Search Form – Results List */
+						.docs-search-result {
+							width: 100%;
+							overflow-x: hidden;
+
+							/* Search Form – Results List Item */
+							li {
+								width: 100%;
+
+								/* Search Form – Results List Item – Link */
+								a {
+									display: flex;
+									flex-direction: row;
+									justify-content: flex-start;
+									align-items: center;
+									padding: 1rem;
+									gap: 1rem;
+									width: 100%;
+
+									/* Search Form – Results List Item – Title */
+									.betterdocs-search-title {
+										display: block;
+										order: 2;
+										font-family: var(--wp--preset--font-family--heading);
+										font-weight: 500;
+										letter-spacing: 0.5px;
+										color: var(--wp--preset--color--contrast);
+										transition: color 0.2s;
+									}
+
+									br {
+										display: none;
+									}
+
+									/* Search Form – Results List Item – Category */
+									.betterdocs-search-category {
+										display: block;
+										order: 1;
+										font-size: 0.75rem;
+										color: var(--wp--preset--color--primary-dark);
+										padding: 0 0.5rem;
+										border-radius: 3px;
+										background-color: var(--wp--preset--color--primary-extra-light);
+									}
+
+									&:hover {
+										.betterdocs-search-title {
+											color: var(--wp--preset--color--primary);
+										}
+									}
+								}
+
+								&:hover {
+									background-color: var(--wp--preset--color--background-alt);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.docs-navigation {
+		margin-top: 2rem;
+		padding-top: 2rem;
+		border-top: 2px solid var(--wp--preset--color--tertiary-light);
+
+		a {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 0.5rem;
+			font-size: 1rem;
+			font-weight: 700;
+			padding: 0.5rem 1rem;
+			color: var(--wp--preset--color--primary);
+			text-decoration: none;
+			transition: all 0.2s;
+
+			svg {
+				fill: var(--wp--preset--color--primary);
+				transition:
+					transform 0.2s,
+					fill 0.2s;
+				min-width: 1rem;
+				width: 1rem;
+				margin: 0;
+			}
+
+			&:hover {
+				color: var(--wp--preset--color--primary-hover);
+				text-decoration: underline;
+				text-decoration-color: var(--wp--preset--color--primary-hover);
+
+				svg {
+					transform: translateX(5px);
+					fill: var(--wp--preset--color--primary-hover);
+				}
+			}
+
+			&[rel="prev"] {
+				&:hover {
+					svg {
+						transform: translateX(-5px);
+					}
+				}
+			}
+
+			&[rel="next"] {
+				align-self: flex-end;
+
+				&:hover {
+					svg {
+						transform: translateX(5px);
+					}
+				}
+			}
+		}
+	}
+
+	.sticky-toc-block-wrapper {
+		.sticky-toc-container {
+			a.close-toc {
+			}
+
+			.betterdocs-toc {
+				span.toc-title {
+					font-family: $font-primary;
+					font-size: 1.5rem;
+					letter-spacing: 0.07em;
+					text-transform: uppercase;
+				}
+
+				ul.toc-list {
+					li.betterdocs-toc-heading-level-2 {
+						& > a {
+							font-family: $font-primary;
+							font-size: 1rem;
+						}
+
+						ul.betterdocs-toc-list-level-2 {
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#betterdocs-sidebar {
+	.betterdocs-category-grid-wrapper {
+		border-radius: 12px;
+		overflow: hidden;
+		border: 2px solid var(--wp--preset--color--tertiary-light);
+
+		.betterdocs-category-grid-inner-wrapper {
+			article.betterdocs-single-category-wrapper {
+				.betterdocs-single-category-inner {
+					.betterdocs-category-header {
+						transition: background-color 0.1s;
+
+						.betterdocs-category-header-inner {
+							h2.betterdocs-category-title {
+								color: var(--wp--preset--color--contrast);
+								transition: color 0.1s;
+							}
+						}
+
+						&:hover {
+							background-color: var(--wp--preset--color--background-alt);
+
+							.betterdocs-category-header-inner {
+								h2.betterdocs-category-title {
+									color: var(--wp--preset--color--primary-hover);
+								}
+							}
+						}
+					}
+
+					.betterdocs-body {
+						border-bottom: 1px solid var(--wp--preset--color--tertiary-light);
+						padding: 6px 4px 4px;
+
+						.betterdocs-articles-list {
+							width: 100%;
+
+							li {
+								svg {
+									fill: var(--wp--preset--color--contrast);
+								}
+
+								a {
+									color: var(--wp--preset--color--contrast);
+									width: 100%;
+									transition: color 0.1s;
+								}
+
+								&:hover {
+									background-color: var(--wp--preset--color--background-alt);
+									border-radius: 6px;
+									overflow: hidden;
+
+									a {
+										color: var(--wp--preset--color--primary-hover);
+									}
+								}
+							}
+
+							& > li:not(.betterdocs-nested-category-wrapper) {
+								transition:
+									color 0.1s,
+									background-color 0.1s;
+								padding: 4px;
+
+								a {
+									color: var(--wp--preset--color--contrast);
+									width: 100%;
+									transition: color 0.1s;
+								}
+
+								&:hover {
+									color: var(--wp--preset--color--primary-hover);
+									background-color: var(--wp--preset--color--background-alt);
+									border-radius: 6px;
+									overflow: hidden;
+
+									a {
+										color: var(--wp--preset--color--primary-hover);
+									}
+								}
+							}
+
+							.betterdocs-nested-category-wrapper {
+								margin: 0;
+
+								.betterdocs-nested-category-title {
+									transition:
+										color 0.1s,
+										background-color 0.1s;
+									padding: 4px;
+
+									a {
+										color: var(--wp--preset--color--contrast);
+										width: 100%;
+										transition: color 0.1s;
+									}
+
+									svg {
+										fill: var(--wp--preset--color--contrast);
+									}
+
+									&:hover {
+										color: var(--wp--preset--color--primary-hover);
+										background-color: var(--wp--preset--color--background-alt);
+										border-radius: 6px;
+										overflow: hidden;
+
+										a {
+											color: var(--wp--preset--color--primary-hover);
+										}
+									}
+								}
+
+								.betterdocs-nested-category-list {
+									li {
+										transition:
+											color 0.1s,
+											background-color 0.1s;
+										padding: 4px;
+
+										svg {
+											fill: var(--wp--preset--color--contrast);
+										}
+
+										a {
+											color: var(--wp--preset--color--contrast);
+											width: 100%;
+											transition: color 0.1s;
+										}
+
+										&:hover {
+											color: var(--wp--preset--color--primary-hover);
+											background-color: var(--wp--preset--color--background-alt);
+											border-radius: 6px;
+											overflow: hidden;
+
+											a {
+												color: var(--wp--preset--color--primary-hover);
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				&.active {
+					.betterdocs-single-category-inner {
+						.betterdocs-category-header {
+							border-color: var(--wp--preset--color--primary);
+							background-color: var(--wp--preset--color--background-alt);
+
+							.betterdocs-category-header-inner {
+								h2.betterdocs-category-title {
+									color: var(--wp--preset--color--primary);
+								}
+							}
+						}
+					}
+				}
+
+				&:last-child {
+					.betterdocs-single-category-inner {
+						.betterdocs-body {
+							border-bottom: none;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#betterdocs-breadcrumb {
+	ul.betterdocs-breadcrumb-list {
+		li.betterdocs-breadcrumb-item {
+			a.bread-link {
+				color: var(--wp--preset--color--tertiary);
+				transition: 0.2s color;
+
+				&:hover {
+					color: var(--wp--preset--color--primary-hover);
+					text-decoration: underline var(--wp--preset--color--primary-hover);
+				}
+			}
+
+			&.item-home {
+			}
+
+			&.breadcrumb-delimiter {
+				.icon-container {
+					svg {
+						color: var(--wp--preset--color--tertiary);
+					}
+				}
+			}
+
+			&.item-current {
+				span {
+					letter-spacing: 0;
+					color: var(--wp--preset--color--contrast);
+				}
+			}
+		}
+	}
+}
+
+#wiki,
+#editor {
+	&.betterdocs--category-archive {
+		.betterdocs--sidebar {
+		}
+
+		.betterdocs--content-wrapper {
+			.betterdocs-content-area {
+				.betterdocs-content-inner-area {
+					.betterdocs-entry-title {
+						.betterdocs-entry-heading {
+							color: var(--wp--preset--color--secondary);
+							font-size: var(--wp--preset--font-size--x-large);
+							text-transform: uppercase;
+						}
+					}
+
+					.betterdocs-entry-body.betterdocs-taxonomy-doc-category {
+						ul.betterdocs-articles-list {
+							li {
+								i {
+								}
+
+								a {
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
