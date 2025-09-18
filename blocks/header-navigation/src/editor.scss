@@ -1,0 +1,97 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-dki-wiki-header-navigation {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: center;
+	background-color: var(--wp--preset--color--background-alt);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	z-index: 10;
+
+	.header-navigation {
+		&-wrapper {
+			flex: 1;
+			position: relative;
+
+			&-inner {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				flex: 1;
+				max-width: var(--wp--style--global--wide-size);
+				padding: 0.5rem 1rem;
+				border-bottom: 1px solid var(--wp--preset--color--border);
+			}
+		}
+
+		&-logo-link {
+			display: flex;
+			align-items: center;
+			text-decoration: none;
+		}
+
+		&-logo {
+			height: 48px;
+			width: 48px;
+		}
+	}
+	.header-navigation-preview {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+
+		.navigation-menu-preview {
+			.menu-items-preview {
+				display: flex;
+				gap: 1rem;
+				list-style: none;
+				padding: 0;
+
+				.menu-item-preview {
+					padding: 0.2rem 0.5rem;
+					border-radius: 4px;
+					font-size: 0.9rem;
+				}
+
+				.more-items {
+					font-style: italic;
+					color: #666;
+				}
+			}
+
+			.menu-loading {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				color: #666;
+			}
+		}
+
+		.profile-nav-preview {
+			.profile-preview {
+				.avatar-preview {
+					border-radius: 50%;
+					border: 1px solid #ddd;
+				}
+			}
+
+			.profile-loading {
+				width: 32px;
+				height: 32px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+	}
+
+	.wp-block-placeholder {
+		text-align: center;
+		padding: 2rem;
+	}
+}

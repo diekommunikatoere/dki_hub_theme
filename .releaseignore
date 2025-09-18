@@ -3,9 +3,7 @@
 # Source files
 src/
 scss/
-
-# Source blocks directory (we copy built blocks separately)
-blocks/
+admin-faq-editor/
 
 # Node.js dependencies
 node_modules/

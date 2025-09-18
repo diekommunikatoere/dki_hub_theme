@@ -511,5 +511,12 @@
 			"postTypes": ["page"],
 			"title": "Empty"
 		}
+	],
+	"templateParts": [
+		{
+			"area": "header",
+			"name": "header-dki",
+			"title": "Header DKI"
+		}
 	]
 }

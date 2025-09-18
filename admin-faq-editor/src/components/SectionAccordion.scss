@@ -5,10 +5,6 @@
 	position: relative;
 	transition: all var(--dki-transition-normal);
 
-	&--expanded {
-		box-shadow: var(--dki-shadow-small);
-	}
-
 	&--dragging {
 		opacity: 0.6;
 		box-shadow: var(--dki-shadow-regular);
@@ -45,8 +41,6 @@
 
 	&__header {
 		@include header;
-		cursor: pointer;
-		user-select: none;
 
 		&:hover {
 			background: var(--wp--preset--color--background-alt);
@@ -84,12 +78,14 @@
 	&__title-container {
 		flex: 1;
 		min-width: 0;
+		cursor: pointer;
+		user-select: none;
 	}
 
 	&__title {
 		font-family: var(--dki-font-heading);
 		font-weight: 600;
-		color: var(--wp--preset--color--primary);
+		color: var(--wp--preset--color--contrast);
 		margin: 0 0 var(--dki-spacing-xs);
 		text-transform: uppercase;
 		letter-spacing: 0.03em;
@@ -118,7 +114,7 @@
 		gap: var(--dki-spacing-md);
 		font-size: 1em;
 		line-height: 1;
-		color: var(--wp--preset--color--tertiary);
+		color: var(--wp--preset--color--tertiary-dark);
 	}
 
 	&__count {
@@ -174,13 +170,40 @@
 		padding: var(--dki-spacing-md) var(--dki-spacing-lg);
 		border-top: 1px solid var(--wp--preset--color--tertiary-light);
 		background: var(--wp--preset--color--background-alt);
-		border-radius: 0 0 var(--dki-radius-lg) var(--dki-radius-lg);
 
 		.button {
+			@include action-button;
+			@include action-button-secondary;
+			font-size: 1em;
+			padding: 0.5rem 1.5rem;
+
 			.dashicons {
 				margin-right: var(--dki-spacing-xs);
-				font-size: 1.1em;
+				font-size: 1.5em;
 			}
+		}
+	}
+
+	&--expanded {
+		border: 1px solid var(--wp--preset--color--primary);
+		margin: 0.5rem 0;
+
+		& .section-accordion__header {
+			border-color: var(--wp--preset--color--primary);
+		}
+	}
+
+	&--expanded:first-child {
+		margin-top: 0;
+	}
+
+	&--expanded:last-child {
+		margin-bottom: 0;
+	}
+
+	&:last-child {
+		.section-accordion__header {
+			border-bottom: none;
 		}
 	}
 }

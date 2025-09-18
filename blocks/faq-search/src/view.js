@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Initialize Fuse.js
 	const fuseOptions = {
 		keys: ["sectionTitle", "question", "answer"],
-		threshold: 0.5, // Adjust for desired fuzziness
+		threshold: 0.6, // Adjust for desired fuzziness
 		includeScore: true,
 	};
 

@@ -1,0 +1,158 @@
+/***/
+/*** ----- VARIABLES ----- ***/
+/***/
+/*** ----- Colors Default ----- ***/
+/***/
+/*** ----- Space ----- ***/
+/*** ----- Font Family ----- ***/
+/***/
+/*** ----- z-index ----- ***/
+/***/
+/*** ----- Breakpoints ----- ***/
+/***/
+/*** ----- Font Sizes ----- ***/
+/***/
+/*** ----- Line Heights ----- ***/
+/***/
+/*** ----- Border Radius ----- ***/
+/***/
+/*** ----- Box Shadows ----- ***/
+/***/
+/*** ----- Transitions ----- ***/
+/***/
+/*** ----- Easings ----- ***/
+/***/
+/*** ----- Animations ----- ***/
+/***/
+main:has(#login-form) {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--wp--preset--color--background);
+  padding: 1rem;
+}
+
+#login-form .advgb-login-form-wrapper {
+  border: 1px solid var(--wp--preset--color--tertiary-light);
+  border-radius: 12px;
+  box-shadow: rgba(50, 50, 93, 0.16) 0px 13px 27px -5px, rgba(0, 0, 0, 0.23) 0px 8px 16px -8px;
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login {
+  /* Inner Wrapper */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner {
+  padding: 3rem 2rem 1rem;
+  /* Login Header */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-form-header h3 {
+  color: var(--wp--preset--color--primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner {
+  /* Login Input Fields */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field {
+  /* Input Field Label Wrapper */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field .advgb-lores-field-label label {
+  width: fit-content;
+  color: var(--wp--preset--color--tertiary);
+  font-size: 1rem;
+  font-weight: 400;
+  transform: translate(4px, 16px);
+  background: white;
+  padding: 0 6px;
+  transition: color 0.1s;
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field {
+  /* Input Field Wrapper */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field .advgb-lores-field-input {
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 0.7rem 0.5rem;
+  transition: border-color 0.1s;
+  /* Input Field Icon */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field .advgb-lores-field-input {
+  /* Input Field */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field .advgb-lores-field-input input::placeholder {
+  color: var(--wp--preset--color--tertiary);
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field {
+  /* User Field */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field {
+  /* Password Field */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field {
+  /* Remember Me Checkbox & Submit Button */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field.advgb-lores-submit-wrapper {
+  /* Remember Me Label */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field.advgb-lores-submit-wrapper label.remember-me-label {
+  /* Checkbox Field - invisible */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field.advgb-lores-submit-wrapper label.remember-me-label input.advgb-lores-checkbox:checked + .remember-me-switch::before {
+  color: var(--wp--preset--color--contrast);
+  background-color: var(--wp--preset--color--secondary);
+  border-color: var(--wp--preset--color--secondary);
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field.advgb-lores-submit-wrapper label.remember-me-label {
+  /* Remember Me Container */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field.advgb-lores-submit-wrapper label.remember-me-label .remember-me-switch {
+  /* Checkbox */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field.advgb-lores-submit-wrapper label.remember-me-label .remember-me-switch::before {
+  border-radius: 6px;
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field.advgb-lores-submit-wrapper label.remember-me-label .remember-me-switch {
+  /* Text */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field.advgb-lores-submit-wrapper {
+  /* Submit Button Wrapper*/
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field.advgb-lores-submit-wrapper .advgb-login-submit {
+  /* Submit Button */
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field.advgb-lores-submit-wrapper .advgb-login-submit button {
+  background-color: var(--wp--preset--color--secondary);
+  border-radius: 6px;
+  color: var(--wp--preset--color--contrast);
+  font-family: "Gibson", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  box-shadow: rgba(255, 214, 64, 0.4) 0px 2px 6px, rgba(118, 95, 10, 0.1) 0px 1px 2px;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field.advgb-lores-submit-wrapper .advgb-login-submit button:hover {
+  background-color: var(--wp--preset--color--secondary-hover);
+  box-shadow: rgba(255, 214, 64, 0.4) 0px 4px 12px, rgba(118, 95, 10, 0.1) 0px 2px 6px;
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field.advgb-lores-submit-wrapper .advgb-login-submit button:active {
+  background-color: var(--wp--preset--color--secondary-hover);
+  box-shadow: rgba(118, 95, 10, 0.25) 0px 1px 3px;
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field.advgb-lost-password-field .advgb-lost-password a.advgb-lost-password {
+  color: #282616;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field.advgb-lost-password-field .advgb-lost-password a.advgb-lost-password:hover {
+  text-decoration: underline;
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field:has(input:focus) .advgb-lores-field-label label {
+  color: var(--wp--preset--color--primary);
+}
+#login-form .advgb-login-form-wrapper form.advgb-form-login .advgb-form-inner .advgb-lores-field:has(input:focus) .advgb-lores-field-input {
+  border-color: var(--wp--preset--color--primary) !important;
+}
+
+/*# sourceMappingURL=login.css.map */

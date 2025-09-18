@@ -1,0 +1,44 @@
+/**
+ * Registers a new block provided a unique name and an object defining its behavior.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
+ */
+import { registerBlockType } from "@wordpress/blocks";
+
+/**
+ * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
+ * All files containing `style` keyword are bundled together. The code used
+ * gets applied both to the front of your site and to the editor.
+ *
+ * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
+ */
+import "./style.scss";
+
+/**
+ * Internal dependencies
+ */
+import Edit from "./edit";
+import metadata from "./block.json";
+
+const editIcon = (
+	<svg id="uuid-09bd83d1-6c60-40e3-8e1e-56b8ee8db5e6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+		<path
+			class="uuid-48c904e7-36f1-4dba-8d46-755b800a01e9"
+			d="M5.85,17.1c.85-.65,1.8-1.16,2.85-1.54s2.15-.56,3.3-.56,2.25.19,3.3.56,2,.89,2.85,1.54c.58-.68,1.04-1.46,1.36-2.33s.49-1.79.49-2.78c0-2.22-.78-4.1-2.34-5.66s-3.45-2.34-5.66-2.34-4.1.78-5.66,2.34c-1.56,1.56-2.34,3.45-2.34,5.66,0,.98.16,1.91.49,2.78s.78,1.64,1.36,2.33ZM12,13c-.98,0-1.81-.34-2.49-1.01s-1.01-1.5-1.01-2.49.34-1.81,1.01-2.49,1.5-1.01,2.49-1.01,1.81.34,2.49,1.01,1.01,1.5,1.01,2.49-.34,1.81-1.01,2.49-1.5,1.01-2.49,1.01ZM12,22c-1.38,0-2.68-.26-3.9-.79s-2.28-1.24-3.18-2.14-1.61-1.96-2.14-3.18-.79-2.52-.79-3.9.26-2.68.79-3.9,1.24-2.28,2.14-3.18,1.96-1.61,3.18-2.14,2.52-.79,3.9-.79,2.68.26,3.9.79,2.28,1.24,3.18,2.14,1.61,1.96,2.14,3.18.79,2.52.79,3.9-.26,2.68-.79,3.9-1.24,2.28-2.14,3.18-1.96,1.61-3.18,2.14-2.52.79-3.9.79ZM12,20c.88,0,1.72-.13,2.5-.39s1.5-.63,2.15-1.11c-.65-.48-1.37-.85-2.15-1.11-.78-.26-1.62-.39-2.5-.39s-1.72.13-2.5.39c-.78.26-1.5.63-2.15,1.11.65.48,1.37.85,2.15,1.11s1.62.39,2.5.39ZM12,11c.43,0,.79-.14,1.08-.43.28-.28.43-.64.43-1.08s-.14-.79-.43-1.08c-.28-.28-.64-.43-1.08-.43s-.79.14-1.08.43-.43.64-.43,1.08.14.79.43,1.08.64.43,1.08.43Z"
+		/>
+	</svg>
+);
+
+/**
+ * Every block starts by registering a new block type definition.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
+ */
+registerBlockType(metadata.name, {
+	/**
+	 * @see ./edit.js
+	 */
+	edit: Edit,
+
+	icon: editIcon,
+});

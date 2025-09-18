@@ -237,13 +237,14 @@ const FAQItemAccordion: React.FC<FAQItemAccordionProps> = ({ faqItem, index, sec
 							{faqItem.title}
 						</h4>
 					)}
-
-					<div className="faq-item-accordion__meta">
-						<span className="faq-item-accordion__status">{faqItem.status === "publish" ? __("Published", "dki-wiki") : __("Draft", "dki-wiki")}</span>
-						<span className="faq-item-accordion__modified">
-							{__("Modified", "dki-wiki")}: {new Date(faqItem.dateModified).toLocaleDateString()}
-						</span>
-					</div>
+					{!isEditing && (
+						<div className="faq-item-accordion__meta">
+							<span className="faq-item-accordion__status">{faqItem.status === "publish" ? __("Published", "dki-wiki") : __("Draft", "dki-wiki")}</span>
+							<span className="faq-item-accordion__modified">
+								{__("Modified", "dki-wiki")}: {new Date(faqItem.dateModified).toLocaleDateString()}
+							</span>
+						</div>
+					)}
 				</div>
 
 				<div className="faq-item-accordion__actions">

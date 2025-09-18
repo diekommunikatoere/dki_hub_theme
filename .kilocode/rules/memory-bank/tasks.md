@@ -6,6 +6,7 @@
 
 - Use [`blocks/login-form/`](blocks/login-form/) as primary template
 - Alternative: [`blocks/profile-sidebar-nav/`](blocks/profile-sidebar-nav/)
+- For navigation blocks: [`blocks/header-navigation/`](blocks/header-navigation/) – includes WP menu selector + profile dropdown
 
 **Information needed:**
 
@@ -38,6 +39,8 @@
 - Use `dki-wiki/` namespace for all blocks
 - Maintain consistent file structure with template
 - Test both editor and frontend rendering after customization
+- For blocks with WP menus, use core navigation data store in edit.js for selector
+- Include German localization with __() for user-facing text
 
 ## Build Block Assets
 

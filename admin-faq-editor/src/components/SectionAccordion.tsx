@@ -205,7 +205,7 @@ const SectionAccordion: React.FC<SectionAccordionProps> = ({ section, index, faq
 				"section-accordion--drop-target-bottom": closestEdge === "bottom",
 			})}
 		>
-			<div className="section-accordion__header" onClick={(e) => handleToggle(e)}>
+			<div className="section-accordion__header">
 				<div ref={dragHandleRef} className="section-accordion__drag-handle" title={__("Drag to reorder section", "dki-wiki")} style={{ cursor: isDragging ? "grabbing" : "grab" }}>
 					<span className="dashicons dashicons-move"></span>
 				</div>
@@ -227,7 +227,7 @@ const SectionAccordion: React.FC<SectionAccordionProps> = ({ section, index, faq
 					></span>
 				</button>
 
-				<div className="section-accordion__title-container">
+				<div className="section-accordion__title-container" onClick={(e) => handleToggle(e)}>
 					{isEditing ? <input type="text" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} onKeyDown={handleKeyDown} onBlur={handleEditSave} className="section-accordion__title-input" onClick={(e) => e.stopPropagation()} autoFocus /> : <h3 className="section-accordion__title">{section.name}</h3>}
 
 					<div className="section-accordion__meta">

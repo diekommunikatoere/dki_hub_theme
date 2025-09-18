@@ -7,9 +7,9 @@ module.exports = (env, argv) => {
 	return {
 		entry: "./src/index.tsx",
 		output: {
-			path: path.resolve(__dirname, "../includes/js/admin/faq-editor"),
-			filename: "faq-editor.js",
-			clean: true,
+			path: path.resolve(__dirname, "../includes/assets"),
+			filename: "js/admin/faq-editor/faq-editor.js",
+			clean: false,
 		},
 		resolve: {
 			extensions: [".tsx", ".ts", ".js", ".jsx"],
@@ -41,7 +41,7 @@ module.exports = (env, argv) => {
 		plugins: isProduction
 			? [
 					new MiniCssExtractPlugin({
-						filename: "faq-editor.css",
+						filename: "css/modules/admin/faq-editor.css",
 					}),
 			  ]
 			: [],

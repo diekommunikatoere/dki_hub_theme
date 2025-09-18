@@ -3,12 +3,7 @@
 .faq-item-accordion {
 	@include card;
 	position: relative;
-	margin-bottom: var(--dki-spacing-md);
 	transition: all var(--dki-transition-normal);
-
-	&--expanded {
-		box-shadow: var(--dki-shadow-small);
-	}
 
 	&--editing {
 		border-color: var(--wp--preset--color--secondary, #ffd640);
@@ -56,7 +51,6 @@
 		padding: var(--dki-spacing-md);
 		cursor: pointer;
 		user-select: none;
-		border-radius: var(--dki-radius-lg) var(--dki-radius-lg) 0 0;
 
 		&:hover {
 			background: var(--wp--preset--color--background-alt, #f5f4f0);
@@ -117,7 +111,7 @@
 	&__title {
 		font-family: var(--dki-font-heading);
 		font-weight: 600;
-		color: var(--wp--preset--color--secondary-hover, #f7c200);
+		color: var(--wp--preset--color--contrast);
 		margin: 0 0 var(--dki-spacing-xs);
 		font-size: 1.1em;
 		cursor: pointer;
@@ -144,8 +138,8 @@
 	&__meta {
 		display: flex;
 		gap: var(--dki-spacing-md);
-		font-size: 0.8em;
-		color: var(--wp--preset--color--tertiary, #92907b);
+		font-size: 0.9em;
+		color: var(--wp--preset--color--tertiary-dark);
 	}
 
 	&__status {
@@ -157,15 +151,13 @@
 		font-weight: 500;
 	}
 
-	&__modified {
-		color: var(--wp--preset--color--tertiary, #92907b);
-	}
-
 	&__actions {
 		@include action-buttons;
 		margin-left: auto;
 
 		.button-small {
+			@include action-button;
+			@include action-button-neutral;
 			min-width: 32px;
 			height: 32px;
 			display: flex;
@@ -174,6 +166,14 @@
 
 			.dashicons {
 				margin: 0;
+			}
+
+			&.button-link-delete {
+				@include action-button-delete;
+			}
+
+			&.button-primary {
+				@include action-button-save;
 			}
 		}
 	}
@@ -245,6 +245,23 @@
 				color: var(--wp--preset--color--primary-hover, #f31b63);
 			}
 		}
+	}
+
+	&--expanded {
+		border: 1px solid var(--wp--preset--color--primary);
+		margin: 0.5rem 0;
+
+		& .faq-item-accordion__header {
+			border-color: var(--wp--preset--color--primary);
+		}
+	}
+
+	&--expanded:first-child {
+		margin-top: 0;
+	}
+
+	&--expanded:last-child {
+		margin-bottom: 0;
 	}
 }
 
