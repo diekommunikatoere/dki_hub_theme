@@ -65,15 +65,6 @@ jobs:
                       build-artifacts-
                       build-
 
-            - name: Detect changed files
-              id: detect_changes
-              run: |
-                  LAST_TAG=$(git describe --tags --abbrev=0)
-                  CHANGED_FILES=$(git diff --name-only $LAST_TAG HEAD | grep -E "^(blocks/|includes/|parts/|templates/|functions\.php|style\.css|theme\.json)" || true)
-                  CHANGED_BLOCKS=$(echo "$CHANGED_FILES" | grep "^blocks/" | awk -F/ '{print $2}' | sort | uniq | xargs)
-                  echo "changed_blocks=$CHANGED_BLOCKS" >> $GITHUB_OUTPUT
-                  echo "$CHANGED_FILES" > changed_files.txt
-
             - name: Make release script executable
               run: chmod +x scripts/release-build.sh
 

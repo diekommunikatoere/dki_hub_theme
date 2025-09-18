@@ -55,15 +55,8 @@ mkdir -p "$RELEASE_DIR"
 # Install dependencies & build blocks
 # -----------------------------
 BLOCKS_DIR="$ROOT_DIR/blocks"
-TARGET_BLOCKS=""
 
-if [ "$FORCE_REBUILD_ALL" = "true" ] || [ -z "$CHANGED_BLOCKS" ]; then
-  log "Rebuilding all blocks..."
-  TARGET_BLOCKS=$(ls "$BLOCKS_DIR")
-else
-  log "Rebuilding only changed blocks: $CHANGED_BLOCKS"
-  TARGET_BLOCKS="$CHANGED_BLOCKS"
-fi
+TARGET_BLOCKS=$(ls "$BLOCKS_DIR")
 
 build_block() {
   block=$1
