@@ -106,10 +106,6 @@ if [ -d admin-faq-editor ]; then
 pushd admin-faq-editor >/dev/null
 run npm install
 run npm run build
-popd >/dev/null
-mkdir -p "$RELEASE_DIR/includes/assets/js/admin/faq-editor"
-cp -r admin-faq-editor/build/. "$RELEASE_DIR/includes/assets/js/admin/faq-editor/"
-log "Copied admin FAQ editor build"
 fi
 
 # -----------------------------
