@@ -11,18 +11,8 @@ on:
                 description: "Release tag (e.g., v1.0.0)"
                 required: true
                 type: string
-            force_rebuild_all:
-                description: "Force rebuild all blocks (ignore change detection)"
-                required: false
-                type: boolean
-                default: false
             verbose:
                 description: "Enable detailed logging"
-                required: false
-                type: boolean
-                default: true
-            parallel:
-                description: "Enable parallel block building"
                 required: false
                 type: boolean
                 default: true
@@ -70,17 +60,13 @@ jobs:
 
             - name: Run release build
               run: |
-                  BUILD_FLAGS=""
+                  BUILD_FLAGS="--parallel"
                   if [ "${{ inputs.verbose }}" = "true" ]; then
                     BUILD_FLAGS="$BUILD_FLAGS --verbose"
-                  fi
-                  if [ "${{ inputs.parallel }}" = "true" ]; then
-                    BUILD_FLAGS="$BUILD_FLAGS --parallel"
                   fi
                   ./scripts/release-build.sh $BUILD_FLAGS
               env:
                   RELEASE_TAG: ${{ inputs.release_tag }}
-                  FORCE_REBUILD_ALL: ${{ inputs.force_rebuild_all }}
                   CHANGED_BLOCKS: ${{ steps.detect_changes.outputs.changed_blocks }}
                   CHANGED_FILES_FILE: changed_files.txt
 
