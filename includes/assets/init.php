@@ -8,7 +8,7 @@ add_action( 'wp_enqueue_scripts', function() {
 
 add_action( 'wp_enqueue_scripts', function() {
     wp_dequeue_style( 'twentytwentyfive-style' );
-} );
+}, 20 );
 
 // Include scripts
 add_action( 'wp_enqueue_scripts', function() {

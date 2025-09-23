@@ -38,13 +38,10 @@ export default function Edit({ attributes, setAttributes }) {
 	const { selectedMenuId } = attributes;
 	const [currentUser, setCurrentUser] = useState(null);
 
-	console.log("Selected Menu ID:", selectedMenuId);
-
 	// Fetch all wp_navigation CPT posts
 	const [menus, menusLoading] = useSelect((select) => {
 		return [select(coreDataStore).getEntityRecords("postType", "wp_navigation"), select(coreDataStore).isResolving("getEntityRecords", ["postType", "wp_navigation"])];
 	});
-	console.log("Menus:", menus);
 
 	const selectedMenuPost = useSelect(
 		(select) => {
@@ -76,13 +73,11 @@ export default function Edit({ attributes, setAttributes }) {
 		setAttributes({ menuItems: menuItemMap });
 		return menuItemMap;
 	}, [selectedMenuPost]);
-	console.log("Selected Menu Post:", selectedMenuPost);
 
 	// Update block attributes when menu items are fetched
 	if (JSON.stringify(attributes.menuItems) !== JSON.stringify(menuItems)) {
 		setAttributes({ menuItems });
 	}
-	console.log("Menu Items:", menuItems);
 
 	const menuOptions = menus
 		? menus.map((menu) => ({
@@ -127,8 +122,6 @@ export default function Edit({ attributes, setAttributes }) {
 		className: "header-navigation-editor",
 	});
 
-	console.log("Current User:", currentUser);
-
 	return (
 		<>
 			<InspectorControls>
@@ -159,7 +152,7 @@ export default function Edit({ attributes, setAttributes }) {
 				) : (
 					<div className="header-navigation-wrapper">
 						<div className="header-navigation-wrapper-inner">
-							<a href="#" className="header-navigation-logo-link" aria-label="Zur Startseite">
+							<a href="#" className="header-navigation-logo-link" aria-label="Zur Startseite" style={{ pointerEvents: "none" }}>
 								<img src="/wp-content/uploads/2024/06/DKI_Wiki_logo.svg" className="header-navigation-logo" />
 								<span>die kommunikatöre® Hub</span>
 							</a>

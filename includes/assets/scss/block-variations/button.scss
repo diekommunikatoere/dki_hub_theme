@@ -4,7 +4,8 @@
 	@include dki-button--neutral;
 }
 
-.wp-block-button.is-style-primary .wp-block-button__link {
+.wp-block-button.is-style-primary .wp-block-button__link,
+.wp-block-read-more {
 	@include dki-button--primary;
 }
 

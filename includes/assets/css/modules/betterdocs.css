@@ -25,11 +25,206 @@
 /***/
 /*** ----- Animations ----- ***/
 /***/
+:where(.wp-site-blocks *:focus),
+.wp-site-blocks .wp-block-button__link:focus:not(:active),
+.wp-site-blocks .wp-element-button:focus:not(:active),
+.wp-site-blocks .wp-block-read-more:focus:not(:active),
+.docs-cat-link-btn.betterdocs-category-link-btn:focus:not(:active) {
+  outline-width: 0;
+  outline-style: none;
+}
+
+.wp-block-buttons .dki-button--primary,
+.wp-block-buttons .wp-block-button__link,
+.wp-site-blocks .wp-element-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--wp--preset--font-family--heading);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1;
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  transition: all 0.1s, outline 0.05s;
+  background-color: var(--wp--preset--color--secondary);
+  color: var(--wp--preset--color--contrast);
+  box-shadow: var(--wp--preset--shadow--secondary-extra-small);
+}
+.wp-block-buttons .dki-button--primary:active,
+.wp-block-buttons .wp-block-button__link:active,
+.wp-site-blocks .wp-element-button:active {
+  transform: scale(0.96);
+}
+.wp-block-buttons .dki-button--primary:hover,
+.wp-block-buttons .wp-block-button__link:hover,
+.wp-site-blocks .wp-element-button:hover {
+  background-color: var(--wp--preset--color--secondary-hover);
+  color: var(--wp--preset--color--contrast);
+  box-shadow: var(--wp--preset--shadow--secondary-small);
+}
+.wp-block-buttons .dki-button--primary:active,
+.wp-block-buttons .wp-block-button__link:active,
+.wp-site-blocks .wp-element-button:active {
+  border: none;
+  border-color: unset;
+  background-color: var(--wp--preset--color--secondary-light);
+  box-shadow: var(--wp--preset--shadow--secondary-tiny);
+  outline: 2px solid var(--wp--preset--color--secondary-hover);
+  outline-offset: 0;
+}
+.wp-block-buttons .dki-button--primary:focus-visible:not(:active),
+.wp-block-buttons .wp-block-button__link:focus-visible:not(:active),
+.wp-site-blocks .wp-element-button:focus-visible:not(:active) {
+  border: none;
+  outline: 2px solid var(--wp--preset--color--primary);
+  outline-offset: 2px;
+  box-shadow: var(--wp--preset--shadow--secondary-small);
+}
+
+.wp-block-buttons .dki-button--neutral {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--wp--preset--font-family--heading);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1;
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  transition: all 0.1s, outline 0.05s;
+  background-color: var(--wp--preset--color--background-alt);
+  color: var(--wp--preset--color--contrast);
+}
+.wp-block-buttons .dki-button--neutral:active {
+  transform: scale(0.96);
+}
+.wp-block-buttons .dki-button--neutral:hover {
+  background-color: var(--wp--preset--color--tertiary-dark);
+  color: var(--wp--preset--color--background);
+  box-shadow: var(--wp--preset--shadow--extra-small);
+}
+.wp-block-buttons .dki-button--neutral:active {
+  border: none;
+  border-color: unset;
+  border-top-color: unset;
+  border-bottom-color: unset;
+  border-left-color: unset;
+  border-right-color: unset;
+  background-color: var(--wp--preset--color--tertiary-dark);
+  color: var(--wp--preset--color--background);
+  box-shadow: var(--wp--preset--shadow--tiny);
+}
+.wp-block-buttons .dki-button--neutral:focus:not(:active), .wp-block-buttons .dki-button--neutral:focus-visible {
+  outline: 2px solid var(--wp--preset--color--tertiary-dark);
+  outline-offset: 2px;
+}
+
+.wp-block-buttons .dki-button--save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--wp--preset--font-family--heading);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1;
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  transition: all 0.1s, outline 0.05s;
+  background-color: var(--wp--preset--color--success);
+  color: var(--wp--preset--color--contrast);
+}
+.wp-block-buttons .dki-button--save:active {
+  transform: scale(0.96);
+}
+.wp-block-buttons .dki-button--save:hover {
+  background-color: var(--wp--preset--color--success-dark);
+  border-color: var(--wp--preset--color--success-dark);
+  color: var(--wp--preset--color--background);
+  box-shadow: var(--wp--preset--shadow--extra-small);
+}
+.wp-block-buttons .dki-button--save:active {
+  background-color: var(--wp--preset--color--success-dark);
+  border-color: var(--wp--preset--color--success);
+  color: var(--wp--preset--color--background);
+  box-shadow: var(--wp--preset--shadow--tiny);
+}
+.wp-block-buttons .dki-button--save:focus:not(:active), .wp-block-buttons .dki-button--save:focus-visible {
+  outline: 2px solid var(--wp--preset--color--success-dark);
+  outline-offset: 2px;
+}
+
+.wp-block-buttons .dki-button--error {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--wp--preset--font-family--heading);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1;
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  transition: all 0.1s, outline 0.05s;
+  background-color: var(--wp--preset--color--background-alt);
+  color: var(--wp--preset--color--error);
+}
+.wp-block-buttons .dki-button--error:active {
+  transform: scale(0.96);
+}
+.wp-block-buttons .dki-button--error:hover {
+  background-color: var(--wp--preset--color--error);
+  border-color: var(--wp--preset--color--error);
+  color: var(--wp--preset--color--background);
+  box-shadow: var(--wp--preset--shadow--extra-small);
+}
+.wp-block-buttons .dki-button--error:active, .wp-block-buttons .dki-button--error:focus {
+  background-color: var(--wp--preset--color--error-dark);
+  color: var(--wp--preset--color--background);
+  box-shadow: var(--wp--preset--shadow--tiny);
+}
+.wp-block-buttons .dki-button--error:focus:not(:active), .wp-block-buttons .dki-button--error:focus-visible {
+  outline: 2px solid var(--wp--preset--color--error-dark);
+  outline-offset: 2px;
+}
+
 #wiki,
 #editor {
   /* General Styles and Overrides */
   /* Item Count */
   /* Article List */
+}
+#wiki .docs-two-columns,
+#editor .docs-two-columns {
+  gap: 2rem;
+  padding: 0 30px;
+}
+@media (max-width: 900px) {
+  #wiki .docs-two-columns,
+  #editor .docs-two-columns {
+    flex-direction: column;
+  }
+}
+#wiki .betterdocs-updated-date-wrapper,
+#editor .betterdocs-updated-date-wrapper {
+  color: var(--wp--preset--color--tertiary);
+}
+#wiki .wp-block-post-title,
+#editor .wp-block-post-title {
+  padding-top: 0.5em;
+  text-transform: initial;
+  font-weight: 600;
 }
 #wiki .betterdocs-category-title,
 #editor .betterdocs-category-title {
@@ -46,15 +241,16 @@
 }
 #wiki .betterdocs-category-items-counts span,
 #editor .betterdocs-category-items-counts span {
+  font-size: 14px;
+  aspect-ratio: 1/1;
   min-height: 1em;
   min-width: 1em;
-  height: 1em;
-  width: 1em;
-  padding: 0.5rem;
+  width: unset;
+  height: unset;
+  padding: 0.6em;
   color: var(--wp--preset--color--background);
-  font-size: 14px;
   text-align: center;
-  background-color: var(--wp--preset--color--tertiary);
+  background-color: var(--wp--preset--color--tertiary-dark);
 }
 #wiki .betterdocs-articles-list li,
 #editor .betterdocs-articles-list li {
@@ -176,6 +372,7 @@ li #editor .betterdocs-articles-list li a:hover {
 #editor .betterdocs-blocks {
   /* Category Overview Block */
   /* Table of Contents */
+  /* Sticky TOC Close Button */
   /* Search Form Wrapper */
 }
 #wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper,
@@ -300,30 +497,53 @@ li #editor .betterdocs-articles-list li a:hover {
 }
 #wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn,
 #editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--wp--preset--font-family--heading);
   font-weight: 500;
   font-size: 1rem;
-  background-color: var(--wp--preset--color--secondary);
-  color: var(--wp--preset--color--contrast);
+  line-height: 1;
+  text-decoration: none;
   border: none;
   border-radius: 3px;
-  padding: 0.5rem 2rem;
-  box-shadow: rgba(255, 214, 64, 0.4) 0px 2px 6px, rgba(118, 95, 10, 0.1) 0px 1px 2px;
-  transition: all 0.2s;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  transition: all 0.1s, outline 0.05s;
+  background-color: var(--wp--preset--color--secondary);
+  color: var(--wp--preset--color--contrast);
+  box-shadow: var(--wp--preset--shadow--secondary-extra-small);
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn:active,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn:active {
+  transform: scale(0.96);
 }
 #wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn:hover,
 #editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn:hover {
   background-color: var(--wp--preset--color--secondary-hover);
-  box-shadow: rgba(255, 214, 64, 0.4) 0px 4px 12px, rgba(118, 95, 10, 0.1) 0px 2px 6px;
+  color: var(--wp--preset--color--contrast);
+  box-shadow: var(--wp--preset--shadow--secondary-small);
 }
 #wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn:active,
 #editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn:active {
-  background-color: var(--wp--preset--color--secondary-hover);
-  box-shadow: rgba(118, 95, 10, 0.25) 0px 1px 3px;
+  border: none;
+  border-color: unset;
+  background-color: var(--wp--preset--color--secondary-light);
+  box-shadow: var(--wp--preset--shadow--secondary-tiny);
+  outline: 2px solid var(--wp--preset--color--secondary-hover);
+  outline-offset: 0;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn:focus-visible:not(:active),
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-footer .betterdocs-category-link-btn:focus-visible:not(:active) {
+  border: none;
+  outline: 2px solid var(--wp--preset--color--primary);
+  outline-offset: 2px;
+  box-shadow: var(--wp--preset--shadow--secondary-small);
 }
 #wiki .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc,
 #editor .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc {
   padding: 1.5rem 2rem;
+  background-color: var(--wp--preset--color--background-alt);
 }
 #wiki .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc span.toc-title,
 #editor .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc span.toc-title {
@@ -331,11 +551,55 @@ li #editor .betterdocs-articles-list li a:hover {
   font-size: 1.5rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
+  color: var(--wp--preset--color--primary);
+}
+#wiki .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li a,
+#editor .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li a {
+  text-decoration: none;
+}
+#wiki .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li a:hover,
+#editor .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--wp--preset--color--primary-hover);
 }
 #wiki .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li.betterdocs-toc-heading-level-2 > a,
 #editor .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li.betterdocs-toc-heading-level-2 > a {
   font-family: "Gibson", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1rem;
+  color: var(--wp--preset--color--contrast);
+}
+#wiki .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li.betterdocs-toc-heading-level-2 ul.betterdocs-toc-list-level-3 li.betterdocs-toc-heading-level-3 > a,
+#editor .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li.betterdocs-toc-heading-level-2 ul.betterdocs-toc-list-level-3 li.betterdocs-toc-heading-level-3 > a {
+  font-family: "Gibson", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.875rem;
+  color: var(--wp--preset--color--tertiary-dark);
+}
+#wiki .betterdocs-blocks .sticky-toc-container,
+#editor .betterdocs-blocks .sticky-toc-container {
+  top: 2vh;
+}
+#wiki .betterdocs-blocks .sticky-toc-container .close-toc,
+#editor .betterdocs-blocks .sticky-toc-container .close-toc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: -56px;
+  padding: 0.5rem;
+  border-radius: 3px;
+  transition: all 0.1s;
+}
+#wiki .betterdocs-blocks .sticky-toc-container .close-toc:hover,
+#editor .betterdocs-blocks .sticky-toc-container .close-toc:hover {
+  background-color: var(--wp--preset--color--secondary-hover);
+}
+#wiki .betterdocs-blocks .sticky-toc-container .close-toc:hover svg,
+#editor .betterdocs-blocks .sticky-toc-container .close-toc:hover svg {
+  fill: var(--wp--preset--color--contrast);
+}
+#wiki .betterdocs-blocks .sticky-toc-container .close-toc:active,
+#editor .betterdocs-blocks .sticky-toc-container .close-toc:active {
+  background-color: var(--wp--preset--color--secondary-light);
+  outline: 2px solid var(--wp--preset--color--secondary-hover);
 }
 #wiki .betterdocs-blocks.betterdocs-search-form-wrapper,
 #editor .betterdocs-blocks.betterdocs-search-form-wrapper {
@@ -463,18 +727,7 @@ li #editor .betterdocs-articles-list li a:hover {
 #editor .docs-navigation a[rel=next]:hover svg {
   transform: translateX(5px);
 }
-#wiki .sticky-toc-block-wrapper .sticky-toc-container .betterdocs-toc span.toc-title,
-#editor .sticky-toc-block-wrapper .sticky-toc-container .betterdocs-toc span.toc-title {
-  font-family: "Gibson", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 1.5rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-}
-#wiki .sticky-toc-block-wrapper .sticky-toc-container .betterdocs-toc ul.toc-list li.betterdocs-toc-heading-level-2 > a,
-#editor .sticky-toc-block-wrapper .sticky-toc-container .betterdocs-toc ul.toc-list li.betterdocs-toc-heading-level-2 > a {
-  font-family: "Gibson", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 1rem;
-}
+
 #betterdocs-sidebar .betterdocs-category-grid-wrapper {
   border-radius: 12px;
   overflow: hidden;
@@ -592,11 +845,13 @@ li #editor .betterdocs-articles-list li a:hover {
 
 #betterdocs-breadcrumb ul.betterdocs-breadcrumb-list li.betterdocs-breadcrumb-item a.bread-link {
   color: var(--wp--preset--color--tertiary);
-  transition: 0.2s color;
+  text-decoration-thickness: 0;
+  text-underline-offset: 2px;
+  transition: 0.1s all;
 }
 #betterdocs-breadcrumb ul.betterdocs-breadcrumb-list li.betterdocs-breadcrumb-item a.bread-link:hover {
   color: var(--wp--preset--color--primary-hover);
-  text-decoration: underline var(--wp--preset--color--primary-hover);
+  text-decoration: 2px underline var(--wp--preset--color--primary-hover);
 }
 #betterdocs-breadcrumb ul.betterdocs-breadcrumb-list li.betterdocs-breadcrumb-item.breadcrumb-delimiter .icon-container svg {
   color: var(--wp--preset--color--tertiary);

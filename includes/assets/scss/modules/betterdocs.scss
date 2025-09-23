@@ -1,7 +1,27 @@
 @use "../config/variables" as *;
+@use "./buttons.scss" as *;
 
 #wiki,
 #editor {
+	.docs-two-columns {
+		gap: 2rem;
+		padding: 0 30px;
+
+		@media (max-width: 900px) {
+			flex-direction: column;
+		}
+	}
+
+	.betterdocs-updated-date-wrapper {
+		color: var(--wp--preset--color--tertiary);
+	}
+
+	.wp-block-post-title {
+		padding-top: 0.5em;
+		text-transform: initial;
+		font-weight: 600;
+	}
+
 	/* General Styles and Overrides */
 	.betterdocs-category-title {
 		color: var(--wp--preset--color--primary);
@@ -17,15 +37,16 @@
 
 		/* Item Count Number */
 		span {
+			font-size: 14px;
+			aspect-ratio: 1 / 1;
 			min-height: 1em;
 			min-width: 1em;
-			height: 1em;
-			width: 1em;
-			padding: 0.5rem;
+			width: unset;
+			height: unset;
+			padding: 0.6em;
 			color: var(--wp--preset--color--background);
-			font-size: 14px;
 			text-align: center;
-			background-color: var(--wp--preset--color--tertiary);
+			background-color: var(--wp--preset--color--tertiary-dark);
 		}
 	}
 
@@ -292,26 +313,7 @@
 
 							/* Category Link */
 							.betterdocs-category-link-btn {
-								font-family: var(--wp--preset--font-family--heading);
-								font-weight: 500;
-								font-size: 1rem;
-								background-color: var(--wp--preset--color--secondary);
-								color: var(--wp--preset--color--contrast);
-								border: none;
-								border-radius: 3px;
-								padding: 0.5rem 2rem;
-								box-shadow: $boxShadow-gelb-extraSmall;
-								transition: all 0.2s;
-
-								&:hover {
-									background-color: var(--wp--preset--color--secondary-hover);
-									box-shadow: $boxShadow-gelb-small;
-								}
-
-								&:active {
-									background-color: var(--wp--preset--color--secondary-hover);
-									box-shadow: $boxShadow-gelb-tiny;
-								}
+								@include dki-button--primary;
 							}
 						}
 					}
@@ -323,23 +325,70 @@
 		&.betterdocs-toc-block {
 			.betterdocs-toc {
 				padding: 1.5rem 2rem;
+				background-color: var(--wp--preset--color--background-alt);
 
 				span.toc-title {
 					font-family: $font-primary;
 					font-size: 1.5rem;
 					letter-spacing: 0.07em;
 					text-transform: uppercase;
+					color: var(--wp--preset--color--primary);
 				}
 				ul.toc-list {
+					li a {
+						text-decoration: none;
+
+						&:hover {
+							text-decoration: underline;
+							text-decoration-color: var(--wp--preset--color--primary-hover);
+						}
+					}
+
 					li.betterdocs-toc-heading-level-2 {
 						& > a {
 							font-family: $font-primary;
 							font-size: 1rem;
+							color: var(--wp--preset--color--contrast);
 						}
 
-						ul.betterdocs-toc-list-level-2 {
+						ul.betterdocs-toc-list-level-3 {
+							li.betterdocs-toc-heading-level-3 {
+								& > a {
+									font-family: $font-primary;
+									font-size: 0.875rem;
+									color: var(--wp--preset--color--tertiary-dark);
+								}
+							}
 						}
 					}
+				}
+			}
+		}
+
+		/* Sticky TOC Close Button */
+		.sticky-toc-container {
+			top: 2vh;
+
+			.close-toc {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				right: -56px;
+				padding: 0.5rem;
+				border-radius: 3px;
+				transition: all 0.1s;
+
+				&:hover {
+					background-color: var(--wp--preset--color--secondary-hover);
+
+					svg {
+						fill: var(--wp--preset--color--contrast);
+					}
+				}
+
+				&:active {
+					background-color: var(--wp--preset--color--secondary-light);
+					outline: 2px solid var(--wp--preset--color--secondary-hover);
 				}
 			}
 		}
@@ -475,34 +524,6 @@
 				&:hover {
 					svg {
 						transform: translateX(5px);
-					}
-				}
-			}
-		}
-	}
-
-	.sticky-toc-block-wrapper {
-		.sticky-toc-container {
-			a.close-toc {
-			}
-
-			.betterdocs-toc {
-				span.toc-title {
-					font-family: $font-primary;
-					font-size: 1.5rem;
-					letter-spacing: 0.07em;
-					text-transform: uppercase;
-				}
-
-				ul.toc-list {
-					li.betterdocs-toc-heading-level-2 {
-						& > a {
-							font-family: $font-primary;
-							font-size: 1rem;
-						}
-
-						ul.betterdocs-toc-list-level-2 {
-						}
 					}
 				}
 			}
@@ -690,11 +711,13 @@
 		li.betterdocs-breadcrumb-item {
 			a.bread-link {
 				color: var(--wp--preset--color--tertiary);
-				transition: 0.2s color;
+				text-decoration-thickness: 0;
+				text-underline-offset: 2px;
+				transition: 0.1s all;
 
 				&:hover {
 					color: var(--wp--preset--color--primary-hover);
-					text-decoration: underline var(--wp--preset--color--primary-hover);
+					text-decoration: 2px underline var(--wp--preset--color--primary-hover);
 				}
 			}
 

@@ -1,10 +1,15 @@
-:where(.wp-site-blocks *:focus) {
+:where(.wp-site-blocks *:focus),
+.wp-site-blocks .wp-block-button__link:focus:not(:active),
+.wp-site-blocks .wp-element-button:focus:not(:active),
+.wp-site-blocks .wp-block-read-more:focus:not(:active),
+.docs-cat-link-btn.betterdocs-category-link-btn:focus:not(:active) {
   outline-width: 0;
   outline-style: none;
 }
 
 .wp-block-buttons .dki-button--primary,
-.wp-block-buttons .wp-block-button__link {
+.wp-block-buttons .wp-block-button__link,
+.wp-site-blocks .wp-element-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -12,30 +17,41 @@
   font-weight: 500;
   font-size: 1rem;
   line-height: 1;
+  text-decoration: none;
   border: none;
   border-radius: 3px;
   padding: 0.8rem 2rem;
   cursor: pointer;
-  transition: all 0.2s, outline 0.1s;
+  transition: all 0.1s, outline 0.05s;
   background-color: var(--wp--preset--color--secondary);
   color: var(--wp--preset--color--contrast);
   box-shadow: var(--wp--preset--shadow--secondary-extra-small);
 }
+.wp-block-buttons .dki-button--primary:active,
+.wp-block-buttons .wp-block-button__link:active,
+.wp-site-blocks .wp-element-button:active {
+  transform: scale(0.96);
+}
 .wp-block-buttons .dki-button--primary:hover,
-.wp-block-buttons .wp-block-button__link:hover {
+.wp-block-buttons .wp-block-button__link:hover,
+.wp-site-blocks .wp-element-button:hover {
   background-color: var(--wp--preset--color--secondary-hover);
   color: var(--wp--preset--color--contrast);
   box-shadow: var(--wp--preset--shadow--secondary-small);
 }
 .wp-block-buttons .dki-button--primary:active,
-.wp-block-buttons .wp-block-button__link:active {
+.wp-block-buttons .wp-block-button__link:active,
+.wp-site-blocks .wp-element-button:active {
   border: none;
   border-color: unset;
   background-color: var(--wp--preset--color--secondary-light);
   box-shadow: var(--wp--preset--shadow--secondary-tiny);
+  outline: 2px solid var(--wp--preset--color--secondary-hover);
+  outline-offset: 0;
 }
 .wp-block-buttons .dki-button--primary:focus-visible:not(:active),
-.wp-block-buttons .wp-block-button__link:focus-visible:not(:active) {
+.wp-block-buttons .wp-block-button__link:focus-visible:not(:active),
+.wp-site-blocks .wp-element-button:focus-visible:not(:active) {
   border: none;
   outline: 2px solid var(--wp--preset--color--primary);
   outline-offset: 2px;
@@ -50,13 +66,17 @@
   font-weight: 500;
   font-size: 1rem;
   line-height: 1;
+  text-decoration: none;
   border: none;
   border-radius: 3px;
   padding: 0.8rem 2rem;
   cursor: pointer;
-  transition: all 0.2s, outline 0.1s;
+  transition: all 0.1s, outline 0.05s;
   background-color: var(--wp--preset--color--background-alt);
   color: var(--wp--preset--color--contrast);
+}
+.wp-block-buttons .dki-button--neutral:active {
+  transform: scale(0.96);
 }
 .wp-block-buttons .dki-button--neutral:hover {
   background-color: var(--wp--preset--color--tertiary-dark);
@@ -87,13 +107,17 @@
   font-weight: 500;
   font-size: 1rem;
   line-height: 1;
+  text-decoration: none;
   border: none;
   border-radius: 3px;
   padding: 0.8rem 2rem;
   cursor: pointer;
-  transition: all 0.2s, outline 0.1s;
+  transition: all 0.1s, outline 0.05s;
   background-color: var(--wp--preset--color--success);
   color: var(--wp--preset--color--contrast);
+}
+.wp-block-buttons .dki-button--save:active {
+  transform: scale(0.96);
 }
 .wp-block-buttons .dki-button--save:hover {
   background-color: var(--wp--preset--color--success-dark);
@@ -120,13 +144,17 @@
   font-weight: 500;
   font-size: 1rem;
   line-height: 1;
+  text-decoration: none;
   border: none;
   border-radius: 3px;
   padding: 0.8rem 2rem;
   cursor: pointer;
-  transition: all 0.2s, outline 0.1s;
+  transition: all 0.1s, outline 0.05s;
   background-color: var(--wp--preset--color--background-alt);
   color: var(--wp--preset--color--error);
+}
+.wp-block-buttons .dki-button--error:active {
+  transform: scale(0.96);
 }
 .wp-block-buttons .dki-button--error:hover {
   background-color: var(--wp--preset--color--error);

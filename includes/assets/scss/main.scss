@@ -13,9 +13,10 @@
 :root {
 	font-size: 16px;
 
-	:where(.wp-element-button:focus, .wp-block-button__link:focus) {
-		outline-color: unset;
-		outline-offset: unset;
+	:where(.wp-element-button:focus:not(:active), .wp-block-button__link:focus:not(:active)) {
+		/* outline-width: 0;
+		outline-style: none;
+		outline-offset: unset; */
 	}
 }
 
@@ -51,21 +52,21 @@ h1 {
 
 h2 {
 	font-family: $font-primary;
-	font-weight: 700;
+	font-weight: 600;
 	font-size: clamp(1.313rem, 1.63vw + 0.946rem, 2.25rem);
 	line-height: clamp(1.706rem, 1.728vw + 1.317rem, 2.7rem);
 }
 
 h3 {
 	font-family: $font-primary;
-	font-weight: 700;
+	font-weight: 600;
 	font-size: clamp(1.125rem, 0.652vw + 0.978rem, 1.5rem);
 	line-height: clamp(1.463rem, 0.587vw + 1.33rem, 1.8rem);
 }
 
 h4 {
 	font-family: $font-primary;
-	font-weight: 700;
+	font-weight: 600;
 	font-size: clamp(1.125rem, 0.326vw + 1.052rem, 1.313rem);
 	line-height: clamp(1.238rem, 0.359vw + 1.157rem, 1.444rem);
 }
