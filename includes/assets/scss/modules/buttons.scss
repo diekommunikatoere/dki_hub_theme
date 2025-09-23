@@ -1,0 +1,147 @@
+:where(.wp-site-blocks *:focus) {
+	outline-width: 0;
+	outline-style: none;
+}
+
+@mixin dki-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 500;
+	font-size: 1rem;
+	line-height: 1;
+	border: none;
+	border-radius: 3px;
+	padding: 0.8rem 2rem;
+	cursor: pointer;
+	transition:
+		all 0.2s,
+		outline 0.1s;
+}
+
+@mixin dki-button--neutral {
+	@include dki-button;
+	background-color: var(--wp--preset--color--background-alt);
+	color: var(--wp--preset--color--contrast);
+
+	&:hover {
+		background-color: var(--wp--preset--color--tertiary-dark);
+		color: var(--wp--preset--color--background);
+		box-shadow: var(--wp--preset--shadow--extra-small);
+	}
+
+	&:active {
+		border: none;
+		border-color: unset;
+		border-top-color: unset;
+		border-bottom-color: unset;
+		border-left-color: unset;
+		border-right-color: unset;
+		background-color: var(--wp--preset--color--tertiary-dark);
+		color: var(--wp--preset--color--background);
+		box-shadow: var(--wp--preset--shadow--tiny);
+	}
+
+	&:focus:not(:active),
+	&:focus-visible {
+		outline: 2px solid var(--wp--preset--color--tertiary-dark);
+		outline-offset: 2px;
+	}
+}
+
+@mixin dki-button--primary {
+	@include dki-button;
+	background-color: var(--wp--preset--color--secondary);
+	color: var(--wp--preset--color--contrast);
+	box-shadow: var(--wp--preset--shadow--secondary-extra-small);
+
+	&:hover {
+		background-color: var(--wp--preset--color--secondary-hover);
+		color: var(--wp--preset--color--contrast);
+		box-shadow: var(--wp--preset--shadow--secondary-small);
+	}
+
+	&:active {
+		border: none;
+		border-color: unset;
+		background-color: var(--wp--preset--color--secondary-light);
+		box-shadow: var(--wp--preset--shadow--secondary-tiny);
+	}
+
+	&:focus-visible:not(:active) {
+		border: none;
+		outline: 2px solid var(--wp--preset--color--primary);
+		outline-offset: 2px;
+		box-shadow: var(--wp--preset--shadow--secondary-small);
+	}
+}
+
+@mixin dki-button--save {
+	@include dki-button;
+	background-color: var(--wp--preset--color--success);
+	color: var(--wp--preset--color--contrast);
+
+	&:hover {
+		background-color: var(--wp--preset--color--success-dark);
+		border-color: var(--wp--preset--color--success-dark);
+		color: var(--wp--preset--color--background);
+		box-shadow: var(--wp--preset--shadow--extra-small);
+	}
+
+	&:active {
+		background-color: var(--wp--preset--color--success-dark);
+		border-color: var(--wp--preset--color--success);
+		color: var(--wp--preset--color--background);
+		box-shadow: var(--wp--preset--shadow--tiny);
+	}
+
+	&:focus:not(:active),
+	&:focus-visible {
+		outline: 2px solid var(--wp--preset--color--success-dark);
+		outline-offset: 2px;
+	}
+}
+
+@mixin dki-button--error {
+	@include dki-button;
+	background-color: var(--wp--preset--color--background-alt);
+	color: var(--wp--preset--color--error);
+
+	&:hover {
+		background-color: var(--wp--preset--color--error);
+		border-color: var(--wp--preset--color--error);
+		color: var(--wp--preset--color--background);
+		box-shadow: var(--wp--preset--shadow--extra-small);
+	}
+
+	&:active,
+	&:focus {
+		background-color: var(--wp--preset--color--error-dark);
+		color: var(--wp--preset--color--background);
+		box-shadow: var(--wp--preset--shadow--tiny);
+	}
+
+	&:focus:not(:active),
+	&:focus-visible {
+		outline: 2px solid var(--wp--preset--color--error-dark);
+		outline-offset: 2px;
+	}
+}
+
+.wp-block-buttons .dki-button--primary,
+.wp-block-buttons .wp-block-button__link {
+	@include dki-button--primary;
+}
+
+.wp-block-buttons .dki-button--neutral {
+	@include dki-button--neutral;
+}
+
+.wp-block-buttons .dki-button--save {
+	@include dki-button--save;
+}
+
+.wp-block-buttons .dki-button--error {
+	@include dki-button--error;
+}

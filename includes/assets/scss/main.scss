@@ -14,11 +14,8 @@
 	font-size: 16px;
 
 	:where(.wp-element-button:focus, .wp-block-button__link:focus) {
-		background-color: var(--wp--preset--color--secondary);
-		border-color: var(--wp--preset--color--secondary);
-		color: var(--wp--preset--color--contrast);
-		outline-color: var(--wp--preset--color--primary);
-		outline-offset: 2px;
+		outline-color: unset;
+		outline-offset: unset;
 	}
 }
 
