@@ -28,13 +28,14 @@ $copy_icon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" vie
 			>
 				<?php echo wp_kses_post($content); ?>
 			</div>
-			<button 
+			<button
 				type="button"
 				class="copy-field-button"
 				data-copy-target="#<?php echo esc_attr($block_id); ?>"
 				data-copy-text="<?php echo esc_attr($copy_button_text); ?>"
 				data-copied-text="<?php echo esc_attr(__('Kopiert!', 'copy-field')); ?>"
 				data-error-text="<?php echo esc_attr(__('Fehler beim Kopieren', 'copy-field')); ?>"
+				title="In die Zwischenablage kopieren"
 				<?php echo empty($content) ? 'disabled' : ''; ?>
 			>
 				<?php echo $copy_icon; ?>
@@ -49,13 +50,14 @@ $copy_icon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" vie
 				</label>
 			<?php endif; ?>
 			
-			<button 
+			<button
 				type="button"
 				class="copy-field-button"
 				data-copy-target="#<?php echo esc_attr($block_id); ?>"
 				data-copy-text="<?php echo esc_attr($copy_button_text); ?>"
 				data-copied-text="<?php echo esc_attr(__('Kopiert!', 'copy-field')); ?>"
 				data-error-text="<?php echo esc_attr(__('Fehler beim Kopieren', 'copy-field')); ?>"
+				title="In die Zwischenablage kopieren"
 				<?php echo empty($content) ? 'disabled' : ''; ?>
 			>
 				<?php echo $copy_icon; ?>

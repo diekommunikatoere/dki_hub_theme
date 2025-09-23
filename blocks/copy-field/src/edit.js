@@ -240,7 +240,7 @@ export default function Edit({ attributes, setAttributes }) {
 				<div className="copy-field-wrapper">
 					<div className="copy-field-content-wrapper">
 						{renderContentEditor()}
-						<Button isPrimary className="copy-field-button" disabled>
+						<Button isPrimary className="copy-field-button" disabled title="In die Zwischenablage kopieren">
 							{copyButtonText || "Kopieren"}
 						</Button>
 					</div>
@@ -249,7 +249,7 @@ export default function Edit({ attributes, setAttributes }) {
 				<div className="copy-field-wrapper">
 					<div className="copy-field-header">
 						{label && <label className="copy-field-label">{label}</label>}
-						<Button isPrimary className="copy-field-button" disabled>
+						<Button isPrimary className="copy-field-button" disabled title="In die Zwischenablage kopieren">
 							{copyButtonText || "Kopieren"}
 						</Button>
 					</div>
