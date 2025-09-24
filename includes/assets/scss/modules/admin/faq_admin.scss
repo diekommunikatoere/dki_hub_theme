@@ -27,7 +27,7 @@
 .section-item:hover,
 .faq-item:hover {
 	border-color: var(--wp--preset--color--tertiary);
-	box-shadow: 0 2px 5px color(0 0 0 / 10%);
+	box-shadow: 0 2px 5px color-mix(in srgb, 0 0 0 10%, transparent);
 }
 
 .section-header {

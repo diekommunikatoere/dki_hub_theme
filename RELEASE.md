@@ -78,12 +78,6 @@ Files and directories listed in [`.releaseignore`](.releaseignore) are automatic
 - **Contents**: ZIP file ready for WordPress installation
 - **Retention**: 30 days
 
-### GitHub Release (Optional)
-
-- **Tag**: As specified in workflow input
-- **Assets**: Theme ZIP file
-- **Description**: Auto-generated with block list and installation instructions
-
 ## Local Testing
 
 You can test the release build locally before triggering the workflow:
