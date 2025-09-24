@@ -1,4 +1,4 @@
-@use "../config/_variables.scss" as *;
+@use "../config/variables" as *;
 
 main:has(#login-form) {
 	height: 100vh;
@@ -13,7 +13,7 @@ main:has(#login-form) {
 	.advgb-login-form-wrapper {
 		border: 1px solid var(--wp--preset--color--tertiary-light);
 		border-radius: 12px;
-		box-shadow: $boxShadow-regular;
+		box-shadow: $dki--box-shadow--regular;
 
 		form.advgb-form-login {
 			/* Inner Wrapper */
@@ -53,8 +53,7 @@ main:has(#login-form) {
 						transition: border-color 0.1s;
 
 						/* Input Field Icon */
-						span.advgb-lores-input-icon {
-						}
+						// span.advgb-lores-input-icon {}
 
 						/* Input Field */
 						input {
@@ -65,17 +64,26 @@ main:has(#login-form) {
 					}
 
 					/* User Field */
-					&.advgb-login-user {
-					}
+					// &.advgb-login-user {}
 
 					/* Password Field */
-					&.advgb-login-password {
-					}
+					// &.advgb-login-password {}
 
 					/* Remember Me Checkbox & Submit Button */
 					&.advgb-lores-submit-wrapper {
 						/* Remember Me Label */
 						label.remember-me-label {
+							/* Remember Me Container */
+							.remember-me-switch {
+								/* Checkbox */
+								&::before {
+									border-radius: 6px;
+								}
+
+								/* Text */
+								// span {}
+							}
+
 							/* Checkbox Field - invisible */
 							input.advgb-lores-checkbox {
 								&:checked + .remember-me-switch::before {
@@ -84,42 +92,34 @@ main:has(#login-form) {
 									border-color: var(--wp--preset--color--secondary);
 								}
 							}
-
-							/* Remember Me Container */
-							.remember-me-switch {
-								/* Checkbox */
-								&::before {
-									border-radius: 6px;
-								}
-								/* Text */
-								span {
-								}
-							}
 						}
 
-						/* Submit Button Wrapper*/
+						/* Submit Button Wrapper */
 						.advgb-login-submit {
 							/* Submit Button */
 							button {
 								background-color: var(--wp--preset--color--secondary);
 								border-radius: 6px;
 								color: var(--wp--preset--color--contrast);
-								font-family: $font-primary;
+								font-family: $dki--font--primary;
 								font-size: 1rem;
 								font-weight: 600;
 								padding: 0.5rem 2rem;
 								cursor: pointer;
-								box-shadow: $boxShadow-gelb-extraSmall;
-								transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+								box-shadow: $dki--box-shadow--gelb-extra-small;
+								transition:
+									background-color 0.2s,
+									color 0.2s,
+									box-shadow 0.2s;
 
 								&:hover {
 									background-color: var(--wp--preset--color--secondary-hover);
-									box-shadow: $boxShadow-gelb-small;
+									box-shadow: $dki--box-shadow--gelb-small;
 								}
 
 								&:active {
 									background-color: var(--wp--preset--color--secondary-hover);
-									box-shadow: $boxShadow-gelb-tiny;
+									box-shadow: $dki--box-shadow--gelb-tiny;
 								}
 							}
 						}
@@ -128,9 +128,10 @@ main:has(#login-form) {
 					&.advgb-lost-password-field {
 						.advgb-lost-password {
 							a.advgb-lost-password {
-								color: $color-schwarz;
+								color: $dki--color--schwarz;
 								font-size: 0.875rem;
 								text-decoration: none;
+
 								&:hover {
 									text-decoration: underline;
 								}

@@ -51,6 +51,14 @@
 			flex-shrink: 0;
 		}
 
+		&:disabled {
+			background-color: var(--wp--preset--color--tertiary-light);
+			color: var(--wp--preset--color--tertiary);
+			box-shadow: none;
+			cursor: not-allowed;
+			transform: none;
+		}
+
 		&:hover:not(:disabled) {
 			background-color: var(--wp--preset--color--secondary-hover);
 			box-shadow: var(--wp--preset--shadow--secondary-small);
@@ -64,14 +72,6 @@
 		&:focus:not(:disabled) {
 			outline: 2px solid var(--wp--preset--color--primary);
 			outline-offset: 2px;
-		}
-
-		&:disabled {
-			background-color: var(--wp--preset--color--tertiary-light);
-			color: var(--wp--preset--color--tertiary);
-			box-shadow: none;
-			cursor: not-allowed;
-			transform: none;
 		}
 
 		&.copied {
@@ -115,7 +115,7 @@
 		.copy-field-code-block {
 			width: 100%;
 			max-width: 100%;
-			font-family: "Monaco", "Consolas", "Courier New", monospace;
+			font-family: Monaco, Consolas, "Courier New", monospace;
 			font-size: 0.875rem;
 			line-height: 1.5;
 			border-radius: 0;
@@ -170,7 +170,7 @@
 		}
 
 		code {
-			font-family: "Monaco", "Consolas", "Courier New", monospace;
+			font-family: Monaco, Consolas, "Courier New", monospace;
 			font-size: 0.875rem;
 			background: transparent;
 			padding: 0;

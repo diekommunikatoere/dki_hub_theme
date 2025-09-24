@@ -2,12 +2,13 @@
 
 .section-accordion {
 	@include card;
+
 	position: relative;
-	transition: all var(--dki-transition-normal);
+	transition: all var(--dki--transition--normal);
 
 	&--dragging {
 		opacity: 0.6;
-		box-shadow: var(--dki-shadow-regular);
+		box-shadow: var(--dki--shadow--regular);
 	}
 
 	&--drop-target-top::before {
@@ -49,8 +50,9 @@
 
 	&__drag-handle {
 		@include drag-handle;
-		padding: var(--dki-spacing-xs);
-		border-radius: var(--dki-radius-sm);
+
+		padding: var(--dki--spacing--xs);
+		border-radius: var(--dki--radius--sm);
 
 		&:hover {
 			background: var(--wp--preset--color--tertiary-light);
@@ -60,10 +62,10 @@
 	&__toggle {
 		background: none;
 		border: none;
-		padding: var(--dki-spacing-xs);
-		border-radius: var(--dki-radius-sm);
+		padding: var(--dki--spacing--xs);
+		border-radius: var(--dki--radius--sm);
 		cursor: pointer;
-		transition: all var(--dki-transition-fast);
+		transition: all var(--dki--transition--fast);
 
 		&:hover {
 			background: var(--wp--preset--color--primary-extra-light);
@@ -71,7 +73,7 @@
 
 		.dashicons {
 			color: var(--wp--preset--color--primary);
-			transition: transform var(--dki-transition-fast);
+			transition: transform var(--dki--transition--fast);
 		}
 	}
 
@@ -83,10 +85,10 @@
 	}
 
 	&__title {
-		font-family: var(--dki-font-heading);
+		font-family: var(--dki--font--heading);
 		font-weight: 600;
 		color: var(--wp--preset--color--contrast);
-		margin: 0 0 var(--dki-spacing-xs);
+		margin: 0 0 var(--dki--spacing--xs);
 		text-transform: uppercase;
 		letter-spacing: 0.03em;
 		cursor: pointer;
@@ -94,12 +96,12 @@
 
 	&__title-input {
 		width: 100%;
-		font-family: var(--dki-font-heading);
+		font-family: var(--dki--font--heading);
 		font-weight: 400;
 		font-size: 1.2em;
-		padding: var(--dki-spacing-xs) var(--dki-spacing-sm);
+		padding: var(--dki--spacing--xs) var(--dki--spacing--sm);
 		border: 2px solid var(--wp--preset--color--primary);
-		border-radius: var(--dki-radius-sm);
+		border-radius: var(--dki--radius--sm);
 		background: var(--wp--preset--color--background);
 		color: var(--wp--preset--color--contrast);
 
@@ -111,7 +113,7 @@
 
 	&__meta {
 		display: flex;
-		gap: var(--dki-spacing-md);
+		gap: var(--dki--spacing--md);
 		font-size: 1em;
 		line-height: 1;
 		color: var(--wp--preset--color--tertiary-dark);
@@ -123,11 +125,13 @@
 
 	&__actions {
 		@include action-buttons;
+
 		margin-left: auto;
 
 		button {
 			@include action-button;
 			@include action-button-neutral;
+
 			font-size: 0.9em;
 			padding: 0.4rem 1.2rem;
 
@@ -146,9 +150,9 @@
 	}
 
 	&__faq-list {
-		padding: var(--dki-spacing-lg);
+		padding: var(--dki--spacing--lg);
 		min-height: 100px;
-		transition: background-color var(--dki-transition-fast);
+		transition: background-color var(--dki--transition--fast);
 
 		&--drag-over {
 			background: var(--wp--preset--color--secondary-extra-light);
@@ -157,7 +161,7 @@
 
 	&__empty-state {
 		text-align: center;
-		padding: var(--dki-spacing-lg);
+		padding: var(--dki--spacing--lg);
 		color: var(--wp--preset--color--tertiary, #92907b);
 		font-style: italic;
 
@@ -167,18 +171,19 @@
 	}
 
 	&__footer {
-		padding: var(--dki-spacing-md) var(--dki-spacing-lg);
+		padding: var(--dki--spacing--md) var(--dki--spacing--lg);
 		border-top: 1px solid var(--wp--preset--color--tertiary-light);
 		background: var(--wp--preset--color--background-alt);
 
 		.button {
 			@include action-button;
 			@include action-button-secondary;
+
 			font-size: 1em;
 			padding: 0.5rem 1.5rem;
 
 			.dashicons {
-				margin-right: var(--dki-spacing-xs);
+				margin-right: var(--dki--spacing--xs);
 				font-size: 1.5em;
 			}
 		}

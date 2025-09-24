@@ -10,7 +10,7 @@
 	align-items: stretch;
 	justify-content: center;
 	background-color: var(--wp--preset--color--background-alt);
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
 	z-index: 10;
 
 	.header-navigation {
@@ -40,6 +40,7 @@
 			width: 48px;
 		}
 	}
+
 	.header-navigation-preview {
 		display: flex;
 		align-items: center;

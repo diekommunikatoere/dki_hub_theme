@@ -5,7 +5,7 @@
 **Template blocks to copy from:**
 
 - Use [`blocks/login-form/`](blocks/login-form/) as primary template
-- Alternative: [`blocks/profile-sidebar-nav/`](blocks/profile-sidebar-nav/)
+- Alternative: [`blocks/header-navigation/`](blocks/header-navigation/)
 - For navigation blocks: [`blocks/header-navigation/`](blocks/header-navigation/) – includes WP menu selector + profile dropdown
 
 **Information needed:**
@@ -108,15 +108,15 @@ npm run start
 
 **Source files:**
 
-- [`includes/scss/main.scss`](includes/scss/main.scss:1) - Main stylesheet
-- [`includes/scss/config/`](includes/scss/config/_variables.scss:1) - Configuration files
-- [`includes/scss/modules/`](includes/scss/modules/header.scss:1) - Component modules
+- [`includes/assets/scss/main.scss`](includes/assets/scss/main.scss:1) - Main stylesheet
+- [`includes/assets/scss/config/`](includes/assets/scss/config/_variables.scss:1) - Configuration files
+- [`includes/assets/scss/modules/`](includes/assets/scss/modules/header.scss:1) - Component modules
 
 **Steps:**
 
-1. Modify SCSS files in `includes/scss/`
+1. Modify SCSS files in `includes/assets/scss/`
 2. Compile SCSS to CSS (compilation method depends on project setup)
-3. Verify compiled CSS in [`includes/css/`](includes/css/main.css:1)
+3. Verify compiled CSS in [`includes/assets/css/`](includes/assets/css/main.css:1)
 4. Test styles in WordPress frontend
 5. Check for any style conflicts with blocks
 
@@ -135,8 +135,8 @@ npm run start
 
 **Files to modify:**
 
-- Admin: [`includes/js/admin-faq-reorder.js`](includes/js/admin-faq-reorder.js:1) - Drag-drop JS
-- PHP: [`includes/utils/register-cpt-faq.php`](includes/utils/register-cpt-faq.php:1) - Meta registration and metabox
+- Admin: [`includes/assets/js/admin/faq-reorder.js`](includes/assets/js/admin/faq-reorder.js:1) - Drag-drop JS
+- PHP: [`includes/features/faq/register-cpt-faq.php`](includes/features/faq/register-cpt-faq.php:1) - Meta registration and metabox
 - Frontend: Block render queries
 
 **Steps:**

@@ -6,9 +6,11 @@
   margin: 0 auto;
   padding-top: 5%;
 }
+
 .profile-wrapper .profile-sidebar-wrapper {
   flex: 1;
 }
+
 .profile-wrapper .profile-sidebar-wrapper nav {
   display: flex;
   flex-direction: column;
@@ -17,9 +19,11 @@
   background-color: var(--wp--preset--color--background-alt);
   border-radius: 12px;
 }
+
 .profile-wrapper .profile-sidebar-wrapper nav li {
   list-style-type: none;
 }
+
 .profile-wrapper .profile-sidebar-wrapper nav li a {
   display: flex;
   flex-direction: row;
@@ -33,18 +37,21 @@
   text-decoration: none;
   transition: background 0.1s, color 0.1s;
 }
+
 .profile-wrapper .profile-sidebar-wrapper nav li a span {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 0.5rem;
 }
+
 .profile-wrapper .profile-sidebar-wrapper nav li a span svg {
   height: 1.2rem;
   width: 1.2rem;
   fill: var(--wp--preset--color--tertiary);
   transition: fill 0.1s;
 }
+
 .profile-wrapper .profile-sidebar-wrapper nav li a .notification-badge {
   display: block;
   pointer-events: none;
@@ -53,34 +60,40 @@
   border-radius: 100px;
   background-color: var(--wp--preset--color--primary);
 }
+
 .profile-wrapper .profile-sidebar-wrapper nav li a:hover {
   color: var(--wp--preset--color--primary-hover);
   background-color: var(--wp--preset--color--background);
 }
+
 .profile-wrapper .profile-sidebar-wrapper nav li a:hover svg {
   fill: var(--wp--preset--color--primary-hover);
 }
+
 .profile-wrapper .profile-sidebar-wrapper nav li a.active {
   color: var(--wp--preset--color--background);
   background-color: var(--wp--preset--color--primary);
 }
+
 .profile-wrapper .profile-sidebar-wrapper nav li a.active svg {
   fill: var(--wp--preset--color--background);
 }
+
 .profile-wrapper .profile-sidebar-wrapper nav li a.active .notification-badge {
   background-color: var(--wp--preset--color--background);
 }
+
 .profile-wrapper .profile-sidebar-wrapper nav li a.active:hover {
   color: var(--wp--preset--color--background);
   background-color: var(--wp--preset--color--primary-hover);
 }
+
 .profile-wrapper .profile-sidebar-wrapper nav span.divider {
   display: block;
   height: 2px;
   background-color: var(--wp--preset--color--background);
 }
+
 .profile-wrapper .profile-content-wrapper {
   flex: 3;
 }
-
-/*# sourceMappingURL=profile.css.map */

@@ -1,70 +1,69 @@
 // Colors from theme.json
 :root {
 	// Primary colors
-	--dki-primary: #db007a;
-	--dki-primary-hover: #f31b63;
-	--dki-primary-light: #f4bedc;
-	--dki-primary-extra-light: #ffe7f4;
-	--dki-primary-dark: #910854;
+	--dki--color--primary: #db007a;
+	--dki--color--primary-hover: #f31b63;
+	--dki--color--primary-light: #f4bedc;
+	--dki--color--primary-extra-light: #ffe7f4;
+	--dki--color--primary-dark: #910854;
 
 	// Secondary colors
-	--dki-secondary: #ffd640;
-	--dki-secondary-hover: #f7c200;
-	--dki-secondary-light: #f6e5b1;
-	--dki-secondary-extra-light: #fff5d5;
-	--dki-secondary-dark: #765f0a;
+	--dki--color--secondary: #ffd640;
+	--dki--color--secondary-hover: #f7c200;
+	--dki--color--secondary-light: #f6e5b1;
+	--dki--color--secondary-extra-light: #fff5d5;
+	--dki--color--secondary-dark: #765f0a;
 
 	// Tertiary colors
-	--dki-tertiary: #92907b;
-	--dki-tertiary-light: #d1d0c7;
-	--dki-tertiary-dark: #62604a;
+	--dki--color--tertiary: #92907b;
+	--dki--color--tertiary-light: #d1d0c7;
+	--dki--color--tertiary-dark: #62604a;
 
 	// Base colors
-	--dki-background: #ffffff;
-	--dki-background-alt: #f5f4f0;
-	--dki-contrast: #282616;
+	--dki--color--background: #fff;
+	--dki--color--background-alt: #f5f4f0;
+	--dki--color--contrast: #282616;
 
 	// Status colors
-	--dki-error: #f31b63;
-	--dki-error-light: #f4bedc;
-	--dki-error-extra-light: #ffe7f4;
-	--dki-error-dark: #910854;
-
-	--dki-success: #4ade80;
-	--dki-success-light: #b0f7c5;
-	--dki-success-extra-light: #e6ffed;
-	--dki-success-dark: #0e8c4a;
+	--dki--color--error: #f31b63;
+	--dki--color--error-light: #f4bedc;
+	--dki--color--error-extra-light: #ffe7f4;
+	--dki--color--error-dark: #910854;
+	--dki--color--success: #4ade80;
+	--dki--color--success-light: #b0f7c5;
+	--dki--color--success-extra-light: #e6ffed;
+	--dki--color--success-dark: #0e8c4a;
 
 	// Typography
-	--dki-font-heading: "Gibson", sans-serif;
-	--dki-font-body: "Gill Sans", sans-serif;
+	--dki--font--heading: "Gibson", sans-serif;
+	--dki--font--body: "Gill Sans", sans-serif;
 
 	// Spacing
-	--dki-spacing-xs: 0.25rem;
-	--dki-spacing-sm: 0.5rem;
-	--dki-spacing-md: 1rem;
-	--dki-spacing-lg: 1.5rem;
-	--dki-spacing-xl: 2rem;
+	--dki--spacing--xs: 0.25rem;
+	--dki--spacing--sm: 0.5rem;
+	--dki--spacing--md: 1rem;
+	--dki--spacing--lg: 1.5rem;
+	--dki--spacing--xl: 2rem;
 
 	// Shadows from theme.json
-	--dki-shadow-tiny: rgba(0, 0, 0, 0.16) 0px 1px 3px;
-	--dki-shadow-extra-small: rgba(0, 0, 0, 0.16) 0px 2px 6px, rgba(0, 0, 0, 0.1) 0px 1px 2px;
-	--dki-shadow-small: rgba(0, 0, 0, 0.16) 0px 4px 12px, rgba(0, 0, 0, 0.1) 0px 2px 6px;
-	--dki-shadow-regular: rgba(50, 50, 93, 0.16) 0px 13px 27px -5px, rgba(0, 0, 0, 0.23) 0px 8px 16px -8px;
+	--dki--shadow--tiny: rgb(0 0 0 / 16%) 0px 1px 3px;
+	--dki--shadow--extra-small: rgb(0 0 0 / 16%) 0px 2px 6px, rgb(0 0 0 / 10%) 0px 1px 2px;
+	--dki--shadow--small: rgb(0 0 0 / 16%) 0px 4px 12px, rgb(0 0 0 / 10%) 0px 2px 6px;
+	--dki--shadow--regular: rgb(50 50 93 / 16%) 0px 13px 27px -5px, rgb(0 0 0 / 23%) 0px 8px 16px -8px;
 
 	// Border radius
-	--dki-radius-sm: 4px;
-	--dki-radius-md: 6px;
-	--dki-radius-lg: 12px;
+	--dki--radius--sm: 4px;
+	--dki--radius--md: 6px;
+	--dki--radius--lg: 12px;
 
 	// Transitions
-	--dki-transition-fast: 0.15s ease-in-out;
-	--dki-transition-normal: 0.25s ease-in-out;
-	--dki-transition-slow: 0.35s ease-in-out;
+	--dki--transition--fast: 0.15s ease-in-out;
+	--dki--transition--normal: 0.25s ease-in-out;
+	--dki--transition--slow: 0.35s ease-in-out;
 
 	// Z-index
-	--dki-z-dropdown: 1000;
-	--dki-z-modal: 1050;
-	--dki-z-tooltip: 1100;
-	--dki-z-overlay: 1200;
+	--dki--z--dropdown: 1000;
+	--dki--z--modal: 1050;
+	--dki--z--tooltip: 1100;
+	--dki--z--overlay: 1200;
 }

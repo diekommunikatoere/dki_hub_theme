@@ -1,32 +1,58 @@
-/***/
+/**  */
+
 /*** ----- VARIABLES ----- ***/
-/***/
+
+/**  */
+
 /*** ----- Colors Default ----- ***/
-/***/
+
+/**  */
+
 /*** ----- Space ----- ***/
+
 /*** ----- Font Family ----- ***/
-/***/
+
+/**  */
+
 /*** ----- z-index ----- ***/
-/***/
+
+/**  */
+
 /*** ----- Breakpoints ----- ***/
-/***/
+
+/**  */
+
 /*** ----- Font Sizes ----- ***/
-/***/
+
+/**  */
+
 /*** ----- Line Heights ----- ***/
-/***/
+
+/**  */
+
 /*** ----- Border Radius ----- ***/
-/***/
+
+/**  */
+
 /*** ----- Box Shadows ----- ***/
-/***/
+
+/**  */
+
 /*** ----- Transitions ----- ***/
-/***/
+
+/**  */
+
 /*** ----- Easings ----- ***/
-/***/
+
+/**  */
+
 /*** ----- Animations ----- ***/
-/***/
+
+/**  */
 body > footer section {
   margin: 0 auto;
 }
+
 body > footer section.footer-content {
   font-size: clamp(0.75rem, 0.217vw + 0.701rem, 0.875rem);
   line-height: clamp(0.9rem, 0.109vw + 0.876rem, 0.963rem);
@@ -34,17 +60,18 @@ body > footer section.footer-content {
   color: #fff;
   padding: clamp(2rem, 3.478vw + 1.217rem, 4rem) clamp(1rem, 1.522vw + 0.658rem, 1.875rem);
 }
+
 body > footer section.footer-content a:not(.elementor-button) {
   color: #fff;
   text-decoration: underline dotted #fff;
   transition: all 0.2s;
 }
+
 body > footer section.footer-content a:not(.elementor-button):hover {
   color: #d1d0c7;
   text-decoration: underline solid #d1d0c7;
 }
+
 body > footer section.post-recommendations {
   padding: 0 clamp(1rem, 1.522vw + 0.658rem, 1.875rem);
 }
-
-/*# sourceMappingURL=footer.css.map */

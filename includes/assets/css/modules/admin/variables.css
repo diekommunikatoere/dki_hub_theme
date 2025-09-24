@@ -1,6 +1,6 @@
 :root {
 	/* Colors from theme.json palette */
-	--wp--preset--color--background: #ffffff;
+	--wp--preset--color--background: #fff;
 	--wp--preset--color--background-alt: #f5f4f0;
 	--wp--preset--color--contrast: #282616;
 	--wp--preset--color--primary: #db007a;
@@ -26,36 +26,36 @@
 	--wp--preset--color--success-dark: #0e8c4a;
 
 	/* Shadows from theme.json presets */
-	--wp--preset--shadow--tiny: rgba(0, 0, 0, 0.16) 0px 1px 3px;
-	--wp--preset--shadow--extra-small: rgba(0, 0, 0, 0.16) 0px 2px 6px, rgba(0, 0, 0, 0.1) 0px 1px 2px;
-	--wp--preset--shadow--small: rgba(0, 0, 0, 0.16) 0px 4px 12px, rgba(0, 0, 0, 0.1) 0px 2px 6px;
-	--wp--preset--shadow--regular: rgba(50, 50, 93, 0.16) 0px 13px 27px -5px, rgba(0, 0, 0, 0.23) 0px 8px 16px -8px;
-	--wp--preset--shadow--large: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.16) 0px 20px 60px -10px, rgba(0, 0, 0, 0.3) 0px 10px 30px -20px;
-	--wp--preset--shadow--huge: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.16) 0px 20px 80px -10px, rgba(0, 0, 0, 0.3) 0px 15px 40px -20px;
-	--wp--preset--shadow--primary-tiny: rgba(from var(--wp--preset--color--primary-dark) r g b / 0.25) 0px 1px 3px;
-	--wp--preset--shadow--primary-extra-small: rgba(from var(--wp--preset--color--primary) r g b / 0.4) 0px 2px 6px, rgba(from var(--wp--preset--color--primary-dark) r g b / 0.1) 0px 1px 2px;
-	--wp--preset--shadow--primary-small: rgba(from var(--wp--preset--color--primary) r g b / 0.4) 0px 4px 12px, rgba(from var(--wp--preset--color--primary-dark) r g b / 0.1) 0px 2px 6px;
-	--wp--preset--shadow--primary-regular: rgba(from var(--wp--preset--color--primary) r g b / 0.25) 0px 13px 27px -5px, rgba(from var(--wp--preset--color--primary-dark) r g b / 0.23) 0px 8px 16px -8px;
-	--wp--preset--shadow--primary-large: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(from var(--wp--preset--color--primary) r g b / 0.25) 0px 20px 60px -10px, rgba(from var(--wp--preset--color--primary-dark) r g b / 0.3) 0px 10px 30px -20px;
-	--wp--preset--shadow--primary-huge: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(from var(--wp--preset--color--primary) r g b / 0.25) 0 20px 80px -10px, rgba(from var(--wp--preset--color--primary-dark) r g b / 0.3) 0px 15px 40px -20px;
-	--wp--preset--shadow--secondary-tiny: rgba(from var(--wp--preset--color--secondary-dark) r g b / 0.25) 0px 1px 3px;
-	--wp--preset--shadow--secondary-extra-small: rgba(from var(--wp--preset--color--secondary) r g b / 0.4) 0px 2px 6px, rgba(from var(--wp--preset--color--secondary-dark) r g b / 0.1) 0px 1px 2px;
-	--wp--preset--shadow--secondary-small: rgba(from var(--wp--preset--color--secondary) r g b / 0.4) 0px 4px 12px, rgba(from var(--wp--preset--color--secondary-dark) r g b / 0.1) 0px 2px 6px;
-	--wp--preset--shadow--secondary-regular: rgba(from var(--wp--preset--color--secondary) r g b / 0.25) 0px 13px 27px -5px, rgba(from var(--wp--preset--color--secondary-dark) r g b / 0.23) 0px 8px 16px -8px;
-	--wp--preset--shadow--secondary-large: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(from var(--wp--preset--color--secondary) r g b / 0.25) 0px 20px 60px -10px, rgba(from var(--wp--preset--color--secondary-dark) r g b / 0.3) 0px 10px 30px -20px;
-	--wp--preset--shadow--secondary-huge: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(from var(--wp--preset--color--secondary) r g b / 0.25) 0 20px 80px -10 px, rgba(from var(--wp--preset--color--secondary-dark) r g b / 0.3) 0px 15px 40px -20px;
-	--wp--preset--shadow--tertiary-tiny: rgba(from var(--wp--preset--color--tertiary-dark) r g b / 0.25) 0px 1px 3px;
-	--wp--preset--shadow--tertiary-extra-small: rgba(from var(--wp--preset--color--tertiary) r g b / 0.4) 0px 2px 6px, rgba(from var(--wp--preset--color--tertiary-dark) r g b / 0.1) 0px 1px 2px;
-	--wp--preset--shadow--tertiary-small: rgba(from var(--wp--preset--color--tertiary) r g b / 0.4) 0px 4px 12px, rgba(from var(--wp--preset--color--tertiary-dark) r g b / 0.1) 0px 2px 6px;
-	--wp--preset--shadow--tertiary-regular: rgba(from var(--wp--preset--color--tertiary) r g b / 0.25) 0px 13px 27px -5px, rgba(from var(--wp--preset--color--tertiary-dark) r g b / 0.23) 0px 8px 16px -8px;
-	--wp--preset--shadow--tertiary-large: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(from var(--wp--preset--color--tertiary) r g b / 0.25) 0px 20px 60px -10px, rgba(from var(--wp--preset--color--tertiary-dark) r g b / 0.3) 0px 10px 30 px -20px;
-	--wp--preset--shadow--tertiary-huge: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(from var(--wp--preset--color--tertiary) r g b / 0.25) 0 20px 80px -10px, rgba(from var(--wp--preset--color--tertiary-dark) r g b / 0.3) 0px 15px 40px -20px;
+	--wp--preset--shadow--tiny: rgb(0 0 0 / 16%) 0px 1px 3px;
+	--wp--preset--shadow--extra-small: rgb(0 0 0 / 16%) 0px 2px 6px, rgb(0 0 0 / 10%) 0px 1px 2px;
+	--wp--preset--shadow--small: rgb(0 0 0 / 16%) 0px 4px 12px, rgb(0 0 0 / 10%) 0px 2px 6px;
+	--wp--preset--shadow--regular: rgb(50 50 93 / 16%) 0px 13px 27px -5px, rgb(0 0 0 / 23%) 0px 8px 16px -8px;
+	--wp--preset--shadow--large: rgb(255 255 255 / 10%) 0px 1px 1px 0px inset, rgb(50 50 93 / 16%) 0px 20px 60px -10px, rgb(0 0 0 / 30%) 0px 10px 30px -20px;
+	--wp--preset--shadow--huge: rgb(255 255 255 / 10%) 0px 1px 1px 0px inset, rgb(50 50 93 / 16%) 0px 20px 80px -10px, rgb(0 0 0 / 30%) 0px 15px 40px -20px;
+	--wp--preset--shadow--primary-tiny: rgb(from var(--wp--preset--color--primary-dark) r g b / 25%) 0px 1px 3px;
+	--wp--preset--shadow--primary-extra-small: rgb(from var(--wp--preset--color--primary) r g b / 40%) 0px 2px 6px, rgb(from var(--wp--preset--color--primary-dark) r g b / 10%) 0px 1px 2px;
+	--wp--preset--shadow--primary-small: rgb(from var(--wp--preset--color--primary) r g b / 40%) 0px 4px 12px, rgb(from var(--wp--preset--color--primary-dark) r g b / 10%) 0px 2px 6px;
+	--wp--preset--shadow--primary-regular: rgb(from var(--wp--preset--color--primary) r g b / 25%) 0px 13px 27px -5px, rgb(from var(--wp--preset--color--primary-dark) r g b / 23%) 0px 8px 16px -8px;
+	--wp--preset--shadow--primary-large: rgb(255 255 255 / 10%) 0px 1px 1px 0px inset, rgb(from var(--wp--preset--color--primary) r g b / 25%) 0px 20px 60px -10px, rgb(from var(--wp--preset--color--primary-dark) r g b / 30%) 0px 10px 30px -20px;
+	--wp--preset--shadow--primary-huge: rgb(255 255 255 / 10%) 0px 1px 1px 0px inset, rgb(from var(--wp--preset--color--primary) r g b / 25%) 0 20px 80px -10px, rgb(from var(--wp--preset--color--primary-dark) r g b / 30%) 0px 15px 40px -20px;
+	--wp--preset--shadow--secondary-tiny: rgb(from var(--wp--preset--color--secondary-dark) r g b / 25%) 0px 1px 3px;
+	--wp--preset--shadow--secondary-extra-small: rgb(from var(--wp--preset--color--secondary) r g b / 40%) 0px 2px 6px, rgb(from var(--wp--preset--color--secondary-dark) r g b / 10%) 0px 1px 2px;
+	--wp--preset--shadow--secondary-small: rgb(from var(--wp--preset--color--secondary) r g b / 40%) 0px 4px 12px, rgb(from var(--wp--preset--color--secondary-dark) r g b / 10%) 0px 2px 6px;
+	--wp--preset--shadow--secondary-regular: rgb(from var(--wp--preset--color--secondary) r g b / 25%) 0px 13px 27px -5px, rgb(from var(--wp--preset--color--secondary-dark) r g b / 23%) 0px 8px 16px -8px;
+	--wp--preset--shadow--secondary-large: rgb(255 255 255 / 10%) 0px 1px 1px 0px inset, rgb(from var(--wp--preset--color--secondary) r g b / 25%) 0px 20px 60px -10px, rgb(from var(--wp--preset--color--secondary-dark) r g b / 30%) 0px 10px 30px -20px;
+	--wp--preset--shadow--secondary-huge: rgb(255 255 255 / 10%) 0px 1px 1px 0px inset, rgb(from var(--wp--preset--color--secondary) r g b / 25%) 0 20px 80px -10 px, rgb(from var(--wp--preset--color--secondary-dark) r g b / 30%) 0px 15px 40px -20px;
+	--wp--preset--shadow--tertiary-tiny: rgb(from var(--wp--preset--color--tertiary-dark) r g b / 25%) 0px 1px 3px;
+	--wp--preset--shadow--tertiary-extra-small: rgb(from var(--wp--preset--color--tertiary) r g b / 40%) 0px 2px 6px, rgb(from var(--wp--preset--color--tertiary-dark) r g b / 10%) 0px 1px 2px;
+	--wp--preset--shadow--tertiary-small: rgb(from var(--wp--preset--color--tertiary) r g b / 40%) 0px 4px 12px, rgb(from var(--wp--preset--color--tertiary-dark) r g b / 10%) 0px 2px 6px;
+	--wp--preset--shadow--tertiary-regular: rgb(from var(--wp--preset--color--tertiary) r g b / 25%) 0px 13px 27px -5px, rgb(from var(--wp--preset--color--tertiary-dark) r g b / 23%) 0px 8px 16px -8px;
+	--wp--preset--shadow--tertiary-large: rgb(255 255 255 / 10%) 0px 1px 1px 0px inset, rgb(from var(--wp--preset--color--tertiary) r g b / 25%) 0px 20px 60px -10px, rgb(from var(--wp--preset--color--tertiary-dark) r g b / 30%) 0px 10px 30 px -20px;
+	--wp--preset--shadow--tertiary-huge: rgb(255 255 255 / 10%) 0px 1px 1px 0px inset, rgb(from var(--wp--preset--color--tertiary) r g b / 25%) 0 20px 80px -10px, rgb(from var(--wp--preset--color--tertiary-dark) r g b / 30%) 0px 15px 40px -20px;
 
 	/* Font families from theme.json */
 	--wp--preset--font-family--body: "Gill Sans", sans-serif;
 	--wp--preset--font-family--heading: "Gibson", sans-serif;
-	--wp--preset--font-family--system-sans-serif: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
-	--wp--preset--font-family--system-monospace: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+	--wp--preset--font-family--system-sans-serif: -apple-system, blinkmacsystemfont, avenir next, avenir, segoe ui, helvetica neue, helvetica, cantarell, ubuntu, roboto, noto, arial, sans-serif;
+	--wp--preset--font-family--system-monospace: menlo, monaco, consolas, liberation mono, courier new, monospace;
 
 	/* Font sizes from theme.json */
 	--wp--preset--font-size--small: 0.9rem;
@@ -65,6 +65,6 @@
 	--wp--preset--font-size--xx-large: 3.27rem;
 
 	/* Custom fonts */
-	--wp--custom--font--primary: "Gibson", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-	--wp--custom--font--secondary: "Gill Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	--wp--custom--font--primary: "Gibson", system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+	--wp--custom--font--secondary: "Gill Sans", system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
 }

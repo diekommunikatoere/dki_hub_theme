@@ -10,7 +10,7 @@
 
 ## Key Features
 
-- **Custom Gutenberg Blocks**: 9 specialized blocks including login-form, profile-sidebar-nav, edit-docs-page, revisions-profile-overview, schulungen-read-status-widget, copy-field, and more
+- **Custom Gutenberg Blocks**: 5 specialized blocks (copy-field, faq-display, faq-search, header-navigation, login-form)
 - **Modular Architecture**: Each block has its own package.json and build process
 - **Comprehensive Styling**: SCSS-based modular styles with compiled CSS output
 - **PHP Templates**: Server-side rendering support where needed

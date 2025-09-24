@@ -31,6 +31,7 @@
 
 @mixin dki-button--neutral {
 	@include dki-button;
+
 	background-color: var(--wp--preset--color--background-alt);
 	color: var(--wp--preset--color--contrast);
 
@@ -61,6 +62,7 @@
 
 @mixin dki-button--primary {
 	@include dki-button;
+
 	background-color: var(--wp--preset--color--secondary);
 	color: var(--wp--preset--color--contrast);
 	box-shadow: var(--wp--preset--shadow--secondary-extra-small);
@@ -90,6 +92,7 @@
 
 @mixin dki-button--save {
 	@include dki-button;
+
 	background-color: var(--wp--preset--color--success);
 	color: var(--wp--preset--color--contrast);
 
@@ -116,6 +119,7 @@
 
 @mixin dki-button--error {
 	@include dki-button;
+
 	background-color: var(--wp--preset--color--background-alt);
 	color: var(--wp--preset--color--error);
 

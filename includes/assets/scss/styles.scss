@@ -2,25 +2,19 @@
 @use "config/normalize.css";
 
 /* General Styles */
-@use "./main.scss";
-
-/* Typography Styles */
-@use "modules/typography.scss";
+@use "./main";
 
 /* Button Styles */
-@use "modules/buttons.scss";
+@use "modules/buttons";
 
 /* Header Styles */
-@use "modules/header.scss";
-
-/* Footer Styles */
-@use "modules/footer.scss";
+@use "modules/header";
 
 /* BetterDocs Styles */
-@use "modules/betterdocs.scss";
+@use "modules/betterdocs";
 
 /* Profile Styles */
-@use "modules/profile.scss";
+@use "modules/profile";
 
 /* Login Styles */
-@use "modules/login.scss";
+@use "modules/login";

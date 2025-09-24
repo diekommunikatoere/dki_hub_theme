@@ -69,8 +69,7 @@ main:has(.login-form) {
 						transition: border-color 0.1s;
 
 						/* Input Field Icon */
-						span.advgb-lores-input-icon {
-						}
+						// span.advgb-lores-input-icon {}
 
 						/* Input Field */
 						input {
@@ -81,12 +80,10 @@ main:has(.login-form) {
 					}
 
 					/* User Field */
-					&.advgb-login-user {
-					}
+					// &.advgb-login-user {}
 
 					/* Password Field */
-					&.advgb-login-password {
-					}
+					// &.advgb-login-password {}
 
 					/* Remember Me Checkbox & Submit Button */
 					&.advgb-lores-submit-wrapper {
@@ -107,13 +104,13 @@ main:has(.login-form) {
 								&::before {
 									border-radius: 6px;
 								}
+
 								/* Text */
-								span {
-								}
+								// span {}
 							}
 						}
 
-						/* Submit Button Wrapper*/
+						/* Submit Button Wrapper */
 						.advgb-login-submit {
 							/* Submit Button */
 							button {
@@ -150,6 +147,7 @@ main:has(.login-form) {
 								color: var(--wp--preset--color--contrast);
 								font-size: 0.875rem;
 								text-decoration: none;
+
 								&:hover {
 									text-decoration: underline;
 								}

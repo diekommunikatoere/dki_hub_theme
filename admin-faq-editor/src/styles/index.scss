@@ -4,13 +4,13 @@
 @use "mixins" as *;
 
 // Import component styles
-@use "../components/FAQEditor.scss";
-@use "../components/SectionAccordion.scss";
-@use "../components/FAQItemAccordion.scss";
-@use "../components/CreateSectionForm.scss";
-@use "../components/CreateFAQForm.scss";
-@use "../components/WYSIWYGEditor.scss";
-@use "../components/LoadingSpinner.scss";
+@use "../components/FAQEditor";
+@use "../components/SectionAccordion";
+@use "../components/FAQItemAccordion";
+@use "../components/CreateSectionForm";
+@use "../components/CreateFAQForm";
+@use "../components/WYSIWYGEditor";
+@use "../components/LoadingSpinner";
 
 // Global FAQ Editor styles
 .faq-editor {
@@ -41,6 +41,7 @@
 		0% {
 			transform: rotate(0deg);
 		}
+
 		100% {
 			transform: rotate(360deg);
 		}
@@ -77,7 +78,7 @@
 		padding: 12px;
 		border-left: 4px solid;
 		background: #fff;
-		box-shadow: var(--wp--preset--shadow--tiny, rgba(0, 0, 0, 0.16) 0px 1px 3px);
+		box-shadow: var(--wp--preset--shadow--tiny, rgb(0 0 0 / 16%) 0 1px 3px);
 
 		&.notice-error {
 			border-left-color: var(--wp--preset--color--error, #f31b63);

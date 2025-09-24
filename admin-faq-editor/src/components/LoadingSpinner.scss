@@ -3,11 +3,11 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: var(--dki-spacing-xl);
+	padding: var(--dki--spacing--xl);
 	text-align: center;
 
 	&--small {
-		padding: var(--dki-spacing-md);
+		padding: var(--dki--spacing--md);
 
 		.spinner {
 			width: 16px;
@@ -20,7 +20,7 @@
 	}
 
 	&--medium {
-		padding: var(--dki-spacing-lg);
+		padding: var(--dki--spacing--lg);
 
 		.spinner {
 			width: 20px;
@@ -29,7 +29,7 @@
 	}
 
 	&--large {
-		padding: var(--dki-spacing-xl);
+		padding: var(--dki--spacing--xl);
 
 		.spinner {
 			width: 32px;
@@ -42,7 +42,7 @@
 	}
 
 	.spinner {
-		margin-bottom: var(--dki-spacing-md);
+		margin-bottom: var(--dki--spacing--md);
 	}
 
 	&__message {

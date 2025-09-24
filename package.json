@@ -9,6 +9,9 @@
 		"start": "npm run start:blocks & npm run start:admin"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.24.0"
+		"@wordpress/scripts": "^30.24.0",
+		"stylelint": "^16.24.0",
+		"stylelint-config-standard": "^39.0.0",
+		"stylelint-config-standard-scss": "^16.0.0"
 	}
 }

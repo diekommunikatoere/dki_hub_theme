@@ -103,10 +103,11 @@
 			.copy-field-code-editor {
 				flex: 1;
 				min-height: 6rem;
-				font-family: "Monaco", "Consolas", "Courier New", monospace;
+				font-family: Monaco, Consolas, "Courier New", monospace;
 				font-size: 0.875rem;
 				line-height: 1.5;
 				overflow-x: hidden;
+				background-color: var(--wp--preset--color--base, #fff);
 
 				.cm-editor {
 					height: 100%;
@@ -115,8 +116,6 @@
 						overflow: auto;
 					}
 				}
-				overflow: hidden;
-				background-color: var(--wp--preset--color--base, #fff);
 			}
 		}
 

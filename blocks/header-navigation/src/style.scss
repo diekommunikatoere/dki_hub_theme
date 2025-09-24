@@ -11,7 +11,7 @@ header:has(.header-navigation-wrapper) {
 		width: 100%;
 		background-color: var(--wp--preset--color--background-alt);
 		border-bottom: 1px solid var(--wp--preset--color--border);
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
 		position: relative;
 
 		&-inner {
@@ -142,6 +142,7 @@ header:has(.header-navigation-wrapper) {
 		.nav-item-avatar {
 			display: block;
 			border-radius: 100px;
+
 			// click through the avatar
 			pointer-events: none;
 		}
