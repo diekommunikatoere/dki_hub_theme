@@ -172,7 +172,7 @@
 					background-color: var(--wp--preset--color--background-alt);
 					border: 1px solid var(--wp--preset--color--tertiary-light);
 					border-radius: 12px;
-					box-shadow: $dki--box-shadow--regular;
+					box-shadow: $dki--box-shadow--extra-small;
 					overflow: hidden;
 
 					&[data-id="42"] {
@@ -189,9 +189,10 @@
 						.betterdocs-category-header {
 							/* Single Category Header Section – Inner */
 							flex-grow: unset;
+							background-color: var(--wp--preset--color--background-alt);
 
 							.betterdocs-category-header-inner {
-								border-bottom: 1px solid var(--wp--preset--color--tertiary-light);
+								border-bottom: unset;
 							}
 						}
 

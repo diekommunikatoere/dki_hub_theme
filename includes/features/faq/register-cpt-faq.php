@@ -42,8 +42,8 @@ function dki_wiki_register_faqs_cpt() {
         'public'             => true,
         'publicly_queryable' => true,
         'show_ui'            => true,
-        'show_in_menu'       => true,
-        'show_in_admin_bar'   => true,
+        'show_in_menu'       => false,
+        'show_in_admin_bar'   => false,
         'query_var'          => true,
         'rewrite'            => array( 'slug' => 'faq' ),
         'capability_type'    => 'post',
@@ -51,7 +51,6 @@ function dki_wiki_register_faqs_cpt() {
         'menu_position'      => 5,
         'supports'           => array( 'title', 'editor', 'custom-fields', 'thumbnail' ),
         'show_in_rest'       => true,
-        'menu_icon'          => 'dashicons-editor-help',
     );
 
     register_post_type( 'faq', $faq_args );

@@ -13,9 +13,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Replace the existing FAQ reorder page with the new React-based editor
  */
-function dki_wiki_faq_editor_admin_page() {
+function dki_wiki_create_faq_admin_menu() {
+    // Add top-level FAQ menu with icon
+    add_menu_page(
+        __( 'FAQs', 'dki-wiki' ),  // Page title
+        __( 'FAQs', 'dki-wiki' ),  // Menu title
+        'edit_posts',  // Capability
+        'faq-admin',  // Menu slug (parent)
+        '__return_null',  // Blank callback for parent
+        'dashicons-editor-help',  // Icon
+        5  // Position
+    );
+
+    // Add the only submenu item: FAQ Editor
     add_submenu_page(
-        'edit.php?post_type=faq',  // Parent slug
+        'faq-admin',  // Parent slug
         __( 'FAQ Editor', 'dki-wiki' ),  // Page title
         __( 'FAQ Editor', 'dki-wiki' ),  // Menu title
         'edit_posts',  // Capability
@@ -23,14 +35,47 @@ function dki_wiki_faq_editor_admin_page() {
         'dki_wiki_faq_editor_page_callback'  // Callback
     );
 }
-add_action( 'admin_menu', 'dki_wiki_faq_editor_admin_page' );
+add_action( 'admin_menu', 'dki_wiki_create_faq_admin_menu', 10 );
+
+/**
+ * Redirect top-level FAQ menu click to FAQ Editor
+ */
+function dki_wiki_redirect_faq_parent() {
+    $screen = get_current_screen();
+    if ( is_admin() && ( isset( $_GET['page'] ) && $_GET['page'] === 'faq-admin' ) ) {
+        wp_redirect( admin_url( 'admin.php?page=faq-editor' ) );
+        exit;
+    }
+}
+add_action( 'admin_init', 'dki_wiki_redirect_faq_parent' );
+
+/**
+ * Force parent and submenu file for active highlighting on FAQ Editor page
+ */
+function dki_wiki_fix_faq_menu_active( $parent_file ) {
+    $screen = get_current_screen();
+    if ( $screen && $screen->id === 'admin_page_faq-editor' ) {
+        return 'faq-editor';  // Set parent to top-level
+    }
+    return $parent_file;
+}
+add_filter( 'parent_file', 'dki_wiki_fix_faq_menu_active' );
+
+function dki_wiki_fix_faq_submenu_active( $submenu_file ) {
+    $screen = get_current_screen();
+    if ( $screen && $screen->id === 'admin_page_faq-editor' ) {
+        return 'faq-editor';  // Set submenu to editor
+    }
+    return $submenu_file;
+}
+add_filter( 'submenu_file', 'dki_wiki_fix_faq_submenu_active' );
 
 /**
  * Enqueue React FAQ Editor assets
  */
 function dki_wiki_enqueue_faq_editor_assets( $hook ) {
     // Only load on the FAQ editor page
-    if ( $hook !== 'faq_page_faq-editor' ) {
+    if ( $hook !== 'faqs_page_faq-editor' ) {
         return;
     }
 
@@ -122,10 +167,7 @@ function dki_wiki_faq_editor_page_callback() {
                 <div class="notice notice-warning">
                     <h2><?php _e( 'FAQ Editor Not Built Yet', 'dki-wiki' ); ?></h2>
                     <p><?php _e( 'The React FAQ editor needs to be built first. Please run the following commands in the theme directory:', 'dki-wiki' ); ?></p>
-                    <pre style="background: #f1f1f1; padding: 15px; border-radius: 4px; font-family: monospace;">
-cd admin-faq-editor
-npm install
-npm run build</pre>
+                    <pre style="background: #f1f1f1; padding: 15px; border-radius: 4px; font-family: monospace;"></pre>
                     <p><?php _e( 'After building, refresh this page to load the FAQ editor.', 'dki-wiki' ); ?></p>
                     
                     <h3><?php _e( 'Fallback: Use Current FAQ Management', 'dki-wiki' ); ?></h3>
@@ -163,30 +205,6 @@ npm run build</pre>
 }
 
 /**
- * Modify the admin menu to prioritize the new FAQ Editor
- */
-function dki_wiki_modify_faq_admin_menu() {
-    global $submenu;
-    
-    // Reorder FAQ submenu items to put Editor first
-    if ( isset( $submenu['edit.php?post_type=faq'] ) ) {
-        $faq_menu = $submenu['edit.php?post_type=faq'];
-        $new_menu = array();
-        
-        // Find and prioritize the FAQ Editor
-        foreach ( $faq_menu as $key => $menu_item ) {
-            if ( $menu_item[2] === 'faq-editor' ) {
-                // Move FAQ Editor to position 1 (after "All FAQs")
-                array_splice( $submenu['edit.php?post_type=faq'], $key, 1 );
-                array_splice( $submenu['edit.php?post_type=faq'], 1, 0, array( $menu_item ) );
-                break;
-            }
-        }
-    }
-}
-add_action( 'admin_menu', 'dki_wiki_modify_faq_admin_menu', 999 );
-
-/**
  * Add admin notice to encourage using the new FAQ Editor
  */
 function dki_wiki_faq_editor_admin_notice() {
@@ -195,7 +213,7 @@ function dki_wiki_faq_editor_admin_notice() {
     // Show notice on FAQ-related pages but not on the new editor page
     if ( $screen && 
          ( $screen->post_type === 'faq' || $screen->taxonomy === 'faq_section' ) &&
-         $screen->id !== 'faq_page_faq-editor' 
+         $screen->id !== 'toplevel_page_faq-editor' 
     ) {
         $js_file = get_stylesheet_directory() . '/includes/assets/js/admin/faq-editor/faq-editor.js';
         
@@ -205,7 +223,7 @@ function dki_wiki_faq_editor_admin_notice() {
                 <p>
                     <strong><?php _e( 'New FAQ Editor Available!', 'dki-wiki' ); ?></strong>
                     <?php _e( 'Try our new all-in-one FAQ editor with drag-and-drop functionality.', 'dki-wiki' ); ?>
-                    <a href="<?php echo admin_url( 'edit.php?post_type=faq&page=faq-editor' ); ?>" class="button button-secondary" style="margin-left: 10px;">
+                    <a href="<?php echo admin_url( 'admin.php?page=faq-editor' ); ?>" class="button button-secondary" style="margin-left: 10px;">
                         <?php _e( 'Open FAQ Editor', 'dki-wiki' ); ?>
                     </a>
                 </p>
