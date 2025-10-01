@@ -1,0 +1,157 @@
+@use "../config/variables" as *;
+
+main:has(#login-form) {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--wp--preset--color--background);
+	padding: 1rem;
+}
+
+#login-form {
+	.advgb-login-form-wrapper {
+		border: 1px solid var(--wp--preset--color--tertiary-light);
+		border-radius: 12px;
+		box-shadow: $dki--box-shadow--regular;
+
+		form.advgb-form-login {
+			/* Inner Wrapper */
+			.advgb-form-inner {
+				padding: 3rem 2rem 1rem;
+
+				/* Login Header */
+				.advgb-lores-form-header {
+					h3 {
+						color: var(--wp--preset--color--primary);
+						font-size: 1.5rem;
+						font-weight: 700;
+					}
+				}
+
+				/* Login Input Fields */
+				.advgb-lores-field {
+					/* Input Field Label Wrapper */
+					.advgb-lores-field-label {
+						label {
+							width: fit-content;
+							color: var(--wp--preset--color--tertiary);
+							font-size: 1rem;
+							font-weight: 400;
+							transform: translate(4px, 16px);
+							background: white;
+							padding: 0 6px;
+							transition: color 0.1s;
+						}
+					}
+
+					/* Input Field Wrapper */
+					.advgb-lores-field-input {
+						border: 1px solid black;
+						border-radius: 6px;
+						padding: 0.7rem 0.5rem;
+						transition: border-color 0.1s;
+
+						/* Input Field Icon */
+						// span.advgb-lores-input-icon {}
+
+						/* Input Field */
+						input {
+							&::placeholder {
+								color: var(--wp--preset--color--tertiary);
+							}
+						}
+					}
+
+					/* User Field */
+					// &.advgb-login-user {}
+
+					/* Password Field */
+					// &.advgb-login-password {}
+
+					/* Remember Me Checkbox & Submit Button */
+					&.advgb-lores-submit-wrapper {
+						/* Remember Me Label */
+						label.remember-me-label {
+							/* Remember Me Container */
+							.remember-me-switch {
+								/* Checkbox */
+								&::before {
+									border-radius: 6px;
+								}
+
+								/* Text */
+								// span {}
+							}
+
+							/* Checkbox Field - invisible */
+							input.advgb-lores-checkbox {
+								&:checked + .remember-me-switch::before {
+									color: var(--wp--preset--color--contrast);
+									background-color: var(--wp--preset--color--secondary);
+									border-color: var(--wp--preset--color--secondary);
+								}
+							}
+						}
+
+						/* Submit Button Wrapper */
+						.advgb-login-submit {
+							/* Submit Button */
+							button {
+								background-color: var(--wp--preset--color--secondary);
+								border-radius: 6px;
+								color: var(--wp--preset--color--contrast);
+								font-family: $dki--font--primary;
+								font-size: 1rem;
+								font-weight: 600;
+								padding: 0.5rem 2rem;
+								cursor: pointer;
+								box-shadow: $dki--box-shadow--gelb-extra-small;
+								transition:
+									background-color 0.2s,
+									color 0.2s,
+									box-shadow 0.2s;
+
+								&:hover {
+									background-color: var(--wp--preset--color--secondary-hover);
+									box-shadow: $dki--box-shadow--gelb-small;
+								}
+
+								&:active {
+									background-color: var(--wp--preset--color--secondary-hover);
+									box-shadow: $dki--box-shadow--gelb-tiny;
+								}
+							}
+						}
+					}
+
+					&.advgb-lost-password-field {
+						.advgb-lost-password {
+							a.advgb-lost-password {
+								color: $dki--color--schwarz;
+								font-size: 0.875rem;
+								text-decoration: none;
+
+								&:hover {
+									text-decoration: underline;
+								}
+							}
+						}
+					}
+
+					&:has(input:focus) {
+						.advgb-lores-field-label {
+							label {
+								color: var(--wp--preset--color--primary);
+							}
+						}
+
+						.advgb-lores-field-input {
+							border-color: var(--wp--preset--color--primary) !important;
+						}
+					}
+				}
+			}
+		}
+	}
+}

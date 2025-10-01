@@ -1,0 +1,20 @@
+/* NORMALIZATION */
+@use "config/normalize.css";
+
+/* General Styles */
+@use "./main";
+
+/* Button Styles */
+@use "modules/buttons";
+
+/* Header Styles */
+@use "modules/header";
+
+/* BetterDocs Styles */
+@use "modules/betterdocs";
+
+/* Profile Styles */
+@use "modules/profile";
+
+/* Login Styles */
+@use "modules/login";
