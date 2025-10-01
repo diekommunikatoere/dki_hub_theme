@@ -84,4 +84,23 @@ document.addEventListener("DOMContentLoaded", function () {
 			button.classList.add("is-open");
 		}
 	}
+
+	/**
+	 * Copy to Clipboard functionality
+	 */
+	const copyButtons = document.querySelectorAll(".faq-copy-link-button");
+	copyButtons.forEach((copyButton) => {
+		copyButton.addEventListener("click", function () {
+			const faqId = this.getAttribute("data-faq-id");
+			const url = new URL(window.location.href);
+			const faqUrl = `${url.origin}${url.pathname}?faq=${faqId}#faq-question-${faqId}`;
+			url.searchParams.set("faq", faqId);
+			navigator.clipboard.writeText(faqUrl).then(() => {
+				this.classList.add("copy-success");
+				setTimeout(() => {
+					this.classList.remove("copy-success");
+				}, 2000);
+			});
+		});
+	});
 });

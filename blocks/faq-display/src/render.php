@@ -20,7 +20,17 @@ if (empty($sections) || is_wp_error($sections)) {
         'orderby' => 'name',
         'order' => 'ASC',
     ));
-}?>
+}
+
+// Copy link icon
+$copy_icon = file_get_contents(get_stylesheet_directory() . '/includes/assets/icons/general/icon_general_link.svg');
+
+// Success icon
+$success_icon = file_get_contents(get_stylesheet_directory() . '/includes/assets/icons/general/icon_general_success.svg');
+
+// Check URL for FAQ item ID (e.g., ?faq=123)
+$id_in_url = isset($_GET['faq']) ? intval($_GET['faq']) : 0;
+?>
 
 <div class="wp-block-dki-wiki-faq-display">
     <?php foreach ($sections as $section): ?>
@@ -73,6 +83,7 @@ if (empty($sections) || is_wp_error($sections)) {
                     $faq_id = $faq->ID;
                     $faq_title = $faq->post_title;
                     $faq_content = apply_filters('the_content', $faq->post_content);
+                    $faq_content_hidden = ($id_in_url !== $faq_id) ? 'hidden' : '';
                     ?>
                     
                     <div class="faq-item">
@@ -80,7 +91,7 @@ if (empty($sections) || is_wp_error($sections)) {
                         <h3 class="faq-question-heading">
                             <button 
                                 id="faq-question-<?php echo esc_attr($faq_id); ?>"
-                                class="faq-question-button"
+                                class="faq-question-button<?php echo ($id_in_url === $faq_id) ? ' is-open' : ''; ?>"
                                 aria-expanded="false"
                                 aria-controls="faq-content-<?php echo esc_attr($faq_id); ?>"
                             >
@@ -95,8 +106,17 @@ if (empty($sections) || is_wp_error($sections)) {
                             class="faq-answer"
                             role="region"
                             aria-labelledby="faq-question-<?php echo esc_attr($faq_id); ?>"
-                            hidden
+                            <?php echo $faq_content_hidden; ?>
                         >
+                            <button class="faq-copy-link-button" data-faq-id="<?php echo esc_attr($faq_id); ?>">
+                                <span class="faq-copy-link-icon default">
+                                    <?php echo $copy_icon; ?>
+                                </span>
+                                <span class="faq-copy-link-icon success">
+                                    <?php echo $success_icon; ?>
+                                </span>
+                                <span class="screen-reader-text"><?php _e('Link in Zwischenablage kopieren', 'dki-wiki'); ?></span>
+                            </button>
                             <div class="faq-answer-content">
                                 <?php echo $faq_content; ?>
                             </div>
