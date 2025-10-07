@@ -327,7 +327,7 @@
 				background-color: var(--wp--preset--color--background-alt);
 
 				span.toc-title {
-					font-family: $dki--font--primary;
+					font-family: var(--wp--custom--font--primary);
 					font-size: 1.5rem;
 					letter-spacing: 0.07em;
 					text-transform: uppercase;
@@ -336,7 +336,9 @@
 
 				ul.toc-list {
 					li a {
-						text-decoration: none;
+						font-family: var(--wp--custom--font--primary);
+						font-size: 0.875rem;
+						color: var(--wp--preset--color--tertiary-dark);
 
 						&:hover {
 							text-decoration: underline;
@@ -346,19 +348,9 @@
 
 					li.betterdocs-toc-heading-level-2 {
 						& > a {
-							font-family: $dki--font--primary;
+							font-family: var(--wp--custom--font--primary);
 							font-size: 1rem;
 							color: var(--wp--preset--color--contrast);
-						}
-
-						ul.betterdocs-toc-list-level-3 {
-							li.betterdocs-toc-heading-level-3 {
-								& > a {
-									font-family: $dki--font--primary;
-									font-size: 0.875rem;
-									color: var(--wp--preset--color--tertiary-dark);
-								}
-							}
 						}
 					}
 				}
@@ -583,7 +575,7 @@
 			}
 
 			&[rel="next"] {
-				align-self: flex-end;
+				justify-content: flex-end;
 
 				&:hover {
 					svg {

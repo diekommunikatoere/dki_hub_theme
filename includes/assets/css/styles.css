@@ -1224,7 +1224,7 @@ li #editor .betterdocs-articles-list li a:hover {
 }
 #wiki .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc span.toc-title,
 #editor .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc span.toc-title {
-  font-family: "Gibson", system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+  font-family: var(--wp--custom--font--primary);
   font-size: 1.5rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -1232,7 +1232,9 @@ li #editor .betterdocs-articles-list li a:hover {
 }
 #wiki .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li a,
 #editor .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li a {
-  text-decoration: none;
+  font-family: var(--wp--custom--font--primary);
+  font-size: 0.875rem;
+  color: var(--wp--preset--color--tertiary-dark);
 }
 #wiki .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li a:hover,
 #editor .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li a:hover {
@@ -1241,15 +1243,9 @@ li #editor .betterdocs-articles-list li a:hover {
 }
 #wiki .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li.betterdocs-toc-heading-level-2 > a,
 #editor .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li.betterdocs-toc-heading-level-2 > a {
-  font-family: "Gibson", system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+  font-family: var(--wp--custom--font--primary);
   font-size: 1rem;
   color: var(--wp--preset--color--contrast);
-}
-#wiki .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li.betterdocs-toc-heading-level-2 ul.betterdocs-toc-list-level-3 li.betterdocs-toc-heading-level-3 > a,
-#editor .betterdocs-blocks.betterdocs-toc-block .betterdocs-toc ul.toc-list li.betterdocs-toc-heading-level-2 ul.betterdocs-toc-list-level-3 li.betterdocs-toc-heading-level-3 > a {
-  font-family: "Gibson", system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
-  font-size: 0.875rem;
-  color: var(--wp--preset--color--tertiary-dark);
 }
 #wiki .betterdocs-blocks .sticky-toc-container,
 #editor .betterdocs-blocks .sticky-toc-container {
@@ -1460,7 +1456,7 @@ li #editor .betterdocs-articles-list li a:hover {
 }
 #wiki .docs-navigation a[rel=next],
 #editor .docs-navigation a[rel=next] {
-  align-self: flex-end;
+  justify-content: flex-end;
 }
 #wiki .docs-navigation a[rel=next]:hover svg,
 #editor .docs-navigation a[rel=next]:hover svg {
