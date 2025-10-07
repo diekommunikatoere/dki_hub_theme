@@ -264,49 +264,49 @@
 							"fontFamily": "Gill Sans",
 							"fontStyle": "normal",
 							"fontWeight": "300",
-							"src": ["file:./fonts/GillSans/subset-GillSans-Light.woff2"]
+							"src": ["file:./includes/assets/fonts/GillSans/subset-GillSans-Light.woff2"]
 						},
 						{
 							"fontFamily": "Gill Sans",
 							"fontStyle": "italic",
 							"fontWeight": "300",
-							"src": ["file:./fonts/GillSans/subset-GillSans-LightItalic.woff2"]
+							"src": ["file:./includes/assets/fonts/GillSans/subset-GillSans-LightItalic.woff2"]
 						},
 						{
 							"fontFamily": "Gill Sans",
 							"fontStyle": "normal",
 							"fontWeight": "400",
-							"src": ["file:./fonts/GillSans/subset-GillSans.woff2"]
+							"src": ["file:./includes/assets/fonts/GillSans/subset-GillSans.woff2"]
 						},
 						{
 							"fontFamily": "Gill Sans",
 							"fontStyle": "italic",
 							"fontWeight": "400",
-							"src": ["file:./fonts/GillSans/subset-GillSans-Italic.woff2"]
+							"src": ["file:./includes/assets/fonts/GillSans/subset-GillSans-Italic.woff2"]
 						},
 						{
 							"fontFamily": "Gill Sans",
 							"fontStyle": "normal",
 							"fontWeight": "600",
-							"src": ["file:./fonts/GillSans/subset-GillSans-SemiBold.woff2"]
+							"src": ["file:./includes/assets/fonts/GillSans/subset-GillSans-SemiBold.woff2"]
 						},
 						{
 							"fontFamily": "Gill Sans",
 							"fontStyle": "italic",
 							"fontWeight": "600",
-							"src": ["file:./fonts/GillSans/subset-GillSans-SemiBoldItalic.woff2"]
+							"src": ["file:./includes/assets/fonts/GillSans/subset-GillSans-SemiBoldItalic.woff2"]
 						},
 						{
 							"fontFamily": "Gill Sans",
 							"fontStyle": "normal",
 							"fontWeight": "700",
-							"src": ["file:./fonts/GillSans/subset-GillSans-Bold.woff2"]
+							"src": ["file:./includes/assets/fonts/GillSans/subset-GillSans-Bold.woff2"]
 						},
 						{
 							"fontFamily": "Gill Sans",
 							"fontStyle": "italic",
 							"fontWeight": "700",
-							"src": ["file:./fonts/GillSans/subset-GillSans-BoldItalic.woff2"]
+							"src": ["file:./includes/assets/fonts/GillSans/subset-GillSans-BoldItalic.woff2"]
 						}
 					],
 					"fontFamily": "\"Gill Sans\", sans-serif",
@@ -319,31 +319,31 @@
 							"fontFamily": "Gibson",
 							"fontStyle": "normal",
 							"fontWeight": "400",
-							"src": ["file:./fonts/Gibson/subset-Gibson-Regular.woff2"]
+							"src": ["file:./includes/assets/fonts/Gibson/subset-Gibson-Regular.woff2"]
 						},
 						{
 							"fontFamily": "Gibson",
 							"fontStyle": "normal",
 							"fontWeight": "500",
-							"src": ["file:./fonts/Gibson/subset-Gibson-Medium.woff2"]
+							"src": ["file:./includes/assets/fonts/Gibson/subset-Gibson-Medium.woff2"]
 						},
 						{
 							"fontFamily": "Gibson",
 							"fontStyle": "normal",
 							"fontWeight": "600",
-							"src": ["file:./fonts/Gibson/subset-Gibson-SemiBold.woff2"]
+							"src": ["file:./includes/assets/fonts/Gibson/subset-Gibson-SemiBold.woff2"]
 						},
 						{
 							"fontFamily": "Gibson",
 							"fontStyle": "normal",
 							"fontWeight": "700",
-							"src": ["file:./fonts/Gibson/subset-Gibson-Bold.woff2"]
+							"src": ["file:./includes/assets/fonts/Gibson/subset-Gibson-Bold.woff2"]
 						},
 						{
 							"fontFamily": "Gibson",
 							"fontStyle": "normal",
 							"fontWeight": "900",
-							"src": ["file:./fonts/Gibson/subset-Gibson-Heavy.woff2"]
+							"src": ["file:./includes/assets/fonts/Gibson/subset-Gibson-Heavy.woff2"]
 						}
 					],
 					"fontFamily": "\"Gibson\", sans-serif",
