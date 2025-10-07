@@ -92,7 +92,7 @@ $id_in_url = isset($_GET['faq']) ? intval($_GET['faq']) : 0;
                             <button 
                                 id="faq-question-<?php echo esc_attr($faq_id); ?>"
                                 class="faq-question-button<?php echo ($id_in_url === $faq_id) ? ' is-open' : ''; ?>"
-                                aria-expanded="false"
+                                aria-expanded="<?php echo ($id_in_url === $faq_id) ? 'true' : 'false'; ?>"
                                 aria-controls="faq-content-<?php echo esc_attr($faq_id); ?>"
                             >
                                 <span class="faq-question-text"><?php echo esc_html($faq_title); ?></span>
