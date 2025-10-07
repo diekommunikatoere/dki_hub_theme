@@ -75,7 +75,7 @@ $id_in_url = isset($_GET['faq']) ? intval($_GET['faq']) : 0;
         ?>
 
         <div class="faq-section" data-section-id="<?php echo esc_attr($section->term_id); ?>">
-            <h2 class="faq-section-title"><?php echo esc_html($section->name); ?></h2>
+            <h3 class="faq-section-title"><?php echo esc_html($section->name); ?></h3>
             
             <div class="faq-accordion" role="region" aria-label="<?php printf(__('FAQs für %s', 'dki-wiki'), esc_attr($section->name)); ?>">
                 <?php foreach ($faqs as $faq): ?>
@@ -88,7 +88,7 @@ $id_in_url = isset($_GET['faq']) ? intval($_GET['faq']) : 0;
                     
                     <div class="faq-item">
                         <!-- Accordion Header/Heading with Button -->
-                        <h3 class="faq-question-heading">
+                        <h4 class="faq-question-heading">
                             <button 
                                 id="faq-question-<?php echo esc_attr($faq_id); ?>"
                                 class="faq-question-button<?php echo ($id_in_url === $faq_id) ? ' is-open' : ''; ?>"
@@ -98,7 +98,7 @@ $id_in_url = isset($_GET['faq']) ? intval($_GET['faq']) : 0;
                                 <span class="faq-question-text"><?php echo esc_html($faq_title); ?></span>
                                 <span class="faq-toggle-icon" aria-hidden="true"></span>
                             </button>
-                        </h3>
+                        </h4>
                         
                         <!-- Accordion Content Panel -->
                         <div 
