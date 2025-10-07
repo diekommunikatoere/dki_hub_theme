@@ -4,7 +4,7 @@
  * Description:       Displays a navigation menu with links to the user's profile, their revisions, onboardings, and the logout page. Also includes a menu selector to choose from WordPress menus.
  * Requires at least: 6.6
  * Requires PHP:      7.0
- * Version:           0.1.0
+ * Version:           1.0.1
  * Author:            Steven Sullivan, Jörg Hegner
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html

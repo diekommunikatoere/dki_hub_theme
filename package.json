@@ -1,6 +1,6 @@
 {
 	"name": "dki-hub-theme",
-	"version": "1.3.3",
+	"version": "1.3.4",
 	"scripts": {
 		"build": "npm run build:blocks && npm run build:admin && npm run build:styles",
 		"build:blocks": "for d in blocks/*; do [ -f $d/package.json ] && (cd $d && npm install && npm run build) || true; done",
