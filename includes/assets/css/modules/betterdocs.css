@@ -254,7 +254,7 @@
 }
 #wiki .betterdocs-category-title,
 #editor .betterdocs-category-title {
-  color: var(--wp--preset--color--primary);
+  color: var(--wp--preset--color--contrast);
   font-family: var(--wp--preset--font-family--heading);
   font-weight: 600;
   letter-spacing: 1px;
@@ -282,10 +282,14 @@
 #editor .betterdocs-articles-list li {
   /* Article List Item – Link */
 }
+#wiki .betterdocs-articles-list li i,
+#editor .betterdocs-articles-list li i {
+  color: var(--wp--preset--color--primary);
+}
 #wiki .betterdocs-articles-list li a,
 #editor .betterdocs-articles-list li a {
   font-size: 1rem;
-  color: var(--wp--preset--color--primary);
+  color: var(--wp--preset--color--contrast);
 }
 #wiki .betterdocs-articles-list li a:hover,
 #editor .betterdocs-articles-list li a:hover {
@@ -298,10 +302,6 @@ i + #editor .betterdocs-articles-list li a:hover {
 li #wiki .betterdocs-articles-list li a:hover,
 li #editor .betterdocs-articles-list li a:hover {
   background-color: var(--wp--preset--color--primary-hover);
-}
-#wiki .betterdocs-articles-list li a + i,
-#editor .betterdocs-articles-list li a + i {
-  color: var(--wp--preset--color--primary);
 }
 #wiki .betterdocs--comment-section,
 #editor .betterdocs--comment-section {
@@ -416,7 +416,6 @@ li #editor .betterdocs-articles-list li a:hover {
   background-color: var(--wp--preset--color--background-alt);
   border: 1px solid var(--wp--preset--color--tertiary-light);
   border-radius: 12px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 6px, rgba(0, 0, 0, 0.1) 0px 1px 2px;
   overflow: hidden;
 }
 #wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper[data-id="42"],
@@ -464,8 +463,8 @@ li #editor .betterdocs-articles-list li a:hover {
   line-height: 1.3;
   transition: color 0.1s;
 }
-#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list > li:not(.betterdocs-nested-category-wrapper):hover,
-#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list > li:not(.betterdocs-nested-category-wrapper):hover {
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list > li:not(.betterdocs-nested-category-wrapper):has(a:hover),
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list > li:not(.betterdocs-nested-category-wrapper):has(a:hover) {
   color: var(--wp--preset--color--primary-hover);
   background-color: var(--wp--preset--color--background-alt);
   border-radius: 6px;
@@ -480,6 +479,10 @@ li #editor .betterdocs-articles-list li a:hover {
   transition: color 0.1s, background-color 0.1s;
   padding: 4px;
 }
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title svg,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title svg {
+  fill: var(--wp--preset--color--contrast);
+}
 #wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title a,
 #editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title a {
   width: 100%;
@@ -491,6 +494,10 @@ li #editor .betterdocs-articles-list li a:hover {
   background-color: var(--wp--preset--color--background-alt);
   border-radius: 6px;
   overflow: hidden;
+}
+#wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title:hover a,
+#editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-title:hover a {
+  color: var(--wp--preset--color--primary-hover);
 }
 #wiki .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-list li,
 #editor .betterdocs-blocks.betterdocs-category-grid-wrapper .betterdocs-category-grid-inner-wrapper article.betterdocs-single-category-wrapper .betterdocs-single-category-inner .betterdocs-body .betterdocs-articles-list .betterdocs-nested-category-wrapper .betterdocs-nested-category-list li {

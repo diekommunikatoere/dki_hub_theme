@@ -1,6 +1,6 @@
 {
 	"name": "header-navigation",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Displays a navigation menu with links to the user's profile, their revisions, onboardings, and the logout page. Also includes a menu selector to choose from WordPress menus.",
 	"author": "Steven Sullivan, Jörg Hegner",
 	"license": "GPL-2.0-or-later",

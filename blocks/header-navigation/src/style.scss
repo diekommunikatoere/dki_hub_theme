@@ -144,6 +144,7 @@ header:has(.header-navigation-wrapper) {
 		border: none;
 		cursor: pointer;
 		outline: none;
+		transition: transform 0.1s ease;
 
 		.nav-item-avatar {
 			display: block;
@@ -151,6 +152,20 @@ header:has(.header-navigation-wrapper) {
 
 			// click through the avatar
 			pointer-events: none;
+		}
+
+		&:hover,
+		&:focus-visible {
+			outline: none;
+
+			img {
+				outline: 2px solid var(--wp--preset--color--primary);
+				outline-offset: 2px;
+			}
+		}
+
+		&:active {
+			transform: scale(0.95);
 		}
 	}
 

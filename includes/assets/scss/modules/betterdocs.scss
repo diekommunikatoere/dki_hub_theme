@@ -44,7 +44,7 @@
 
 	/* General Styles and Overrides */
 	.betterdocs-category-title {
-		color: var(--wp--preset--color--primary);
+		color: var(--wp--preset--color--contrast);
 		font-family: var(--wp--preset--font-family--heading);
 		font-weight: 600;
 		letter-spacing: 1px;
@@ -73,10 +73,14 @@
 	/* Article List */
 	.betterdocs-articles-list {
 		li {
+			i {
+				color: var(--wp--preset--color--primary);
+			}
+
 			/* Article List Item – Link */
 			a {
 				font-size: 1rem;
-				color: var(--wp--preset--color--primary);
+				color: var(--wp--preset--color--contrast);
 
 				&:hover {
 					color: var(--wp--preset--color--primary-hover);
@@ -88,10 +92,6 @@
 					li & {
 						background-color: var(--wp--preset--color--primary-hover);
 					}
-				}
-
-				& + i {
-					color: var(--wp--preset--color--primary);
 				}
 			}
 		}
@@ -198,7 +198,6 @@
 					background-color: var(--wp--preset--color--background-alt);
 					border: 1px solid var(--wp--preset--color--tertiary-light);
 					border-radius: 12px;
-					box-shadow: $dki--box-shadow--extra-small;
 					overflow: hidden;
 
 					&[data-id="42"] {
@@ -243,7 +242,7 @@
 										transition: color 0.1s;
 									}
 
-									&:hover {
+									&:has(a:hover) {
 										color: var(--wp--preset--color--primary-hover);
 										background-color: var(--wp--preset--color--background-alt);
 										border-radius: 6px;
@@ -260,6 +259,10 @@
 											background-color 0.1s;
 										padding: 4px;
 
+										svg {
+											fill: var(--wp--preset--color--contrast);
+										}
+
 										a {
 											width: 100%;
 											transition: color 0.1s;
@@ -270,6 +273,10 @@
 											background-color: var(--wp--preset--color--background-alt);
 											border-radius: 6px;
 											overflow: hidden;
+
+											a {
+												color: var(--wp--preset--color--primary-hover);
+											}
 										}
 									}
 
