@@ -46,6 +46,12 @@ header:has(.header-navigation-wrapper) {
 			color: var(--wp--preset--color--tertiary-dark);
 		}
 
+		@media screen and (max-width: 670px) {
+			span {
+				display: none;
+			}
+		}
+
 		&:hover {
 			color: var(--wp--preset--color--primary-hover);
 		}

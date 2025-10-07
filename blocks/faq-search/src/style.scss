@@ -20,6 +20,11 @@
 			outline: 2px solid var(--wp--preset--color--primary);
 			outline-offset: -2px;
 		}
+
+		&::placeholder {
+			color: var(--wp--preset--color--tertiary);
+			opacity: 1;
+		}
 	}
 
 	.faq-search-clear {
@@ -35,19 +40,45 @@
 		font-size: 1.5em;
 		cursor: pointer;
 		border-radius: 50%;
-		transition: background-color 0.2s ease;
+		transition: background-color 0.1s ease;
+
+		span {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 
 		svg {
 			width: 1em;
 			height: 1em;
 			fill: var(--wp--preset--color--tertiary);
+			transition: fill 0.1s ease;
 		}
 
-		&:hover,
-		&:focus {
+		&:hover {
+			background-color: var(--wp--preset--color--tertiary-dark);
+
+			svg {
+				fill: var(--wp--preset--color--background);
+			}
+		}
+
+		&:focus:not(:active) {
 			outline: 2px solid var(--wp--preset--color--primary);
 			outline-offset: -2px;
 			background-color: var(--wp--preset--color--background-alt);
+		}
+
+		&:active {
+			background-color: var(--wp--preset--color--primary);
+
+			svg {
+				fill: var(--wp--preset--color--background);
+			}
+		}
+
+		&[hidden] {
+			display: none;
 		}
 	}
 }

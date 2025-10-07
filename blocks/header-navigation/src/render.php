@@ -45,7 +45,7 @@
 
 		<?php if ($user->ID > 0): // Only show if logged in ?>
 			<a href="/" class="header-navigation-logo-link" aria-label="Zur Startseite">
-				<img src="/wp-content/uploads/2024/06/DKI_Wiki_logo.svg" class="header-navigation-logo" />
+				<img src="/wp-content/uploads/2024/06/DKI_Wiki_logo.svg" class="header-navigation-logo" alt="DKI Wiki Logo"/>
 				<span>die kommunikatöre® Hub</span>
 			</a>
 			<nav class="header-navigation-menu">
