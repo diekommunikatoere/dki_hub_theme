@@ -41,7 +41,7 @@ h1 {
 	font-family: $dki--font--primary;
 	font-weight: 800;
 	font-size: clamp(1.5rem, 2.609vw + 0.913rem, 3rem);
-	line-height: clamp(1.8rem, 2.609vw + 1.213rem, 3.3rem);
+	line-height: clamp(1.4, 0.359vw + 115%, 1.2);
 	text-transform: uppercase;
 
 	strong {
@@ -59,7 +59,7 @@ h2 {
 	font-family: $dki--font--primary;
 	font-weight: 600;
 	font-size: clamp(1.313rem, 1.63vw + 0.946rem, 2.25rem);
-	line-height: clamp(1.706rem, 1.728vw + 1.317rem, 2.7rem);
+	line-height: clamp(1.4, 0.359vw + 115%, 1.2);
 
 	strong {
 		font-weight: 600;
@@ -70,7 +70,7 @@ h3 {
 	font-family: $dki--font--primary;
 	font-weight: 600;
 	font-size: clamp(1.125rem, 0.652vw + 0.978rem, 1.5rem);
-	line-height: clamp(1.463rem, 0.587vw + 1.33rem, 1.8rem);
+	line-height: clamp(1.4, 0.359vw + 115%, 1.2);
 
 	strong {
 		font-weight: 600;
@@ -81,7 +81,7 @@ h4 {
 	font-family: $dki--font--primary;
 	font-weight: 600;
 	font-size: clamp(1.125rem, 0.326vw + 1.052rem, 1.313rem);
-	line-height: clamp(1.238rem, 0.359vw + 1.157rem, 1.444rem);
+	line-height: clamp(1.4, 0.359vw + 115%, 1.2);
 
 	strong {
 		font-weight: 600;
@@ -103,7 +103,7 @@ h6 {
 	font-family: $dki--font--primary;
 	font-weight: 600;
 	font-size: clamp(0.938rem, 0.435vw + 0.84rem, 1.188rem);
-	line-height: clamp(1.031rem, 0.478vw + 0.924rem, 1.306rem);
+	line-height: clamp(1.4, 0.359vw + 115%, 1.2);
 
 	strong {
 		font-weight: 600;
@@ -231,7 +231,7 @@ figure {
 	padding: 0.7rem;
 	background: var(--wp--preset--color--tertiary);
 	border-radius: 100px;
-	transition: background 0.1s;
+	transition: all 0.1s ease;
 	z-index: 10;
 
 	& svg {
@@ -247,5 +247,14 @@ figure {
 		svg {
 			fill: var(--wp--preset--color--contrast);
 		}
+	}
+
+	&:focus:not(:active) {
+		outline: 2px solid var(--wp--preset--color--primary);
+		outline-offset: 2px;
+	}
+
+	&:active {
+		transform: scale(0.95);
 	}
 }
