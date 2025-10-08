@@ -33,6 +33,12 @@
 	}
 
 	.betterdocs-updated-date-wrapper {
+		display: inline-flex;
+		padding: 0 0.5rem;
+		background-color: var(--wp--preset--color--background-alt);
+		border-radius: 12px;
+		font-size: 80%;
+		font-style: italic;
 		color: var(--wp--preset--color--tertiary);
 	}
 

@@ -44,6 +44,10 @@ h1 {
 	line-height: clamp(1.8rem, 2.609vw + 1.213rem, 3.3rem);
 	text-transform: uppercase;
 
+	strong {
+		font-weight: 800;
+	}
+
 	.title & {
 		font-size: clamp(1.688rem, 4.891vw + 0.587rem, 4.5rem);
 		line-height: clamp(2.025rem, 4.696vw + 0.968rem, 4.725rem);
@@ -56,6 +60,10 @@ h2 {
 	font-weight: 600;
 	font-size: clamp(1.313rem, 1.63vw + 0.946rem, 2.25rem);
 	line-height: clamp(1.706rem, 1.728vw + 1.317rem, 2.7rem);
+
+	strong {
+		font-weight: 600;
+	}
 }
 
 h3 {
@@ -63,6 +71,10 @@ h3 {
 	font-weight: 600;
 	font-size: clamp(1.125rem, 0.652vw + 0.978rem, 1.5rem);
 	line-height: clamp(1.463rem, 0.587vw + 1.33rem, 1.8rem);
+
+	strong {
+		font-weight: 600;
+	}
 }
 
 h4 {
@@ -70,6 +82,10 @@ h4 {
 	font-weight: 600;
 	font-size: clamp(1.125rem, 0.326vw + 1.052rem, 1.313rem);
 	line-height: clamp(1.238rem, 0.359vw + 1.157rem, 1.444rem);
+
+	strong {
+		font-weight: 600;
+	}
 }
 
 h5 {
@@ -77,6 +93,10 @@ h5 {
 	font-weight: 600;
 	font-size: clamp(1rem, 0.435vw + 0.902rem, 1.25rem);
 	line-height: clamp(1.1rem, 0.478vw + 0.992rem, 1.375rem);
+
+	strong {
+		font-weight: 600;
+	}
 }
 
 h6 {
@@ -84,7 +104,17 @@ h6 {
 	font-weight: 600;
 	font-size: clamp(0.938rem, 0.435vw + 0.84rem, 1.188rem);
 	line-height: clamp(1.031rem, 0.478vw + 0.924rem, 1.306rem);
+
+	strong {
+		font-weight: 600;
+	}
 }
+
+/**
+*
+* SPECIFIC STYLES
+*
+*/
 
 main,
 article.post,
@@ -94,11 +124,18 @@ article.post,
 	padding-top: 100px;
 }
 
-/**
- *
- * SPECIFIC STYLES
- *
- */
+table {
+	border-collapse: collapse;
+	margin-bottom: 1rem;
+
+	tbody {
+		th,
+		td {
+			padding: 0.5rem;
+			border: 1px solid var(--wp--preset--color--tertiary-light);
+		}
+	}
+}
 
 figure {
 	button.lightbox-trigger {
