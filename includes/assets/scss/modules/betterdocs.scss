@@ -99,6 +99,11 @@
 						background-color: var(--wp--preset--color--primary-hover);
 					}
 				}
+
+				&.active {
+					color: var(--wp--preset--color--primary);
+					text-decoration: underline solid 2px var(--wp--preset--color--primary);
+				}
 			}
 		}
 	}
@@ -328,6 +333,10 @@
 
 		/* Table of Contents */
 		&.betterdocs-toc-block {
+			&:not(.betterdocs-sidebar) {
+				display: flex;
+			}
+
 			.betterdocs-toc {
 				padding: 1.5rem 2rem;
 				background-color: var(--wp--preset--color--background-alt);
@@ -338,6 +347,10 @@
 					letter-spacing: 0.07em;
 					text-transform: uppercase;
 					color: var(--wp--preset--color--primary);
+
+					svg {
+						color: var(--wp--preset--color--primary);
+					}
 				}
 
 				ul.toc-list {
@@ -657,6 +670,11 @@
 									color: var(--wp--preset--color--contrast);
 									width: 100%;
 									transition: color 0.1s;
+
+									&.active {
+										color: var(--wp--preset--color--primary);
+										text-decoration: underline solid 2px var(--wp--preset--color--primary);
+									}
 								}
 
 								&:hover {
@@ -680,6 +698,11 @@
 									color: var(--wp--preset--color--contrast);
 									width: 100%;
 									transition: color 0.1s;
+
+									&.active {
+										color: var(--wp--preset--color--primary);
+										text-decoration: underline solid 2px var(--wp--preset--color--primary);
+									}
 								}
 
 								&:hover {
