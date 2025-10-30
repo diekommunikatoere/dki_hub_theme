@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "dki-wiki/edit-docs-page",
+	"version": "1.0.0",
+	"title": "Docs Page Edit Links",
+	"category": "widgets",
+	"description": "Inserts links to edit the currently opened BetterDocs page.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "edit-docs-page",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}
