@@ -1,0 +1,260 @@
+/* FONTS */
+@use "config/fonts" as *;
+
+/* VARIABLES */
+@use "config/variables" as *;
+
+/**
+ *
+ * BASE STYLES
+ *
+*/
+
+/* --- TYPOGRAPHY --- */
+:root {
+	font-size: 16px;
+
+	:where(.wp-element-button:focus:not(:active), .wp-block-button__link:focus:not(:active)) {
+		/* outline-width: 0;
+		outline-style: none;
+		outline-offset: unset; */
+	}
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: $dki--font--secondary;
+	font-size: clamp(0.875rem, 0.435vw + 0.777rem, 1.125rem);
+	line-height: clamp(1.575rem, 0.391vw + 1.487rem, 1.8rem);
+	font-weight: 500;
+	color: $dki--color--schwarz;
+}
+
+p {
+	margin-block-end: 0.5rem;
+}
+
+h1 {
+	font-family: $dki--font--primary;
+	font-weight: 800;
+	font-size: clamp(1.5rem, 2.609vw + 0.913rem, 3rem);
+	line-height: clamp(1.4, 0.359vw + 115%, 1.2);
+	text-transform: uppercase;
+
+	strong {
+		font-weight: 800;
+	}
+
+	.title & {
+		font-size: clamp(1.688rem, 4.891vw + 0.587rem, 4.5rem);
+		line-height: clamp(2.025rem, 4.696vw + 0.968rem, 4.725rem);
+		letter-spacing: 0.005em;
+	}
+}
+
+h2 {
+	font-family: $dki--font--primary;
+	font-weight: 600;
+	font-size: clamp(1.313rem, 1.63vw + 0.946rem, 2.25rem);
+	line-height: clamp(1.4, 0.359vw + 115%, 1.2);
+
+	strong {
+		font-weight: 600;
+	}
+}
+
+h3 {
+	font-family: $dki--font--primary;
+	font-weight: 600;
+	font-size: clamp(1.125rem, 0.652vw + 0.978rem, 1.5rem);
+	line-height: clamp(1.4, 0.359vw + 115%, 1.2);
+
+	strong {
+		font-weight: 600;
+	}
+}
+
+h4 {
+	font-family: $dki--font--primary;
+	font-weight: 600;
+	font-size: clamp(1.125rem, 0.326vw + 1.052rem, 1.313rem);
+	line-height: clamp(1.4, 0.359vw + 115%, 1.2);
+
+	strong {
+		font-weight: 600;
+	}
+}
+
+h5 {
+	font-family: $dki--font--primary;
+	font-weight: 600;
+	font-size: clamp(1rem, 0.435vw + 0.902rem, 1.25rem);
+	line-height: clamp(1.1rem, 0.478vw + 0.992rem, 1.375rem);
+
+	strong {
+		font-weight: 600;
+	}
+}
+
+h6 {
+	font-family: $dki--font--primary;
+	font-weight: 600;
+	font-size: clamp(0.938rem, 0.435vw + 0.84rem, 1.188rem);
+	line-height: clamp(1.4, 0.359vw + 115%, 1.2);
+
+	strong {
+		font-weight: 600;
+	}
+}
+
+/**
+*
+* SPECIFIC STYLES
+*
+*/
+
+main,
+article.post,
+.archive > article {
+	margin: 0 auto;
+	min-height: 850px;
+	padding-top: 100px;
+}
+
+table {
+	border-collapse: collapse;
+	margin-bottom: 1rem;
+
+	tbody {
+		th,
+		td {
+			padding: 0.5rem;
+			border: 1px solid var(--wp--preset--color--tertiary-light);
+		}
+	}
+}
+
+figure {
+	button.lightbox-trigger {
+		height: 1.5rem;
+		width: 1.5rem;
+		padding: 5px;
+		border: 1px solid var(--wp--preset--color--tertiary-light) !important;
+		border-radius: 100px;
+		background-color: var(--wp--preset--color--background) !important;
+		transition: all 0.1s;
+
+		svg {
+			path {
+				fill: var(--wp--preset--color--tertiary);
+				transition: fill 0.1s;
+			}
+		}
+
+		&:hover {
+			border-color: var(--wp--preset--color--secondary) !important;
+			background-color: var(--wp--preset--color--secondary) !important;
+
+			svg {
+				path {
+					fill: var(--wp--preset--color--contrast);
+				}
+			}
+		}
+	}
+}
+
+.wp-lightbox-overlay {
+	background: rgb(0 0 0 / 30%);
+
+	button.close-button {
+		background: var(--wp--preset--color--background-alt) !important;
+		border-radius: 100px;
+		padding: 0.5rem;
+		transition: 0.1s background;
+
+		svg {
+			fill: var(--wp--preset--color--contrast);
+		}
+
+		&:hover {
+			background: var(--wp--preset--color--secondary) !important;
+		}
+	}
+}
+
+#wiki {
+	.wp-block-dki-wiki-edit-docs-page {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		gap: 0.5rem;
+		padding: 0.8rem;
+		background-color: var(--wp--preset--color--background-alt);
+		border-radius: 12px;
+
+		.edit-docs-button {
+			display: flex;
+			flex-direction: row;
+			padding: 0.7rem;
+			background: var(--wp--preset--color--tertiary);
+			border-radius: 100px;
+			transition: background 0.1s;
+
+			svg {
+				height: 1rem;
+				width: 1rem;
+				fill: var(--wp--preset--color--background);
+				transition: fill 0.1s;
+			}
+
+			&:hover {
+				background: var(--wp--preset--color--secondary);
+
+				svg {
+					fill: var(--wp--preset--color--contrast);
+				}
+			}
+		}
+	}
+}
+
+#scroll-top-button {
+	position: fixed;
+	bottom: 1rem;
+	right: 1rem;
+	display: flex;
+	flex-direction: row;
+	padding: 0.7rem;
+	background: var(--wp--preset--color--tertiary);
+	border-radius: 100px;
+	transition: all 0.1s ease;
+	z-index: 10;
+
+	& svg {
+		height: 1rem;
+		width: 1rem;
+		fill: var(--wp--preset--color--background);
+		transition: fill 0.1s;
+	}
+
+	&:hover {
+		background: var(--wp--preset--color--secondary);
+
+		svg {
+			fill: var(--wp--preset--color--contrast);
+		}
+	}
+
+	&:focus:not(:active) {
+		outline: 2px solid var(--wp--preset--color--primary);
+		outline-offset: 2px;
+	}
+
+	&:active {
+		transform: scale(0.95);
+	}
+}

@@ -1,0 +1,118 @@
+// Styles for the FAQ admin interface
+
+/* Reorder Page */
+
+.dki-wiki-faq-reorder {
+	max-width: 800px;
+}
+
+.sortable-sections,
+.sortable-faqs {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.section-item,
+.faq-item {
+	margin-bottom: 10px;
+	padding: 10px;
+	border: 1px solid var(--wp--preset--color--tertiary-light);
+	border-radius: 4px;
+	background: var(--wp--preset--color--background);
+	cursor: move;
+	position: relative;
+}
+
+.section-item:hover,
+.faq-item:hover {
+	border-color: var(--wp--preset--color--tertiary);
+	box-shadow: 0 2px 5px color-mix(in srgb, 0 0 0 10%, transparent);
+}
+
+.section-header {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.section-drag-handle,
+.faq-drag-handle {
+	color: var(--wp--preset--color--tertiary);
+	font-size: 18px;
+	cursor: grab;
+}
+
+.section-drag-handle:active,
+.faq-drag-handle:active {
+	cursor: grabbing;
+}
+
+.section-drag-handle:hover,
+.faq-drag-handle:hover {
+	color: var(--wp--preset--color--primary);
+}
+
+.section-order,
+.faq-order {
+	margin-left: auto;
+	font-size: 12px;
+	color: var(--wp--preset--color--tertiary-dark);
+	font-style: italic;
+}
+
+.faqs-sortable {
+	margin-left: 30px;
+	padding-left: 10px;
+	border-left: 2px solid var(--wp--preset--color--secondary-extra-light);
+}
+
+#save-faq-reorder {
+	margin-top: 20px;
+}
+
+#reorder-message {
+	margin-left: 10px;
+	font-weight: bold;
+}
+
+#reorder-message span {
+	background-color: var(--wp--preset--color--background);
+	padding: 6px 10px;
+	border: 1px solid var(--wp--preset--color--tertiary);
+	border-radius: 6px;
+}
+
+#reorder-message .success {
+	color: var(--wp--preset--color--secondary-dark);
+}
+
+#reorder-message .error {
+	color: var(--wp--preset--color--error-dark);
+}
+
+/* Visual feedback for sorting */
+.ui-sortable-helper {
+	opacity: 0.7;
+	background: var(--wp--preset--color--background-alt);
+}
+
+.ui-sortable-placeholder {
+	background: var(--wp--preset--color--secondary-extra-light);
+	border: 1px dashed var(--wp--preset--color--secondary);
+	visibility: visible !important;
+	height: 40px;
+}
+
+@media (width >= 782px) {
+	.section-header {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 5px;
+	}
+
+	.section-order,
+	.faq-order {
+		margin-left: 0;
+	}
+}

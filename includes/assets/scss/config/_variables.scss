@@ -1,0 +1,337 @@
+/**  */
+
+/*** ----- VARIABLES ----- ***/
+
+/**  */
+
+/*** ----- Colors Default ----- ***/
+// / dk Pink
+$dki--color--pink: #db007a;
+$dki--color--pink-hover: #f31b63;
+$dki--color--pink-light: #f4bedc;
+$dki--color--pink-dark: #910854;
+
+// / dk Gelb
+$dki--color--gelb: #ffd640;
+$dki--color--gelb-hover: #f7c200;
+$dki--color--gelb-light: #f6e5b1;
+$dki--color--gelb-dark: #765f0a;
+
+// / dk Grau
+$dki--color--grau: #92907b;
+$dki--color--grau-dark: #62604a;
+$dki--color--grau-light: #d1d0c7;
+$dki--color--schwarz: #282616;
+
+// / dk Off-White
+$dki--color--off-white: #f5f4f0;
+
+// / dk Weiss
+$dki--color--weiss: #fff;
+
+/**  */
+
+/*** ----- Space ----- ***/
+// Page Padding
+$dki--page--padding: clamp(18px, calc(18px + 0.5vw), 30px);
+
+// Gutter Width
+$dki--gutter--width: clamp(1rem, calc(1rem + 0.5vw), 30px);
+
+/*** ----- Font Family ----- ***/
+$dki--font--primary:
+	"Gibson",
+	system-ui,
+	-apple-system,
+	blinkmacsystemfont,
+	"Segoe UI",
+	roboto,
+	"Helvetica Neue",
+	arial,
+	sans-serif;
+$dki--font--secondary:
+	"Gill Sans",
+	system-ui,
+	-apple-system,
+	blinkmacsystemfont,
+	"Segoe UI",
+	roboto,
+	"Helvetica Neue",
+	arial,
+	sans-serif;
+
+/**  */
+
+/*** ----- z-index ----- ***/
+$dki--z-index--low: -1;
+$dki--z-index--default: 1;
+$dki--z-index--high: 10;
+$dki--z-index--highest: 100;
+$dki--z-index--overlay: 1000;
+$dki--z-index--navbar: 9999;
+$dki--z-index--modal: 10000;
+
+/**  */
+
+/*** ----- Breakpoints ----- ***/
+// / Mobile
+$dki--breakpoint--mobile: 320px;
+$dki--breakpoint--mobile-max: 767px;
+
+// / Tablet
+$dki--breakpoint--tablet: 768px;
+$dki--breakpoint--tablet-max: 1023px;
+
+// / Desktop
+$dki--breakpoint--desktop: 1024px;
+$dki--breakpoint--desktop-max: 1279px;
+
+// / Large Desktop
+$dki--breakpoint--large-desktop: 1280px;
+$dki--breakpoint--large-desktop-max: 1919px;
+
+// / Extra Large Desktop
+$dki--breakpoint--extra-large-desktop: 1920px;
+
+// second argument is optional
+@mixin media($dki--breakpoint-min: null, $dki--breakpoint-max: null) {
+	// mins
+	@if not $dki--breakpoint-max {
+		// 576px
+		@if $dki--breakpoint-min == 576 {
+			@media (width >= 576px) {
+				@content;
+			}
+		}
+
+		// 768px
+		@else if $dki--breakpoint-min == 768 {
+			@media (width >= 768px) {
+				@content;
+			}
+		}
+
+		// 992px
+		@else if $dki--breakpoint-min == 992 {
+			@media (width >= 992px) {
+				@content;
+			}
+		}
+
+		// 1280px
+		@else if $dki--breakpoint-min == 1280 {
+			@media (width >= 1280px) {
+				@content;
+			}
+		}
+
+		// 1920px
+		@else if $dki--breakpoint-min == 1920 {
+			@media (width >= 1920px) {
+				@content;
+			}
+		}
+
+		// 2560px
+		@else if $dki--breakpoint-min == 2560 {
+			@media (width >= 2560px) {
+				@content;
+			}
+		}
+
+		// custom px value. add px to the value
+		@else if $dki--breakpoint-min != null {
+			@media (min-width: #{$dki--breakpoint-min}) {
+				@content;
+			}
+		}
+
+		// max
+	} @else if $dki--breakpoint-min == null {
+		@if $dki--breakpoint-max == 576 {
+			@media (width <= 576px) {
+				@content;
+			}
+		}
+
+		// custom px value. add px to the value
+		@else if $dki--breakpoint-max != null {
+			@media (max-width: #{$dki--breakpoint-max}) {
+				@content;
+			}
+		}
+
+		// min-max
+	} @else {
+		@media (min-width: #{$dki--breakpoint-min}) and (max-width: #{$dki--breakpoint-max}) {
+			@content;
+		}
+	}
+}
+
+/**  */
+
+/*** ----- Font Sizes ----- ***/
+$dki--font-size--extra-tiny: clamp(0.25rem, calc(0.25rem + 0.5vw), 0.5rem);
+$dki--font-size--tiny: clamp(0.5rem, calc(0.5rem + 0.5vw), 0.75rem);
+$dki--font-size--small: clamp(0.75rem, calc(0.75rem + 0.5vw), 1rem);
+$dki--font-size--regular: clamp(1rem, calc(1rem + 0.5vw), 1.25rem);
+$dki--font-size--large: clamp(1.25rem, calc(1.25rem + 0.5vw), 1.5rem);
+$dki--font-size--extra-large: clamp(1.5rem, calc(1.5rem + 0.5vw), 1.75rem);
+$dki--font-size--huge: clamp(1.75rem, calc(1.75rem + 0.5vw), 2rem);
+$dki--font-size--extra-huge: clamp(2rem, calc(2rem + 0.5vw), 2.25rem);
+$dki--font-size--massive: clamp(3rem, calc(3rem + 0.5vw), 3.25rem);
+$dki--font-size--super-massive: clamp(4rem, calc(4rem + 0.5vw), 4.25rem);
+
+/**  */
+
+/*** ----- Line Heights ----- ***/
+$dki--line-height--tiny: clamp(1em, calc(1rem + 0.5vw), 1.25em);
+$dki--line-height--small: clamp(1.25em, calc(1.25em + 0.5vw), 1.5em);
+$dki--line-height--regular: clamp(1.5em, calc(1.5em + 0.5vw), 1.75em);
+$dki--line-height--large: clamp(1.75em, calc(1.75em + 0.5vw), 2em);
+$dki--line-height--extra-large: clamp(2em, calc(2em + 0.5vw), 2.25em);
+
+/**  */
+
+/*** ----- Border Radius ----- ***/
+$dki--border-radius--tiny: 3px;
+$dki--border-radius--small: 5px;
+$dki--border-radius--regular: 10px;
+$dki--border-radius--large: 15px;
+$dki--border-radius--extra-large: 20px;
+$dki--border-radius--huge: 40px;
+$dki--border-radius--circle: 1000px;
+
+/**  */
+
+/*** ----- Box Shadows ----- ***/
+// / Regular shadows
+$dki--box-shadow--tiny: rgb(0 0 0 / 16%) 0px 1px 3px;
+$dki--box-shadow--extra-small:
+	rgb(0 0 0 / 16%) 0px 2px 6px,
+	rgb(0 0 0 / 10%) 0px 1px 2px;
+$dki--box-shadow--small:
+	rgb(0 0 0 / 16%) 0px 4px 12px,
+	rgb(0 0 0 / 10%) 0px 2px 6px;
+$dki--box-shadow--regular:
+	rgb(50 50 93 / 16%) 0px 13px 27px -5px,
+	rgb(0 0 0 / 23%) 0px 8px 16px -8px;
+$dki--box-shadow--large:
+	rgb(255 255 255 / 10%) 0px 1px 1px 0px inset,
+	rgb(50 50 93 / 16%) 0px 20px 60px -10px,
+	rgb(0 0 0 / 30%) 0px 10px 30px -20px;
+$dki--box-shadow--huge:
+	rgb(255 255 255 / 10%) 0px 1px 1px 0px inset,
+	rgb(50 50 93 / 16%) 0px 20px 80px -10px,
+	rgb(0 0 0 / 30%) 0px 15px 40px -20px;
+
+// / Pink shadows
+$dki--box-shadow--pink-tiny: rgba($dki--color--pink-dark, 0.25) 0px 1px 3px;
+$dki--box-shadow--pink-extra-small:
+	rgba($dki--color--pink, 0.4) 0px 2px 6px,
+	rgba($dki--color--pink-dark, 0.1) 0px 1px 2px;
+$dki--box-shadow--pink-small:
+	rgba($dki--color--pink, 0.4) 0px 4px 12px,
+	rgba($dki--color--pink-dark, 0.1) 0px 2px 6px;
+$dki--box-shadow--pink-regular:
+	rgba($dki--color--pink, 0.25) 0px 13px 27px -5px,
+	rgba($dki--color--pink-dark, 0.23) 0px 8px 16px -8px;
+$dki--box-shadow--pink-large:
+	rgb(255 255 255 / 10%) 0px 1px 1px 0px inset,
+	rgba($dki--color--pink, 0.25) 0px 20px 60px -10px,
+	rgba($dki--color--pink-dark, 0.3) 0px 10px 30px -20px;
+$dki--box-shadow--pink-huge:
+	rgb(255 255 255 / 10%) 0px 1px 1px 0px inset,
+	rgba($dki--color--pink, 0.25) 0px 20px 80px -10px,
+	rgba($dki--color--pink-dark, 0.3) 0px 15px 40px -20px;
+
+// / Gelb shadows
+$dki--box-shadow--gelb-tiny: rgba($dki--color--gelb-dark, 0.25) 0px 1px 3px;
+$dki--box-shadow--gelb-extra-small:
+	rgba($dki--color--gelb, 0.4) 0px 2px 6px,
+	rgba($dki--color--gelb-dark, 0.1) 0px 1px 2px;
+$dki--box-shadow--gelb-small:
+	rgba($dki--color--gelb, 0.4) 0px 4px 12px,
+	rgba($dki--color--gelb-dark, 0.1) 0px 2px 6px;
+$dki--box-shadow--gelb-regular:
+	rgba($dki--color--gelb, 0.25) 0px 13px 27px -5px,
+	rgba($dki--color--gelb-dark, 0.23) 0px 8px 16px -8px;
+$dki--box-shadow--gelb-large:
+	rgb(255 255 255 / 10%) 0px 1px 1px 0px inset,
+	rgba($dki--color--gelb, 0.25) 0px 20px 60px -10px,
+	rgba($dki--color--gelb-dark, 0.3) 0px 10px 30px -20px;
+$dki--box-shadow--gelb-huge:
+	rgb(255 255 255 / 10%) 0px 1px 1px 0px inset,
+	rgba($dki--color--gelb, 0.25) 0px 20px 80px -10px,
+	rgba($dki--color--gelb-dark, 0.3) 0px 15px 40px -20px;
+
+// / Grau shadows
+$dki--box-shadow--grau-tiny: rgba($dki--color--grau-dark, 0.25) 0px 1px 3px;
+$dki--box-shadow--grau-extra-small:
+	rgba($dki--color--grau, 0.4) 0px 2px 6px,
+	rgba($dki--color--grau-dark, 0.1) 0px 1px 2px;
+$dki--box-shadow--grau-small:
+	rgba($dki--color--grau, 0.4) 0px 4px 12px,
+	rgba($dki--color--grau-dark, 0.1) 0px 2px 6px;
+$dki--box-shadow--grau-regular:
+	rgba($dki--color--grau, 0.25) 0px 13px 27px -5px,
+	rgba($dki--color--grau-dark, 0.23) 0px 8px 16px -8px;
+$dki--box-shadow--grau-large:
+	rgb(255 255 255 / 10%) 0px 1px 1px 0px inset,
+	rgba($dki--color--grau, 0.25) 0px 20px 60px -10px,
+	rgba($dki--color--grau-dark, 0.3) 0px 10px 30px -20px;
+$dki--box-shadow--grau-huge:
+	rgb(255 255 255 / 10%) 0px 1px 1px 0px inset,
+	rgba($dki--color--grau, 0.25) 0px 20px 80px -10px,
+	rgba($dki--color--grau-dark, 0.3) 0px 15px 40px -20px;
+
+// / Inset Shadows
+$dki--box-shadow--inset-regular: rgb(0 0 0 / 6%) 0px 2px 4px 0px inset;
+$dki--box-shadow--inset-large: rgb(0 0 0 / 16%) 0px 3px 6px 0px inset;
+$dki--box-shadow--focus: rgb(50 50 93 / 50%) 0px 0px 0px 3px;
+
+// / Combined Shadows
+$dki--box-shadow--focus-small:
+	rgb(0 0 0 / 16%) 0px 4px 12px,
+	rgb(0 0 0 / 10%) 0px 2px 6px,
+	rgb(50 50 93 / 50%) 0px 0px 0px 3px;
+$dki--box-shadow--focus-regular:
+	rgb(50 50 93 / 16%) 0px 13px 27px -5px,
+	rgb(0 0 0 / 23%) 0px 8px 16px -8px,
+	rgb(50 50 93 / 50%) 0px 0px 0px 3px;
+$dki--box-shadow--focus-large:
+	rgb(255 255 255 / 10%) 0px 1px 1px 0px inset,
+	rgb(50 50 93 / 16%) 0px 20px 60px -10px,
+	rgb(0 0 0 / 30%) 0px 10px 30px -20px,
+	rgb(50 50 93 / 50%) 0px 0px 0px 3px;
+$dki--box-shadow--focus-inset-regular:
+	rgb(0 0 0 / 6%) 0px 2px 4px 0px inset,
+	rgb(50 50 93 / 50%) 0px 0px 0px 3px;
+$dki--box-shadow--focus-inset-large:
+	rgb(0 0 0 / 16%) 0px 3px 6px 0px inset,
+	rgb(50 50 93 / 50%) 0px 0px 0px 3px;
+
+/**  */
+
+/*** ----- Transitions ----- ***/
+$dki--transition-fast: 0.1s;
+$dki--transition-regular: 0.3s;
+$dki--transition-medium: 0.5s;
+$dki--transition-slow: 0.5s;
+
+/**  */
+
+/*** ----- Easings ----- ***/
+$dki--easing-ease-in: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$dki--easing-ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$dki--easing-ease-in-out: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+$dki--easing-ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$dki--easing-ease-in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+$dki--easing-ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+/**  */
+
+/*** ----- Animations ----- ***/
+
+/**  */

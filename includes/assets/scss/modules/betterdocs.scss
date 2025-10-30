@@ -1,0 +1,843 @@
+@use "../config/variables" as *;
+@use "./buttons.scss" as *;
+
+#wiki,
+#editor {
+	@media (width < 900px) {
+		flex-direction: column;
+	}
+
+	.wiki-column-wiki {
+		flex-basis: 66.67%;
+
+		@media screen and (width < 1280px) {
+			flex-basis: 50%;
+		}
+	}
+
+	.wiki-column-faq {
+		flex-basis: 33.33%;
+
+		@media screen and (width < 1280px) {
+			flex-basis: 50%;
+		}
+	}
+
+	.docs-two-columns {
+		gap: 2rem;
+		padding: 0 30px;
+
+		@media (width <= 900px) {
+			flex-direction: column;
+		}
+	}
+
+	.betterdocs-updated-date-wrapper {
+		display: inline-flex;
+		padding: 0 0.5rem;
+		background-color: var(--wp--preset--color--background-alt);
+		border-radius: 12px;
+		font-size: 80%;
+		font-style: italic;
+		color: var(--wp--preset--color--tertiary);
+	}
+
+	.wp-block-post-title {
+		padding-top: 0.5em;
+		text-transform: initial;
+		font-weight: 600;
+	}
+
+	/* General Styles and Overrides */
+	.betterdocs-category-title {
+		color: var(--wp--preset--color--contrast);
+		font-family: var(--wp--preset--font-family--heading);
+		font-weight: 600;
+		letter-spacing: 1px;
+	}
+
+	/* Item Count */
+	.betterdocs-category-items-counts {
+		background-color: var(--wp--preset--color--background);
+		padding: 0;
+
+		/* Item Count Number */
+		span {
+			font-size: 14px;
+			aspect-ratio: 1 / 1;
+			min-height: 1em;
+			min-width: 1em;
+			width: unset;
+			height: unset;
+			padding: 0.6em;
+			color: var(--wp--preset--color--background);
+			text-align: center;
+			background-color: var(--wp--preset--color--tertiary-dark);
+		}
+	}
+
+	/* Article List */
+	.betterdocs-articles-list {
+		li {
+			i {
+				color: var(--wp--preset--color--primary);
+			}
+
+			/* Article List Item – Link */
+			a {
+				font-size: 1rem;
+				color: var(--wp--preset--color--contrast);
+
+				&:hover {
+					color: var(--wp--preset--color--primary-hover);
+
+					i + & {
+						color: var(--wp--preset--color--primary-hover);
+					}
+
+					li & {
+						background-color: var(--wp--preset--color--primary-hover);
+					}
+				}
+
+				&.active {
+					color: var(--wp--preset--color--primary);
+					text-decoration: underline solid 2px var(--wp--preset--color--primary);
+				}
+			}
+		}
+	}
+
+	.betterdocs--comment-section {
+		/* Kommentare */
+		ol.betterdocs--comment-section--comments {
+			/* Einzelner Kommentar */
+			li.comment {
+				/* Kommentar Container */
+				.wp-block-columns {
+					padding: 1rem 1rem 1.5rem;
+					border: 2px solid var(--wp--preset--color--tertiary-light);
+					border-radius: 12px;
+
+					/* Kommentar Inhalt */
+					.wp-block-column {
+						/* Kommentar Autor */
+						.wp-block-comment-author-name {
+							font-family: var(--wp--preset--font-family--heading);
+							font-weight: 600;
+							color: var(--wp--preset--color--primary);
+						}
+
+						/* Kommentar Datum & Bearbeiten Link */
+						.wp-block-group {
+							padding-bottom: 0.5rem;
+							border-bottom: 1px solid var(--wp--preset--color--tertiary-light);
+
+							.wp-block-comment-date {
+								color: var(--wp--preset--color--tertiary);
+								transition: 0.1s color;
+
+								&:hover {
+									color: var(--wp--preset--color--primary-hover);
+								}
+							}
+
+							.wp-block-comment-edit-link {
+								color: var(--wp--preset--color--contrast);
+								transition: 0.1s color;
+
+								&:hover {
+									color: var(--wp--preset--color--primary-hover);
+								}
+							}
+						}
+
+						/* Kommentar Inhalt */
+						.wp-block-comment-content {
+							color: var(--wp--preset--color--contrast);
+							font-size: 1rem;
+						}
+
+						/* Antworten Link */
+						.wp-block-comment-reply-link {
+							a.comment-reply-link {
+								display: inline-block;
+								padding: 0.5rem 1rem;
+								background-color: var(--wp--preset--color--tertiary);
+								color: var(--wp--preset--color--background);
+								border-radius: 3px;
+								box-shadow: var(--wp--preset--shadow--extra-small);
+								transition: 0.2s all;
+
+								&:hover {
+									background-color: var(--wp--preset--color--secondary);
+									color: var(--wp--preset--color--contrast);
+									box-shadow: var(--wp--preset--shadow--small);
+									text-decoration: none;
+								}
+
+								&:active {
+									background-color: var(--wp--preset--color--secondary);
+									color: var(--wp--preset--color--contrast);
+									box-shadow: var(--wp--preset--shadow--tiny);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.betterdocs-blocks {
+		/* Category Overview Block */
+		&.betterdocs-category-grid-wrapper {
+			container-type: inline-size;
+
+			.betterdocs-category-grid-inner-wrapper {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1rem;
+
+				@media (width < 1280px) {
+					grid-template-columns: 1fr;
+				}
+
+				/* Single Category Item */
+				article.betterdocs-single-category-wrapper {
+					/* Single Category Item Inner Wrapper */
+					background-color: var(--wp--preset--color--background-alt);
+					border: 1px solid var(--wp--preset--color--tertiary-light);
+					border-radius: 12px;
+					overflow: hidden;
+
+					&[data-id="42"] {
+						border-color: var(--wp--preset--color--primary);
+					}
+
+					.betterdocs-single-category-inner {
+						/* Single Category Header Section */
+						display: flex;
+						flex-direction: column;
+						justify-content: space-between;
+						align-items: stretch;
+
+						.betterdocs-category-header {
+							/* Single Category Header Section – Inner */
+							flex-grow: unset;
+							background-color: var(--wp--preset--color--background-alt);
+
+							.betterdocs-category-header-inner {
+								border-bottom: unset;
+							}
+						}
+
+						/* Single Category Body Section */
+						.betterdocs-body {
+							flex-grow: 1;
+							padding: 6px 4px 4px;
+
+							/* Article List */
+							.betterdocs-articles-list {
+								width: 100%;
+
+								& > li:not(.betterdocs-nested-category-wrapper) {
+									transition:
+										color 0.1s,
+										background-color 0.1s;
+									padding: 4px;
+
+									a {
+										width: 100%;
+										line-height: 1.3;
+										transition: color 0.1s;
+									}
+
+									&:has(a:hover) {
+										color: var(--wp--preset--color--primary-hover);
+										background-color: var(--wp--preset--color--background-alt);
+										border-radius: 6px;
+										overflow: hidden;
+									}
+								}
+
+								.betterdocs-nested-category-wrapper {
+									margin: 0;
+
+									.betterdocs-nested-category-title {
+										transition:
+											color 0.1s,
+											background-color 0.1s;
+										padding: 4px;
+
+										svg {
+											fill: var(--wp--preset--color--contrast);
+										}
+
+										a {
+											width: 100%;
+											transition: color 0.1s;
+										}
+
+										&:hover {
+											color: var(--wp--preset--color--primary-hover);
+											background-color: var(--wp--preset--color--background-alt);
+											border-radius: 6px;
+											overflow: hidden;
+
+											a {
+												color: var(--wp--preset--color--primary-hover);
+											}
+										}
+									}
+
+									.betterdocs-nested-category-list {
+										li {
+											transition:
+												color 0.1s,
+												background-color 0.1s;
+											padding: 4px;
+
+											a {
+												width: 100%;
+												transition: color 0.1s;
+											}
+
+											&:hover {
+												color: var(--wp--preset--color--primary-hover);
+												background-color: var(--wp--preset--color--background-alt);
+												border-radius: 6px;
+												overflow: hidden;
+											}
+										}
+									}
+								}
+							}
+						}
+
+						/* Single Category Footer Section */
+						.betterdocs-footer {
+							flex-grow: unset;
+
+							/* Category Link */
+							.betterdocs-category-link-btn {
+								@include dki-button--primary;
+								display: flex;
+								max-width: 150px;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/* Table of Contents */
+		&.betterdocs-toc-block {
+			&:not(.betterdocs-sidebar) {
+				display: flex;
+			}
+
+			.betterdocs-toc {
+				padding: 1.5rem 2rem;
+				background-color: var(--wp--preset--color--background-alt);
+
+				span.toc-title {
+					font-family: var(--wp--custom--font--primary);
+					font-size: 1.5rem;
+					letter-spacing: 0.07em;
+					text-transform: uppercase;
+					color: var(--wp--preset--color--primary);
+
+					svg {
+						color: var(--wp--preset--color--primary);
+					}
+				}
+
+				ul.toc-list {
+					li a {
+						font-family: var(--wp--custom--font--primary);
+						font-size: 0.875rem;
+						color: var(--wp--preset--color--tertiary-dark);
+
+						&:hover {
+							text-decoration: underline;
+							text-decoration-color: var(--wp--preset--color--primary-hover);
+						}
+					}
+
+					li.betterdocs-toc-heading-level-2 {
+						& > a {
+							font-family: var(--wp--custom--font--primary);
+							font-size: 1rem;
+							color: var(--wp--preset--color--contrast);
+						}
+					}
+				}
+			}
+		}
+
+		/* Sticky TOC Close Button */
+		.sticky-toc-container {
+			top: 2vh;
+
+			.close-toc {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				right: -56px;
+				padding: 0.5rem;
+				border-radius: 3px;
+				transition: all 0.1s;
+
+				&:hover {
+					background-color: var(--wp--preset--color--secondary-hover);
+
+					svg {
+						fill: var(--wp--preset--color--contrast);
+					}
+				}
+
+				&:active {
+					background-color: var(--wp--preset--color--secondary-light);
+					outline: 2px solid var(--wp--preset--color--secondary-hover);
+				}
+			}
+		}
+
+		/* Search Form Wrapper */
+		&.betterdocs-search-form-wrapper {
+			/* padding: 2rem 0; */
+			padding: 0;
+			background-color: unset;
+
+			/* Search Form Wrapper - Inner */
+			.betterdocs-live-search {
+				margin: 0;
+				max-width: unset;
+
+				/* Search Form – Form Wrapper */
+				.betterdocs-searchform {
+					width: auto;
+					padding: 0.75em 1em;
+					border-color: var(--wp--preset--color--tertiary);
+
+					&:focus-within {
+						border-color: var(--wp--preset--color--primary);
+						outline: 2px solid var(--wp--preset--color--primary);
+						outline-offset: -2px;
+					}
+
+					/* Search Form – Search Field Wrapper */
+					.betterdocs-searchform-input-wrap {
+						border: unset;
+						height: unset;
+						padding: unset;
+						margin: unset;
+
+						.docs-search-icon {
+							display: none;
+						}
+
+						.betterdocs-search-field {
+							padding: 0;
+							font-size: 1em;
+
+							&::placeholder {
+								color: var(--wp--preset--color--tertiary);
+								opacity: 1; /* Ensure placeholder is fully opaque */
+							}
+						}
+
+						.docs-search-close {
+							opacity: 1;
+
+							.close-border,
+							.close-line {
+								fill: var(--wp--preset--color--tertiary);
+							}
+
+							&:hover {
+								path:first-child,
+								.close-border {
+									fill: var(--wp--preset--color--tertiary-dark);
+								}
+
+								.close-line {
+									fill: var(--wp--preset--color--background);
+								}
+							}
+
+							&:active {
+								path:first-child,
+								.close-border {
+									fill: var(--wp--preset--color--primary);
+								}
+
+								.close-line {
+									fill: var(--wp--preset--color--background);
+								}
+							}
+						}
+					}
+
+					/* Search Form – Results Wrapper */
+					.betterdocs-search-result-wrap {
+						width: 100%;
+
+						/* Search Form – Results List */
+						.docs-search-result {
+							width: 100%;
+							overflow-x: hidden;
+
+							/* Search Form – Results List Item */
+							li {
+								width: 100%;
+
+								/* Search Form – Results List Item – Link */
+								a {
+									display: flex;
+									flex-direction: row;
+									justify-content: flex-start;
+									align-items: center;
+									padding: 1rem;
+									gap: 1rem;
+									width: 100%;
+
+									/* Search Form – Results List Item – Title */
+									.betterdocs-search-title {
+										display: block;
+										order: 2;
+										font-family: var(--wp--preset--font-family--heading);
+										font-weight: 500;
+										letter-spacing: 0.5px;
+										color: var(--wp--preset--color--contrast);
+										transition: color 0.2s;
+									}
+
+									br {
+										display: none;
+									}
+
+									/* Search Form – Results List Item – Category */
+									.betterdocs-search-category {
+										display: block;
+										order: 1;
+										font-size: 0.75rem;
+										color: var(--wp--preset--color--primary-dark);
+										padding: 0 0.5rem;
+										border-radius: 3px;
+										background-color: var(--wp--preset--color--primary-extra-light);
+									}
+
+									&:hover {
+										.betterdocs-search-title {
+											color: var(--wp--preset--color--primary);
+										}
+									}
+								}
+
+								&:hover {
+									background-color: var(--wp--preset--color--background-alt);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.docs-navigation {
+		margin-top: 2rem;
+		padding-top: 2rem;
+		border-top: 2px solid var(--wp--preset--color--tertiary-light);
+
+		a {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 0.5rem;
+			font-size: 1rem;
+			font-weight: 700;
+			padding: 0.5rem 1rem;
+			color: var(--wp--preset--color--primary);
+			text-decoration: none;
+			transition: all 0.2s;
+
+			svg {
+				fill: var(--wp--preset--color--primary);
+				transition:
+					transform 0.2s,
+					fill 0.2s;
+				min-width: 1rem;
+				width: 1rem;
+				margin: 0;
+			}
+
+			&:hover {
+				color: var(--wp--preset--color--primary-hover);
+				text-decoration: underline;
+				text-decoration-color: var(--wp--preset--color--primary-hover);
+
+				svg {
+					transform: translateX(5px);
+					fill: var(--wp--preset--color--primary-hover);
+				}
+			}
+
+			&[rel="prev"] {
+				&:hover {
+					svg {
+						transform: translateX(-5px);
+					}
+				}
+			}
+
+			&[rel="next"] {
+				justify-content: flex-end;
+
+				&:hover {
+					svg {
+						transform: translateX(5px);
+					}
+				}
+			}
+		}
+	}
+
+	&.betterdocs--category-archive {
+		// .betterdocs--sidebar {}
+
+		.betterdocs--content-wrapper {
+			.betterdocs-content-area {
+				.betterdocs-content-inner-area {
+					.betterdocs-entry-title {
+						.betterdocs-entry-heading {
+							color: var(--wp--preset--color--secondary);
+							font-size: var(--wp--preset--font-size--x-large);
+							text-transform: uppercase;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#betterdocs-sidebar {
+	.betterdocs-category-grid-wrapper {
+		border-radius: 12px;
+		overflow: hidden;
+		border: 2px solid var(--wp--preset--color--tertiary-light);
+
+		.betterdocs-category-grid-inner-wrapper {
+			article.betterdocs-single-category-wrapper {
+				.betterdocs-single-category-inner {
+					.betterdocs-category-header {
+						transition: background-color 0.1s;
+
+						.betterdocs-category-header-inner {
+							h2.betterdocs-category-title {
+								color: var(--wp--preset--color--contrast);
+								transition: color 0.1s;
+							}
+						}
+
+						&:hover {
+							background-color: var(--wp--preset--color--background-alt);
+
+							.betterdocs-category-header-inner {
+								h2.betterdocs-category-title {
+									color: var(--wp--preset--color--primary-hover);
+								}
+							}
+						}
+					}
+
+					.betterdocs-body {
+						border-bottom: 1px solid var(--wp--preset--color--tertiary-light);
+						padding: 6px 4px 4px;
+
+						.betterdocs-articles-list {
+							width: 100%;
+
+							li {
+								svg {
+									fill: var(--wp--preset--color--contrast);
+								}
+
+								a {
+									color: var(--wp--preset--color--contrast);
+									width: 100%;
+									transition: color 0.1s;
+
+									&.active {
+										color: var(--wp--preset--color--primary);
+										text-decoration: underline solid 2px var(--wp--preset--color--primary);
+									}
+								}
+
+								&:hover {
+									background-color: var(--wp--preset--color--background-alt);
+									border-radius: 6px;
+									overflow: hidden;
+
+									a {
+										color: var(--wp--preset--color--primary-hover);
+									}
+								}
+							}
+
+							& > li:not(.betterdocs-nested-category-wrapper) {
+								transition:
+									color 0.1s,
+									background-color 0.1s;
+								padding: 4px;
+
+								a {
+									color: var(--wp--preset--color--contrast);
+									width: 100%;
+									transition: color 0.1s;
+
+									&.active {
+										color: var(--wp--preset--color--primary);
+										text-decoration: underline solid 2px var(--wp--preset--color--primary);
+									}
+								}
+
+								&:hover {
+									color: var(--wp--preset--color--primary-hover);
+									background-color: var(--wp--preset--color--background-alt);
+									border-radius: 6px;
+									overflow: hidden;
+
+									a {
+										color: var(--wp--preset--color--primary-hover);
+									}
+								}
+							}
+
+							.betterdocs-nested-category-wrapper {
+								margin: 0;
+
+								.betterdocs-nested-category-title {
+									transition:
+										color 0.1s,
+										background-color 0.1s;
+									padding: 4px;
+
+									a {
+										color: var(--wp--preset--color--contrast);
+										width: 100%;
+										transition: color 0.1s;
+									}
+
+									svg {
+										fill: var(--wp--preset--color--contrast);
+									}
+
+									&:hover {
+										color: var(--wp--preset--color--primary-hover);
+										background-color: var(--wp--preset--color--background-alt);
+										border-radius: 6px;
+										overflow: hidden;
+
+										a {
+											color: var(--wp--preset--color--primary-hover);
+										}
+									}
+								}
+
+								.betterdocs-nested-category-list {
+									li {
+										transition:
+											color 0.1s,
+											background-color 0.1s;
+										padding: 4px;
+
+										svg {
+											fill: var(--wp--preset--color--contrast);
+										}
+
+										a {
+											color: var(--wp--preset--color--contrast);
+											width: 100%;
+											transition: color 0.1s;
+										}
+
+										&:hover {
+											color: var(--wp--preset--color--primary-hover);
+											background-color: var(--wp--preset--color--background-alt);
+											border-radius: 6px;
+											overflow: hidden;
+
+											a {
+												color: var(--wp--preset--color--primary-hover);
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				&.active {
+					.betterdocs-single-category-inner {
+						.betterdocs-category-header {
+							border-color: var(--wp--preset--color--primary);
+							background-color: var(--wp--preset--color--background-alt);
+
+							.betterdocs-category-header-inner {
+								h2.betterdocs-category-title {
+									color: var(--wp--preset--color--primary);
+								}
+							}
+						}
+					}
+				}
+
+				&:last-child {
+					.betterdocs-single-category-inner {
+						.betterdocs-body {
+							border-bottom: none;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#betterdocs-breadcrumb {
+	ul.betterdocs-breadcrumb-list {
+		li.betterdocs-breadcrumb-item {
+			a.bread-link {
+				color: var(--wp--preset--color--tertiary);
+				text-decoration-thickness: 0;
+				text-underline-offset: 2px;
+				transition: 0.1s all;
+
+				&:hover {
+					color: var(--wp--preset--color--primary-hover);
+					text-decoration: 2px underline var(--wp--preset--color--primary-hover);
+				}
+			}
+
+			&.breadcrumb-delimiter {
+				.icon-container {
+					svg {
+						color: var(--wp--preset--color--tertiary);
+					}
+				}
+			}
+
+			&.item-current {
+				span {
+					letter-spacing: 0;
+					color: var(--wp--preset--color--contrast);
+				}
+			}
+		}
+	}
+}

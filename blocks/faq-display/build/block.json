@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "dki-wiki/faq-display",
+  "version": "v1.4.0",
+  "title": "FAQ Anzeige",
+  "category": "widgets",
+  "description": "Ein Block zur Anzeige von FAQ-Abschnitten und -Elementen in einem akkordeonartigen Format.",
+  "example": {},
+  "attributes": {},
+  "supports": {
+    "html": false
+  },
+  "textdomain": "faq-display",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}
